@@ -1,6 +1,6 @@
 .card-container {
     width: 260px; /* Fixed width for the card */
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 5px 5px 0px 0px black;

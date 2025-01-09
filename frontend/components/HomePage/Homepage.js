@@ -32,6 +32,26 @@ const Homepage = () => {
                         dateText="Sat, 25 jan onwards"
                         priceText="$100 onwards"
                         imageSrc="" />
+                    <Card
+                        dateText="Sat, 25 jan onwards"
+                        priceText="$100 onwards"
+                        imageSrc="" />
+                    <Card
+                        dateText="Sat, 25 jan onwards"
+                        priceText="$100 onwards"
+                        imageSrc="" />
+                    <Card
+                        dateText="Sat, 25 jan onwards"
+                        priceText="$100 onwards"
+                        imageSrc="" />
+                    <Card
+                        dateText="Sat, 25 jan onwards"
+                        priceText="$100 onwards"
+                        imageSrc="" />
+                    <Card
+                        dateText="Sat, 25 jan onwards"
+                        priceText="$100 onwards"
+                        imageSrc="" />
                 </div>
 
             </div>
