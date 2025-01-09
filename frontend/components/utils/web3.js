@@ -122,3 +122,17 @@ export const checkTicketOwnership = async (eventId, userAddress) => {
     throw new Error(`Error checking ticket ownership: ${error.message}`);
   }
 };
+
+
+// Check ticket ownership
+export const events = async(eventId) => {
+    const contract = eventManagerContract();
+  
+    try {
+      const events = await contract.methods.events(eventId).call();
+
+      return events;
+    } catch (error) {
+      throw new Error(`Error checking ticket ownership: ${error.message}`);
+    }
+  };
