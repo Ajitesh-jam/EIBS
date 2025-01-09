@@ -1,6 +1,8 @@
 import React from 'react'
 import './Homepage.css'
 import Navbar from '../Navbar/Navbar'
+import NoMoreScalping from '../nomorescalping/NoMoreScalping'
+import NoRandomQueueing from '../NoMoreRandomQueueing/NoRandomQueueing'
 
 
 const Homepage = () => {  
@@ -16,6 +18,9 @@ const Homepage = () => {
                 <div className='Sub-Heading'>
                     <p>Powered by Avalanche</p>
                 </div>
+                <NoMoreScalping/>
+                <NoRandomQueueing/>
+                
             </div>
         </div>
     </div>
