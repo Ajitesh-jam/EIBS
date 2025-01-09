@@ -3,6 +3,7 @@
 //import web3 from components/utils/web3.js
 import { getAccounts,createEvent, buyTicket, sellTicket, getTicketPrice, getSellingTicketPrice, checkTicketOwnership, events } from "@/components/utils/web3.js";
 import  {useState}  from "react";
+import { Card } from "@/components/utils/card/card";
 
 import Link from "next/link";
 
@@ -121,7 +122,15 @@ const Home = () => {
                                 ))}
                             </div>
                         </div>
-                    </section>
+            </section>
+
+
+            <Card image="https://img.etimg.com/thumb/msid-114611224,width-300,height-225,imgsize-13010,resizemode-75/diljit-dosanjh-shares-stunning-pictures-from-first-concert-in-paris-makes-promise-to-punjabi-music-lovers.jpg" name="ChainSmoker" index="1" />
+            <Card image="https://img.etimg.com/thumb/msid-114611224,width-300,height-225,imgsize-13010,resizemode-75/diljit-dosanjh-shares-stunning-pictures-from-first-concert-in-paris-makes-promise-to-punjabi-music-lovers.jpg" name="ChainSmoker" index="1" />
+
+
+
+
 
 
       </>
