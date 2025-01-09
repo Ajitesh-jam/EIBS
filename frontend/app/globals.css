@@ -30,6 +30,13 @@ body {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'CD-Medium';
+  src: url('../public/fonts/ClashDisplay-Medium.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
 
 
 
