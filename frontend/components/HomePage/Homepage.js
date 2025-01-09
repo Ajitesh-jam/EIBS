@@ -1,10 +1,16 @@
+'use client'
 import React from 'react'
 import './Homepage.css'
 import Navbar from '../Navbar/Navbar'
 import Card from '../Card/Card'
+import Button from '../Button/Button'
 
 
 const Homepage = () => {
+    const handleRegisterConcertBtnClick = () =>{
+        console.log('Register Concert Button Clicked')
+    }
+
     return (
         <div className='Homepage-container'>
             <Navbar />
@@ -53,7 +59,21 @@ const Homepage = () => {
                         priceText="$100 onwards"
                         imageSrc="" />
                 </div>
-
+            </div>
+            <div className='RegisterConcert-container'>
+                <div className='RegisterConcert-Heading'>
+                    <p>Got your own concert?</p>
+                </div>
+                <div className='RegisterConcertSection'>
+                    <div className='left'>
+                        <p>Register your concert and start selling tickets in few easy steps!</p>
+                    </div>
+                    <div className='right'>
+                    <Button
+                    btnText='Register Concert'
+                    onClickFunction={handleRegisterConcertBtnClick}/>
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -83,3 +83,65 @@
     width: 100vw;
     height: auto;
 }
+
+.RegisterConcert-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 50vh;
+}
+
+.RegisterConcert-Heading{
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.RegisterConcert-Heading p{
+    font-family: 'CD-Semibold';
+    font-size: 2.8rem;
+}
+
+.RegisterConcertSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 40vh;
+}
+
+.RegisterConcertSection .left{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+.RegisterConcertSection .right{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+.left p{
+    font-family: 'CD-Medium';
+    font-size: 2rem;
+    color: #797979;
+    padding: 2rem ;
+    /* border: 1px solid red; */
+    width: 80%;
+}
+
+.right {
+    padding-top: 2rem;
+    padding-left: 22rem;
+}

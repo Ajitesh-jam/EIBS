@@ -15,6 +15,11 @@
     box-shadow: 10px 10px 0px 0px black; /* Adds a larger shadow effect */
   }
   
+  .card-container:active {
+    transform: scale(0.98) translate(2px, 2px); /* Press effect: scales down and slightly moves */
+    box-shadow: 3px 3px 0px 0px black; /* Reduces the shadow to simulate pressing */
+  }
+  
   /* Image Section */
   .card-image {
     width: 100%;
