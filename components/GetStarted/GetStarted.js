@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import "./GetStarted.css";
-import Button from "../Button/Button";
-import metamaskLogo from '../../public/Images/metamaskLogo.svg'
+
+
 
 
 
