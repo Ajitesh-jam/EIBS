@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^5.9.3",
     "bootstrap-touchspin": "^4.7.3",
     "form-data": "^4.0.1",
     "got": "^14.4.5",
