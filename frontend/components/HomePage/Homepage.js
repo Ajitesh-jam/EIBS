@@ -40,6 +40,7 @@ const Homepage = () => {
     }
 
     const [showModal, setShowModal] = useState(false);
+    const [showCardModal, setShowCardModal] = useState(false);
 
     // Function to toggle modal visibility
     const toggleGetStartedModal = () => {
@@ -98,7 +99,8 @@ const Homepage = () => {
             {showModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
-                        <GetStarted handleLogin={handleLogin} />
+                        <GetStarted 
+                        handleLogin={handleLogin} />
                         <button className="close-button" onClick={toggleGetStartedModal}>
                             X
                         </button>

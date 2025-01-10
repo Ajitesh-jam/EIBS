@@ -4,9 +4,8 @@ import "./Card.css";
 
 import { useEffect } from "react";
 import useEvents from '../hooks/event.zustand.js'
-import { useRouter } from "next/navigation"; // Import the router hook
+
 const Card = (event) => {
-  const router = useRouter(); // Initialize the router
 
   useEffect(() => {
     console.log(event);
@@ -15,8 +14,7 @@ const Card = (event) => {
   const setEvent = useEvents((state) => state.setNewEvent);
 
   const handleCardClick = () => {
-    setEvent(event.event); // Set the selected event in the Zustand store
-    router.push("/bookTicket"); // Navigate to the BookTicket page
+    
   };
  
   return (
