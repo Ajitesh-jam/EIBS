@@ -2,6 +2,24 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address[]",
+				"name": "buyers",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "eventId",
+				"type": "uint256"
+			}
+		],
+		"name": "buyMultipleTickets",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "eventId",
 				"type": "uint256"
@@ -62,6 +80,11 @@
 				"internalType": "uint32",
 				"name": "ticketsLeft",
 				"type": "uint32"
+			},
+			{
+				"internalType": "string",
+				"name": "img",
+				"type": "string"
 			}
 		],
 		"name": "createEvent",
@@ -138,6 +161,11 @@
 			{
 				"internalType": "string",
 				"name": "location",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "img",
 				"type": "string"
 			},
 			{
