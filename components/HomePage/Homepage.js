@@ -51,7 +51,7 @@ const Homepage = () => {
 
             {
                 name: "harsh Events",
-                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
                 artist: "harsh ",
                 location: "Default Location",
                 date: "Default Date",
@@ -60,7 +60,7 @@ const Homepage = () => {
             },
             {
                 name: "Default Event",
-                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
                 artist: "Default Artist",
                 location: "Default Location",
                 date: "Default Date",
@@ -69,7 +69,7 @@ const Homepage = () => {
             },
             {
                 name: "Default Event",
-                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
                 artist: "Default Artist",
                 location: "Default Location",
                 date: "Default Date",
@@ -79,7 +79,7 @@ const Homepage = () => {
 
             {
                 name: "Default Event",
-                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
                 artist: "Default Artist",
                 location: "Default Location",
                 date: "Default Date",
