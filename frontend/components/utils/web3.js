@@ -136,3 +136,84 @@ export const events = async(eventId) => {
       throw new Error(`Error checking ticket ownership: ${error.message}`);
     }
   };
+
+
+
+
+
+// 'use client'
+
+// import React from 'react'
+// import './Homepage.css'
+// import Navbar from '../Navbar/Navbar'
+// import Card from '../Card/Card'
+
+// import { events } from '../utils/web3'
+// import { useEffect } from 'react'
+
+// const Homepage = () => {
+//     const [eventData, setEventData] = React.useState([])
+//     const [loading, setLoading] = React.useState(true)
+
+//     useEffect(() => {
+//         const fetchEvents = async () => {
+//             try {
+//                 const eventsData = await events(0);
+//                 setEventData(eventsData);
+//                 setLoading(false);
+//                 console.log(eventsData);
+//             } catch (error) {
+//                 console.error('Error fetching events:', error);
+//                 setLoading(false);
+//             }
+//         }
+//         fetchEvents()
+//     }, [])
+
+//     const price = () => {
+//         if (eventData.length >= 6) {
+//             return eventData[4] / eventData[5];
+//         }
+//         return 'N/A';
+//     }
+
+//     if (loading) {
+//         return <div className='Homepage-container'>Loading...</div>
+//     }
+
+//     return (
+//         <div className='Homepage-container'>
+//             <Navbar />
+//             <div className='Hero-container'>
+//                 <div className='Hero-left'></div>
+//                 <div className='Hero-right'>
+//                     <div className='Heading'>
+//                         <p>Tickets Tailored to Real Fans.</p>
+//                     </div>
+//                     <div className='Sub-Heading'>
+//                         <p>Powered by Avalanche</p>
+//                     </div>
+//                 </div>
+//             </div>
+//             <div className='Events-container'>
+//                 <div className='Event-Heading'>
+//                     <p>Upcoming Events</p>
+//                 </div>
+//                 <div className='Card-container'>
+//                     <Card
+//                         dateText={eventData[3] || 'Date not available'}
+//                         priceText={`${price()} wei`}
+//                         location={eventData[2] || 'Location not available'}
+//                         imageSrc="" />
+                        
+//                     <Card
+//                         dateText="Sat, 25 Jan onwards"
+//                         priceText="$100 onwards"
+//                         imageSrc="" />
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
+
+// export default Homepage
