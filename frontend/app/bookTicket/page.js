@@ -1,15 +1,20 @@
 'use client'
 import React from 'react'
-import './Homepage.css'
-import Navbar from '../Navbar/Navbar'
-import Card from '../Card/Card'
-import Button from '../Button/Button'
+import './bookTicket.css'
+import Navbar from '@/components/Navbar/Navbar'
+import Card from '@/components/Card/Card'
+import Button from '@/components/Button/Button'
 
-
+import useEvents from '@/components/hooks/event.zustand'
+import { useEffect } from 'react'
 const Homepage = () => {
     const handleRegisterConcertBtnClick = () =>{
         console.log('Register Concert Button Clicked')
     }
+    const currEvent = useEvents((state)=>state.selectedEvent);
+    useEffect(()=>{
+        console.log("Event in bookTicket page:",currEvent);
+    },[]);
 
     return (
         <div className='Homepage-container'>
@@ -52,4 +57,4 @@ const Homepage = () => {
     )
 }
 
-export default Homepage
+export default Homepage;
