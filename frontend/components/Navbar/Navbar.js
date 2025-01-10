@@ -6,6 +6,7 @@ import Button from '../Button/Button'
 import { useLogin } from '@/contexts/loginContext'
 import { useEffect } from 'react';
 
+
 const Navbar = ({toggleGetStartedModal}) => {
   const {isLoggedIn} = useLogin();
 

@@ -27,8 +27,8 @@ const Card = (event) => {
      
 
       <div className="card-image">
-        {event.event.image ? (
-          <img src={event.event.image} alt="Event" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        {event.event.img ? (
+          <img src={event.event.img} alt="Event" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         ) : (
           "Image Placeholder"
         )}
