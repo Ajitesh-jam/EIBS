@@ -1,29 +1,21 @@
+'use client'
 import React from 'react'
-import './Homepage.css'
-import Navbar from '../Navbar/Navbar'
-<<<<<<< Updated upstream
-import NoMoreScalping from '../nomorescalping/NoMoreScalping'
-import NoRandomQueueing from '../NoMoreRandomQueueing/NoRandomQueueing'
-=======
-import Card from '../Card/Card'
-import Button from '../Button/Button'
-import NoMoreScalping from '../NoMoreScalping/NoMoreScalping'
-import NoRandomQueueing from '../NoRandomQueueing/NoRandomQueueing'
-import Footer from '../Footer/Footer'
->>>>>>> Stashed changes
+import './bookTicket.css'
+import Navbar from '@/components/Navbar/Navbar'
+import Card from '@/components/Card/Card'
+import Button from '@/components/Button/Button'
 
+import useEvents from '@/components/hooks/event.zustand'
+import { useEffect } from 'react'
+const Homepage = () => {
+    const handleRegisterConcertBtnClick = () =>{
+        console.log('Register Concert Button Clicked')
+    }
+    const currEvent = useEvents((state)=>state.selectedEvent);
+    useEffect(()=>{
+        console.log("Event in bookTicket page:",currEvent);
+    },[]);
 
-<<<<<<< Updated upstream
-const Homepage = () => {  
-  return (
-    <div className='Homepage-container'>
-        <Navbar/>
-        <div className='Hero-container'>
-            <div className='Hero-left'></div>
-            <div className='Hero-right'>
-                <div className='Heading'>
-                    <p>Tickets Tailored to Real Fans.</p>
-=======
     return (
         <div className='Homepage-container'>
             <Navbar />
@@ -36,19 +28,8 @@ const Homepage = () => {
                     <div className='Sub-Heading'>
                         <p>Powered by Avalanche</p>
                     </div>
-                    <NoMoreScalping/>
-                    <NoRandomQueueing/>
->>>>>>> Stashed changes
                 </div>
-                <div className='Sub-Heading'>
-                    <p>Powered by Avalanche</p>
-                </div>
-                <NoMoreScalping/>
-                <NoRandomQueueing/>
-                
             </div>
-<<<<<<< Updated upstream
-=======
             <div className='Events-container'>
                 <div className='Event-Heading'>
                     <p>Upcoming Events</p>
@@ -72,11 +53,8 @@ const Homepage = () => {
                     </div>
                 </div>
             </div>
-            <Footer/>
->>>>>>> Stashed changes
         </div>
-    </div>
-  )
+    )
 }
 
-export default Homepage
+export default Homepage;
