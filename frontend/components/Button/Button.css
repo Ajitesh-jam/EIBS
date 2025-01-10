@@ -26,3 +26,8 @@
   box-shadow: 0px 0px 0px 0px black; /* Remove shadow when clicked */
 }
 
+@media (max-width: 768px){
+  .button {
+    font-size: 0.8rem;
+  }
+}

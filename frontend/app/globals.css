@@ -33,7 +33,7 @@ body {
 @font-face {
   font-family: 'CD-Medium';
   src: url('../public/fonts/ClashDisplay-Medium.otf') format('opentype');
-  font-weight: 300;
+  font-weight: 200;
   font-style: normal;
 }
 
