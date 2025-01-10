@@ -3,17 +3,25 @@
 import React from 'react'
 import './Navbar.css'
 import Button from '../Button/Button'
+import { useLogin } from '@/contexts/loginContext'
+import { useEffect } from 'react';
 
-const Navbar = () => {
-  const handleClick = () =>{
-    console.log('Button Clicked')
-  }  
+const Navbar = ({toggleGetStartedModal}) => {
+  const {isLoggedIn} = useLogin();
+
+  useEffect(() => {
+    console.log(`Log in status : ${isLoggedIn}`);
+  }, [isLoggedIn]);
 
   return (
     <div className='Navbar-container'>
-        <Button
-        btnText='Login'
-        onClickFunction={handleClick}/>
+      {!isLoggedIn ? (
+         <Button
+         btnText='Login'
+         onClickFunction={toggleGetStartedModal}/>
+      ) : 
+      <></>
+      }
     </div>
   )
 }

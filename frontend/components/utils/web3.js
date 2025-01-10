@@ -36,6 +36,29 @@ export const getAccounts = async () => {
     }
 };
 
+//check login status
+export const checkMetaMaskLogin = async () => {
+  if (typeof window.ethereum !== "undefined") {
+    try {
+      const accounts = await window.ethereum.request({ method: "eth_accounts" });
+      if (accounts.length > 0) {
+        console.log("User is logged in with MetaMask:", accounts[0]); // First account
+        return true;
+      } else {
+        console.log("MetaMask is installed, but no account is connected.");
+        return false;
+      }
+    } catch (error) {
+      console.error("Error fetching MetaMask accounts:", error);
+      return false;
+    }
+  } else {
+    console.log("MetaMask is not installed!");
+    return false;
+  }
+};
+
+
 // Create an event
 export const createEvent = async (name, location, date, ticketPrice, ticketsLeft) => {
   const contract = eventManagerContract();
