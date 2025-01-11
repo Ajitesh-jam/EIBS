@@ -89,9 +89,13 @@
 }
 
 .Card-container > div {
+    will-change: opacity, transform; /* Optimize for animation */
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(100px);
+    visibility: hidden;
 }
+
+
 
 .RegisterConcert-container{
     display: flex;
