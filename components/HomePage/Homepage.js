@@ -9,7 +9,7 @@ import { getAccounts, checkMetaMaskLogin, events } from '../utils/web3';
 import { useLogin } from '@/contexts/loginContext'
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import { useRouter } from 'next/navigation';
 
 
 const Homepage = () => {
@@ -17,9 +17,11 @@ const Homepage = () => {
     const [showModal, setShowModal] = useState(false);
     const headingRef = useRef(null); // Ref for the heading
     const subHeadingRef = useRef(null); // Ref for the sub-heading
-
+    const router = useRouter();
     const handleRegisterConcertBtnClick = () => {
         console.log('Register Concert Button Clicked');
+        router.push('/registerConcert');
+
     };
 
     useEffect(() => {
@@ -76,18 +78,12 @@ const Homepage = () => {
         );
     }, []);
 
-
-
-
     const openProfile = () => {
         console.log("opening Profile");
     }
 
-
-
     const [eventData, setEventData] = useState([]);
     const [loading, setLoading] = useState(true);
-
 
     const [allevents, setAllEvents] = useState(
         [
@@ -157,7 +153,7 @@ const Homepage = () => {
         const fetchEvents = async () => {
             try {
                 //run a loop 3 times to to fetch 3 events
-                for (let i = 0; i < 3; i++) {
+                for (let i = 0; i < 4; i++) {
                     const fetchedEvent = await events(i);
                     console.log('Fetched event:', fetchedEvent);
                     //add index to fetchedEvents
@@ -174,11 +170,6 @@ const Homepage = () => {
         };
         fetchEvents();
     }, []);
-
-
-
-
-
 
     return (
         <div className='Homepage-container'>
