@@ -240,7 +240,6 @@ const Homepage = () => {
             try {
                 //run a loop 3 times to to fetch 3 events
                 for (let i = 0; i < 4; i++) {
-                for (let i = 0; i < 4; i++) {
                     const fetchedEvent = await events(i);
                     console.log('Fetched event:', fetchedEvent);
                     //add index to fetchedEvents
@@ -257,20 +256,6 @@ const Homepage = () => {
         };
         fetchEvents();
     }, []);
-
-    const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0 });
-
-    const handleMouseEnter = (e) => {
-      setTooltip({ visible: true, x: e.clientX, y: e.clientY });
-    };
-  
-    const handleMouseMove = (e) => {
-      setTooltip((prev) => ({ ...prev, x: e.clientX, y: e.clientY }));
-    };
-  
-    const handleMouseLeave = () => {
-      setTooltip({ visible: false, x: 0, y: 0 });
-    };
 
 
 
