@@ -29,6 +29,8 @@ const Homepage = () => {
 
     const handleRegisterConcertBtnClick = () => {
         console.log('Register Concert Button Clicked');
+        router.push('/registerConcert');
+
     };
 
     useEffect(() => {
@@ -59,61 +61,61 @@ const Homepage = () => {
     const [allevents, setAllEvents] = useState(
         [
 
-            {
-                name: "harsh Events",
-                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-                artist: "harsh ",
-                location: "Default Location",
-                date: "Default Date",
-                ticketPrice: "Default Ticket Price",
-                ticketsLeft: "Default Tickets Left",
-            },
-            {
-                name: "Default Event",
-                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-                artist: "Default Artist",
-                location: "Default Location",
-                date: "Default Date",
-                ticketPrice: "Default Ticket Price",
-                ticketsLeft: "Default Tickets Left",
-            },
-            {
-                name: "Default Event",
-                img: "https://www.thestatesman.com/wp-content/uploads/2023/11/Taylor-Swift-The-Eras-Tour.jpg",
-                artist: "Default Artist",
-                location: "Default Location",
-                date: "Default Date",
-                ticketPrice: "Default Ticket Price",
-                ticketsLeft: "Default Tickets Left",
-            },
+            // {
+            //     name: "harsh Events",
+            //     img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+            //     artist: "harsh ",
+            //     location: "Default Location",
+            //     date: "Default Date",
+            //     ticketPrice: "Default Ticket Price",
+            //     ticketsLeft: "Default Tickets Left",
+            // },
+            // {
+            //     name: "Default Event",
+            //     img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+            //     artist: "Default Artist",
+            //     location: "Default Location",
+            //     date: "Default Date",
+            //     ticketPrice: "Default Ticket Price",
+            //     ticketsLeft: "Default Tickets Left",
+            // },
+            // {
+            //     name: "Default Event",
+            //     img: "https://www.thestatesman.com/wp-content/uploads/2023/11/Taylor-Swift-The-Eras-Tour.jpg",
+            //     artist: "Default Artist",
+            //     location: "Default Location",
+            //     date: "Default Date",
+            //     ticketPrice: "Default Ticket Price",
+            //     ticketsLeft: "Default Tickets Left",
+            // },
 
-            {
-                name: "Default Event",
-                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-                artist: "Default Artist",
-                location: "Default Location",
-                date: "Default Date",
-                ticketPrice: "Default Ticket Price",
-                ticketsLeft: "Default Tickets Left",
-            },
-            {
-                name: "Default Event",
-                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-                artist: "Default Artist",
-                location: "Default Location",
-                date: "Default Date",
-                ticketPrice: "Default Ticket Price",
-                ticketsLeft: "Default Tickets Left",
-            },
-            {
-                name: "Default Event",
-                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-                artist: "Default Artist",
-                location: "Default Location",
-                date: "Default Date",
-                ticketPrice: "Default Ticket Price",
-                ticketsLeft: "Default Tickets Left",
-            },
+            // {
+            //     name: "Default Event",
+            //     img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+            //     artist: "Default Artist",
+            //     location: "Default Location",
+            //     date: "Default Date",
+            //     ticketPrice: "Default Ticket Price",
+            //     ticketsLeft: "Default Tickets Left",
+            // },
+            // {
+            //     name: "Default Event",
+            //     img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+            //     artist: "Default Artist",
+            //     location: "Default Location",
+            //     date: "Default Date",
+            //     ticketPrice: "Default Ticket Price",
+            //     ticketsLeft: "Default Tickets Left",
+            // },
+            // {
+            //     name: "Default Event",
+            //     img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+            //     artist: "Default Artist",
+            //     location: "Default Location",
+            //     date: "Default Date",
+            //     ticketPrice: "Default Ticket Price",
+            //     ticketsLeft: "Default Tickets Left",
+            // },
         ]
 
     );
@@ -237,6 +239,7 @@ const Homepage = () => {
         const fetchEvents = async () => {
             try {
                 //run a loop 3 times to to fetch 3 events
+                for (let i = 0; i < 4; i++) {
                 for (let i = 0; i < 4; i++) {
                     const fetchedEvent = await events(i);
                     console.log('Fetched event:', fetchedEvent);

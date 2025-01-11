@@ -47,7 +47,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {currentYear} Your Company Name. All rights reserved.</p>
+        <p>&copy; {currentYear} Harsh Chhattar. All rights reserved.</p>
       </div>
     </footer>
   );

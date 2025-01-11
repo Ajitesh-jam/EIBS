@@ -88,7 +88,7 @@ const BookTicket = () => {
             if (loggedIn && accounts.length > 0) {
                 setBuyers((prev) => [accounts[0], ...prev.slice(1)]);
             }
-            setCostPerTicket(BigInt(event.ticketPrice)/event.ticketsLeft);
+            setCostPerTicket(event.ticketPrice/event.ticketsLeft);
         };
 
         checkLogin();
@@ -127,8 +127,26 @@ const BookTicket = () => {
 
     };
 
+    function formatDate(dateInt) {
+        // Convert the integer to a string for easier manipulation
+        const dateStr = dateInt.toString();
+        
+        // Extract day, month, and year
+        const day = parseInt(dateStr.slice(0, -6), 10); // First 1-2 digits
+        const month = parseInt(dateStr.slice(-6, -4), 10); // Next 2 digits
+        const year = parseInt(dateStr.slice(-4), 10); // Last 4 digits
+      
+        // Convert month number to month name
+        const monthNames = [
+          "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+      
+        return `${day} ${monthNames[month - 1]} ${year}`;
+      }
+
     return (
-        <div className="BT-Container">
+        <div className="BT-Container" style={{ backgroundImage: `url(https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)` }}>
             <Navbar toggleGetStartedModal={toggleGetStartedModal} />
             {/* Modal */}
             {showModal && (
@@ -168,7 +186,8 @@ const BookTicket = () => {
                         ))}
                     </div>
                     <div className="TotalCost">
-                        <p>Total: {costPerTicket} WEI</p>
+                        <span>Total:</span>
+                        <span>   {costPerTicket} WEI</span>
                     </div>
                     <div className="bookingbtn">
                         <Button btnText="Confirm Booking" onClickFunction={bookTickets} />
@@ -191,11 +210,28 @@ const BookTicket = () => {
                     <p className="EventName">{event.name}</p>
                     <div className="EventDetails">
                         <p className="EventDate">Date</p>
-                        <p>{event.date}</p>
+                        <p>:   {formatDate(event.date)}</p>
                     </div>
-                    <p className="EventTime">Timing</p>
-                    <p className="EventVenue">Venue</p>
-                    <div className="MapLocation"></div>
+                    <div className="EventDetails"> <p className="EventTime">Timing</p>:   6 PM Onwards </div>
+                    
+                    <div className="EventDetails">  <p className="EventVenue">Venue</p>:     <a href={event.location}>Location</a>   </div>
+                    <div className="MapLocation">
+
+                    {event.location ? (
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29526.789503745054!2d87.3037824!3d22.3215616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1d447486474c37%3A0xe555d6d0f6a223a7!2sBombay%20Cineplex!5e0!3m2!1sen!2sin!4v1736593573156!5m2!1sen!2sin"
+                                width="100%"
+                                height="100%"
+                                allowFullScreen=""
+                                style={{ border: 0 }}
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        ) : (
+                            "Location not available"
+                        )}
+                    </div>
+                    
                 </div>
             </div>
         </div>
