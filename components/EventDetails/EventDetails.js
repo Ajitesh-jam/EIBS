@@ -2,12 +2,15 @@
 import React from 'react';
 import './EventDetails.css';
 import Button from '../Button/Button';
+import { useRouter } from 'next/navigation';
 
 const EventDetails = ({ event, onClose }) => {
     if (!event) return null;
 
+    const router = useRouter();    
     const handleBookTickets = ()=>{
         console.log("Booking tickets");
+        router.push('./bookTicket');
     }
 
     return (

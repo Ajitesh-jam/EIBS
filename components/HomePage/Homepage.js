@@ -91,10 +91,13 @@ const Homepage = () => {
 
     );
 
+    const openProfile = ()=>{
+        console.log("opening Profile");
+    }
 
     return (
         <div className='Homepage-container'>
-            <Navbar toggleGetStartedModal={toggleGetStartedModal} />
+            <Navbar toggleGetStartedModal={toggleGetStartedModal} openProfile={openProfile} />
             {/* Modal */}
             {showModal && (
                 <div className="modal-overlay">

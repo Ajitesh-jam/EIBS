@@ -8,7 +8,6 @@ const GetStarted = ({handleLogin}) => {
     <div className="get-started-container">
       <h1 className="title">Get Started</h1>
 
-      {/* MetaMask Button */}
       <div className="login-option-metamask" onClick={handleLogin}>
         <p>Log in with MetaMask</p>
         <div className="MetaMask-logo">

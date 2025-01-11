@@ -7,7 +7,7 @@ import { useLogin } from '@/contexts/loginContext'
 import { useEffect } from 'react';
 
 
-const Navbar = ({toggleGetStartedModal}) => {
+const Navbar = ({toggleGetStartedModal,openProfile}) => {
   const {isLoggedIn} = useLogin();
 
   useEffect(() => {
@@ -21,7 +21,9 @@ const Navbar = ({toggleGetStartedModal}) => {
          btnText='Login'
          onClickFunction={toggleGetStartedModal}/>
       ) : 
-      <></>
+      <Button 
+      btnText='Profile'
+      onClickFunction={openProfile}/>
       }
     </div>
   )
