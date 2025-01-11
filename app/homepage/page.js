@@ -77,12 +77,6 @@ const Homepage = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                // Replace `events` with your actual API call or mock it
-                // const fetchedEvents = await events(0); // Example: events should be an API function
-                // console.log('Fetched events:', fetchedEvents);
-                // setEventData(fetchedEvents);
-                
-
                 //run a loop 3 times to to fetch 3 events
                 for (let i = 0; i < 3; i++) {
                     const fetchedEvent = await events(i);
@@ -90,7 +84,6 @@ const Homepage = () => {
                     //add index to fetchedEvents
                     fetchedEvent.index = i;
                     setCurrentEvents((prevEvents) => [...prevEvents, fetchedEvent]);
-
                 }
                 setAllEvents(currentEvents);
                 setLoading(false);

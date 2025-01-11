@@ -6,7 +6,7 @@ import Navbar from '../Navbar/Navbar'
 import Card from '../Card/Card'
 import Button from '../Button/Button'
 import GetStarted from '../GetStarted/GetStarted';
-import { getAccounts, checkMetaMaskLogin } from '../utils/web3';
+import { getAccounts, checkMetaMaskLogin ,events} from '../utils/web3';
 import { useLogin } from '@/contexts/loginContext'
 
 
@@ -28,7 +28,6 @@ const Homepage = () => {
         checkLogin();
       }, []);
 
-
     useEffect(()=>{
         console.log("Public Address is : ", publicAddress);
     },[publicAddress]);
@@ -39,20 +38,29 @@ const Homepage = () => {
         setIsLoggedIn(true);
         setShowModal(!showModal);
     }
-
-
-
     // Function to toggle modal visibility
     const toggleGetStartedModal = () => {
         setShowModal(!showModal);
     };
 
-    const [allevents, setAllEvents] = useState(
-        [
 
+
+    const openProfile = ()=>{
+        console.log("opening Profile");
+    }
+
+
+
+        const [eventData, setEventData] = useState([]);
+        const [loading, setLoading] = useState(true);
+    
+    
+        const [allevents, setAllEvents] = useState(
+            [
+    
             {
                 name: "harsh Events",
-                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
                 artist: "harsh ",
                 location: "Default Location",
                 date: "Default Date",
@@ -61,7 +69,7 @@ const Homepage = () => {
             },
             {
                 name: "Default Event",
-                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
                 artist: "Default Artist",
                 location: "Default Location",
                 date: "Default Date",
@@ -70,17 +78,35 @@ const Homepage = () => {
             },
             {
                 name: "Default Event",
-                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                img: "https://www.thestatesman.com/wp-content/uploads/2023/11/Taylor-Swift-The-Eras-Tour.jpg",
                 artist: "Default Artist",
                 location: "Default Location",
                 date: "Default Date",
                 ticketPrice: "Default Ticket Price",
                 ticketsLeft: "Default Tickets Left",
             },
-
+    
             {
                 name: "Default Event",
-                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                artist: "Default Artist",
+                location: "Default Location",
+                date: "Default Date",
+                ticketPrice: "Default Ticket Price",
+                ticketsLeft: "Default Tickets Left",
+            },
+            {
+                name: "Default Event",
+                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                artist: "Default Artist",
+                location: "Default Location",
+                date: "Default Date",
+                ticketPrice: "Default Ticket Price",
+                ticketsLeft: "Default Tickets Left",
+            },
+            {
+                name: "Default Event",
+                img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
                 artist: "Default Artist",
                 location: "Default Location",
                 date: "Default Date",
@@ -88,12 +114,37 @@ const Homepage = () => {
                 ticketsLeft: "Default Tickets Left",
             },
         ]
+            
+        );
+        const [currentEvents,setCurrentEvents]=useState([]);
+    
+        // Fetch events (replace `events` with your API function or mock it)
+        useEffect(() => {
+            const fetchEvents = async () => {
+                try {
+                    //run a loop 3 times to to fetch 3 events
+                    for (let i = 0; i < 3; i++) {
+                        const fetchedEvent = await events(i);
+                        console.log('Fetched event:', fetchedEvent);
+                        //add index to fetchedEvents
+                        fetchedEvent.index = i;
+                        setCurrentEvents((prevEvents) => [...prevEvents, fetchedEvent]);
+                    }
+                    setAllEvents(currentEvents);
+                    setLoading(false);
+                   
+                } catch (error) {
+                    console.error('Error fetching events:', error);
+                    setLoading(false);
+                }
+            };
+            fetchEvents();
+        }, []);
 
-    );
 
-    const openProfile = ()=>{
-        console.log("opening Profile");
-    }
+
+
+
 
     return (
         <div className='Homepage-container'>
@@ -126,9 +177,19 @@ const Homepage = () => {
                     <p>Upcoming Events</p>
                 </div>
                 <div className='Card-container'>
-                    {allevents.map((event, index) => (
-                        <Card key={index} event={event} />
-                    ))}
+                {loading ? (
+                        <>
+                        {allevents.map((event, index) => (
+                            <Card key={index} event={event} />
+                        ))}
+                        </>
+                    ):(
+                        <>
+                        {currentEvents.map((event, index) => (
+                            <Card key={index} event={event} />
+                        ))}
+                        </>
+                    )}
                 </div>
             </div>
             <div className='RegisterConcert-container'>
