@@ -1,181 +1,17 @@
-// 'use client'
-// import React from 'react'
-// import { useEffect, useState } from 'react';
-// import './Homepage.css'
-// import Navbar from '../Navbar/Navbar'
-// import Card from '../Card/Card'
-// import Button from '../Button/Button'
-// import GetStarted from '../GetStarted/GetStarted';
-// import { getAccounts, checkMetaMaskLogin } from '../utils/web3';
-// import { useLogin } from '@/contexts/loginContext'
-
-
-
-// // const Homepage = () => {
-// //     const {setIsLoggedIn, setPublicAddress, publicAddress} = useLogin();
-// //     const handleRegisterConcertBtnClick = () => {
-// //         console.log('Register Concert Button Clicked')
-// //     }
-
-// //     useEffect(() => {
-// //         const checkLogin = async () => {
-// //           const loggedIn = await checkMetaMaskLogin();
-// //           setIsLoggedIn(loggedIn);
-// //           if(loggedIn) setPublicAddress(await getAccounts);
-// //         };
-    
-// //         checkLogin();
-// //       }, []);
-
-
-// //     useEffect(()=>{
-// //         console.log("Public Address is : ", publicAddress);
-// //     },[publicAddress]);
-
-// //     const handleLogin = async ()=>{
-// //         const publicAddress = await getAccounts();
-// //         setPublicAddress(publicAddress);
-// //         setIsLoggedIn(true);
-// //         setShowModal(!showModal);
-// //     }
-
-// //     const [showModal, setShowModal] = useState(false);
-
-// //     // Function to toggle modal visibility
-// //     const toggleGetStartedModal = () => {
-// //         setShowModal(!showModal);
-// //     };
-
-// //     const [allevents, setAllEvents] = useState(
-// //         [
-
-// //             {
-// //                 name: "harsh Events",
-// //                 img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-// //                 artist: "harsh ",
-// //                 location: "Default Location",
-// //                 date: "Default Date",
-// //                 ticketPrice: "Default Ticket Price",
-// //                 ticketsLeft: "Default Tickets Left",
-// //             },
-// //             {
-// //                 name: "Default Event",
-// //                 img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-// //                 artist: "Default Artist",
-// //                 location: "Default Location",
-// //                 date: "Default Date",
-// //                 ticketPrice: "Default Ticket Price",
-// //                 ticketsLeft: "Default Tickets Left",
-// //             },
-// //             {
-// //                 name: "Default Event",
-// //                 img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-// //                 artist: "Default Artist",
-// //                 location: "Default Location",
-// //                 date: "Default Date",
-// //                 ticketPrice: "Default Ticket Price",
-// //                 ticketsLeft: "Default Tickets Left",
-// //             },
-
-// //             {
-// //                 name: "Default Event",
-// //                 img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-// //                 artist: "Default Artist",
-// //                 location: "Default Location",
-// //                 date: "Default Date",
-// //                 ticketPrice: "Default Ticket Price",
-// //                 ticketsLeft: "Default Tickets Left",
-// //             },
-// //         ]
-
-// //     );
-
-
-// //     return (
-// //         <div className='Homepage-container'>
-// //             <Navbar toggleGetStartedModal={toggleGetStartedModal} />
-// //             {/* Modal */}
-// //             {showModal && (
-// //                 <div className="modal-overlay">
-// //                     <div className="modal-content">
-// //                         <GetStarted handleLogin={handleLogin} />
-// //                         <button className="close-button" onClick={toggleGetStartedModal}>
-// //                             X
-// //                         </button>
-// //                     </div>
-// //                 </div>
-// //             )}
-// //             <div className='Hero-container'>
-// //                 <div className='Hero-left'></div>
-// //                 <div className='Hero-right'>
-// //                     <div className='Heading'>
-// //                         <p>Tickets Tailored <br />to Real Fans.</p>
-// //                     </div>
-// //                     <div className='Sub-Heading'>
-// //                         <p>Powered by Avalanche</p>
-// //                     </div>
-// //                 </div>
-// //             </div>
-// //             <div className='Events-container'>
-// //                 <div className='Event-Heading'>
-// //                     <p>Upcoming Events</p>
-// //                 </div>
-// //                 <div className='Card-container'>
-// //                     {allevents.map((event, index) => (
-// //                         <Card key={index} event={event} />
-// //                     ))}
-// //                 </div>
-// //             </div>
-// //             <div className='RegisterConcert-container'>
-// //                 <div className='RegisterConcert-Heading'>
-// //                     <p>Got your own concert?</p>
-// //                 </div>
-// //                 <div className='RegisterConcertSection'>
-// //                     <div className='left'>
-// //                         <p>Register your concert and start selling tickets in few easy steps!</p>
-// //                     </div>
-// //                     <div className='right'>
-// //                         <Button
-// //                             btnText='Register Concert'
-// //                             onClickFunction={handleRegisterConcertBtnClick} />
-// //                     </div>
-// //                 </div>
-// //             </div>
-// //         </div>
-// //     )
-// // }
-
-// // export default Homepage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 'use client'
-import React, { useEffect, useState } from 'react';
-import './Homepage.css';
-import Navbar from '@/components/Navbar/Navbar';
-import Card from '@/components/Card/Card';
-import { events } from '@/components/utils/web3';
-
-
+import React from 'react'
+import { useEffect, useState } from 'react';
+import './Homepage.css'
+import Navbar from '../Navbar/Navbar'
+import Card from '../Card/Card'
 import Button from '../Button/Button'
 import GetStarted from '../GetStarted/GetStarted';
 import { getAccounts, checkMetaMaskLogin } from '../utils/web3';
 import { useLogin } from '@/contexts/loginContext'
 
+
+
 const Homepage = () => {
-
-
     const {setIsLoggedIn, setPublicAddress, publicAddress} = useLogin();
     const handleRegisterConcertBtnClick = () => {
         console.log('Register Concert Button Clicked')
@@ -204,121 +40,70 @@ const Homepage = () => {
     }
 
     const [showModal, setShowModal] = useState(false);
+    const [showCardModal, setShowCardModal] = useState(false);
 
     // Function to toggle modal visibility
     const toggleGetStartedModal = () => {
         setShowModal(!showModal);
     };
 
-
-
-
-
-    const [eventData, setEventData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    
-
     const [allevents, setAllEvents] = useState(
         [
 
-        {
-            name: "harsh Events",
-            img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-            artist: "harsh ",
-            location: "Default Location",
-            date: "Default Date",
-            ticketPrice: "Default Ticket Price",
-            ticketsLeft: "Default Tickets Left",
-        },
-        {
-            name: "Default Event",
-            img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-            artist: "Default Artist",
-            location: "Default Location",
-            date: "Default Date",
-            ticketPrice: "Default Ticket Price",
-            ticketsLeft: "Default Tickets Left",
-        },
-        {
-            name: "Default Event",
-            img: "https://www.thestatesman.com/wp-content/uploads/2023/11/Taylor-Swift-The-Eras-Tour.jpg",
-            artist: "Default Artist",
-            location: "Default Location",
-            date: "Default Date",
-            ticketPrice: "Default Ticket Price",
-            ticketsLeft: "Default Tickets Left",
-        },
+            {
+                name: "harsh Events",
+                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                artist: "harsh ",
+                location: "Default Location",
+                date: "Default Date",
+                ticketPrice: "Default Ticket Price",
+                ticketsLeft: "Default Tickets Left",
+            },
+            {
+                name: "Default Event",
+                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                artist: "Default Artist",
+                location: "Default Location",
+                date: "Default Date",
+                ticketPrice: "Default Ticket Price",
+                ticketsLeft: "Default Tickets Left",
+            },
+            {
+                name: "Default Event",
+                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                artist: "Default Artist",
+                location: "Default Location",
+                date: "Default Date",
+                ticketPrice: "Default Ticket Price",
+                ticketsLeft: "Default Tickets Left",
+            },
 
-        {
-            name: "Default Event",
-            img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-            artist: "Default Artist",
-            location: "Default Location",
-            date: "Default Date",
-            ticketPrice: "Default Ticket Price",
-            ticketsLeft: "Default Tickets Left",
-        },
-        {
-            name: "Default Event",
-            img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-            artist: "Default Artist",
-            location: "Default Location",
-            date: "Default Date",
-            ticketPrice: "Default Ticket Price",
-            ticketsLeft: "Default Tickets Left",
-        },
-        {
-            name: "Default Event",
-            img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-            artist: "Default Artist",
-            location: "Default Location",
-            date: "Default Date",
-            ticketPrice: "Default Ticket Price",
-            ticketsLeft: "Default Tickets Left",
-        },
-    ]
-        
+            {
+                name: "Default Event",
+                image: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+                artist: "Default Artist",
+                location: "Default Location",
+                date: "Default Date",
+                ticketPrice: "Default Ticket Price",
+                ticketsLeft: "Default Tickets Left",
+            },
+        ]
+
     );
-    const [currentEvents,setCurrentEvents]=useState([]);
 
-    // Fetch events (replace `events` with your API function or mock it)
-    useEffect(() => {
-        const fetchEvents = async () => {
-            try {
-                // Replace `events` with your actual API call or mock it
-                // const fetchedEvents = await events(0); // Example: events should be an API function
-                // console.log('Fetched events:', fetchedEvents);
-                // setEventData(fetchedEvents);
-                
-
-                //run a loop 3 times to to fetch 3 events
-                for (let i = 0; i < 3; i++) {
-                    const fetchedEvent = await events(i);
-                    console.log('Fetched event:', fetchedEvent);
-                    setCurrentEvents((prevEvents) => [...prevEvents, fetchedEvent]);
-
-                }
-                setAllEvents(currentEvents);
-                setLoading(false);
-               
-            } catch (error) {
-                console.error('Error fetching events:', error);
-                setLoading(false);
-            }
-        };
-        fetchEvents();
-    }, []);
+    const openProfile = ()=>{
+        console.log("opening Profile");
+    }
 
     return (
-        <div className="Homepage-container">
-            
-
-            <Navbar toggleGetStartedModal={toggleGetStartedModal} />
+        <div className='Homepage-container'>
+            <Navbar toggleGetStartedModal={toggleGetStartedModal} openProfile={openProfile} />
             {/* Modal */}
-            {/* {showModal && (
+            {showModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
-                        <GetStarted handleLogin={handleLogin} />
+                        <GetStarted 
+                        handleLogin={handleLogin} />
                         <button className="close-button" onClick={toggleGetStartedModal}>
                             X
                         </button>
@@ -346,40 +131,7 @@ const Homepage = () => {
                     ))}
                 </div>
             </div>
-            */}
-
-            <div className="Hero-container">
-                <div className="Hero-left"></div>
-                <div className="Hero-right">
-                    <div className="Heading">
-                        <p>Tickets Tailored to Real Fans.</p>
-                    </div>
-                    <div className="Sub-Heading">
-                        <p>Powered by Avalanche</p>
-                    </div>
-                </div>
-            </div>
-            <div className="Events-container">
-                <div className="Event-Heading">
-                    <p>Upcoming Events</p>
-                </div>
-                <div className="Card-container">
-                    {loading ? (
-                        <>
-                        {allevents.map((event, index) => (
-                            <Card key={index} event={event} />
-                        ))}
-                        </>
-                    ):(
-                        <>
-                        {currentEvents.map((event, index) => (
-                            <Card key={index} event={event} />
-                        ))}
-                        </>
-                    )}
-                   
-                </div>
-                <div className='RegisterConcert-container'>
+            <div className='RegisterConcert-container'>
                 <div className='RegisterConcert-Heading'>
                     <p>Got your own concert?</p>
                 </div>
@@ -394,12 +146,8 @@ const Homepage = () => {
                     </div>
                 </div>
             </div>
-
-            </div>
         </div>
-    );
-};
+    )
+}
 
-export default Homepage;
-
-
+export default Homepage

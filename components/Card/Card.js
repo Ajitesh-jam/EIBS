@@ -1,53 +1,55 @@
-'use client'
-import React from "react";
+'use client';
+import React, { useState } from "react";
 import "./Card.css";
+import EventDetails from "../EventDetails/EventDetails";
+import useEvents from "../hooks/event.zustand.js";
 
-import { useEffect } from "react";
-import useEvents from '../hooks/event.zustand.js'
-import { useRouter } from "next/navigation"; // Import the router hook
-const Card = (event) => {
-  const router = useRouter(); // Initialize the router
-
-  useEffect(() => {
-    console.log(event);
-  }
-  , [event]);
+const Card = ({ event }) => {
+  const [showModal, setShowModal] = useState(false); // Modal visibility state
   const setEvent = useEvents((state) => state.setNewEvent);
 
   const handleCardClick = () => {
-    setEvent(event.event); // Set the selected event in the Zustand store
-    router.push("/bookTicket"); // Navigate to the BookTicket page
+    setEvent(event); // Set the event in Zustand store (if needed) ****check***
+    setShowModal(true); // Show the modal
   };
- 
+
+  const handleCloseModal = () => {
+    setShowModal(false); // Hide the modal
+  };
+
   return (
-   
-    <div
-      className="card-container"
-      onClick={handleCardClick} // Attach the click handler
-      style={{ cursor: "pointer" }} // Change cursor to pointer for better UX
-    >
-     
+    <>
+      {/* Card Component */}
+      <div
+        className="card-container"
+        onClick={handleCardClick}
+        style={{ cursor: "pointer" }}
+      >
+        <div className="card-image">
+          {event.img ? (
+            <img
+              src={event.img}
+              alt="Event"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          ) : (
+            "Image Placeholder"
+          )}
+        </div>
 
-      <div className="card-image">
-        {event.event.img ? (
-          <img src={event.event.img} alt="Event" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-        ) : (
-          "Image Placeholder"
-        )}
+        <div className="card-content">
+          <p className="card-date">{event.name}</p>
+          <p className="card-price">{event.ticketPrice} WEI</p>
+        </div>
       </div>
 
-      <div className="card-content">
-        <p className="card-date">{event.event.name}</p>
-        <p className="card-price">{event.event.ticketPrice} WEI</p>
-        <a  className="card-price" href={event.event.location} >Location</a>
-      </div>
-
-    
-
-    
-    </div>
-
-   
+      {/* Modal Component */}
+      {showModal && (
+        <div className="modal-overlay" onClick={handleCloseModal}>
+            <EventDetails event={event} onClose={()=>setShowModal(false)}/>
+        </div>
+      )}
+    </>
   );
 };
 

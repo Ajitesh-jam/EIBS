@@ -162,3 +162,23 @@ export const checkMetaMaskLogin = async () => {
   }
 };
 
+// Buy multiple tickets for an event
+export const buyMultipleTickets = async (buyers, eventId, totalCost) => {
+  const contract = eventManagerContract(); // Initialize your EventManager contract
+  const accounts = await getAccounts(); // Get user accounts (from Web3 provider)
+
+  try {
+    const response = await contract.methods
+      .buyMultipleTickets(buyers, eventId)
+      .send({ from: accounts[0], value: totalCost }); // Send transaction
+    console.log("Tickets bought successfully:", response);
+    return response;
+  } catch (error) {
+    console.error("Error buying tickets:", error);
+    throw new Error(`Error buying tickets: ${error.message}`);
+  }
+};
+
+
+
+
