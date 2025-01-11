@@ -96,6 +96,10 @@
 }
 
 .TicketCount{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     font-family: 'CD-Medium';
     font-size: 1.2rem;
     margin-bottom: 20px;
@@ -124,4 +128,10 @@
     margin-top: 50px;
     display: flex;
     justify-content: flex-end;
+}
+
+.EventDetails{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 }
