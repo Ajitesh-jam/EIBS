@@ -239,7 +239,7 @@ const Homepage = () => {
         const fetchEvents = async () => {
             try {
                 //run a loop 3 times to to fetch 3 events
-                for (let i = 0; i < 4; i++) {
+                
                 for (let i = 0; i < 4; i++) {
                     const fetchedEvent = await events(i);
                     console.log('Fetched event:', fetchedEvent);
