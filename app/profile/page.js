@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import './Homepage.css';
 import Navbar from '@/components/Navbar/Navbar';
 import { getAccounts } from '@/components/utils/web3';
-
+import RotatingText from '@/components/RotatingText/RotatingText';
 
 const Homepage = () => {
     const[account,setConnected]= useState("");
@@ -22,6 +22,7 @@ const Homepage = () => {
         <div className="Homepage-container">
             <Navbar />
            <QRCodeGenerator account={account}/>
+           <RotatingText/>
         </div>
     );
 };

@@ -1,0 +1,81 @@
+.footer {
+    background-color: #F45B49;
+    color: white;
+    padding: 100px 600px;
+    font-family: 'Arial', sans-serif;
+   
+    
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0% 5%;
+  }
+  
+  .footer-logo .logo-image {
+    height: 70px;
+    width: auto;
+    margin: 40px 50px;
+    
+  }
+  
+  .footer-contact,
+  .footer-social {
+    text-align: left;
+    margin: 0 20px;
+  }
+  
+  .footer-social {
+    text-align: center; /* Center-align the social icons section */
+  }
+  
+  .footer-social .social-icons {
+    display: flex; /* Use flexbox for horizontal alignment */
+    justify-content: center; /* Center the icons horizontally */
+    gap: 10px; /* Add spacing between the icons */
+  }
+  
+  .footer-social .social-icons a {
+    display: inline-block; /* Ensure links behave like inline elements */
+  }
+  
+  .footer-social .social-icons img {
+    height: 20px;
+    width: 20px;
+    object-fit: contain; /* Maintain aspect ratio */
+    transition: transform 0.3s; /* Smooth scaling effect on hover */
+  }
+  
+  .footer-social .social-icons img:hover {
+    transform: scale(1.2); /* Slightly enlarge the icon on hover */
+  }
+  
+  
+  .footer-bottom {
+    margin-top: 20px;
+    text-align: center;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .footer-links {
+    margin-bottom: 10px;
+  }
+  
+  .footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-bottom p {
+    font-size: 12px;
+    margin: 5px 0;
+  }
