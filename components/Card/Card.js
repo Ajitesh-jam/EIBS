@@ -17,6 +17,8 @@ const Card = ({ event }) => {
     setShowModal(false); // Hide the modal
   };
 
+  
+
   return (
     <>
       {/* Card Component */}

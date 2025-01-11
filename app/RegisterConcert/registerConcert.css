@@ -22,11 +22,17 @@
 
 .RC-details{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: flex-start;
     width: 80%;
     height: auto;
     padding: 20px;
     background-color: white;
+    border: 3px solid black;
+    box-shadow: 5px 5px 0px 0px black;
+}
+
+.RC-field label{
+    font-family: 'CD-Regular';
 }

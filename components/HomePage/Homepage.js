@@ -77,58 +77,6 @@ const Homepage = () => {
     }, []);
 
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Animate event cards
-        const cardsAnimation = gsap.fromTo(
-            '.Card-container > div', // Target each card inside the Card-container
-            { opacity: 0, y: 20, willChange: 'transform, opacity' }, // Start with opacity 0 and slightly below
-            {
-                opacity: 1,
-                y: 0, // Move to the original position
-                duration: 0.8, // Duration for each animation
-                ease: 'power2.out', // Easing curve
-                stagger: 0.15, // Delay between each card's animation
-                scrollTrigger: {
-                    trigger: '.Events-container', // Start animation when the Events-container enters
-                    start: 'top 80%', // When the top of Events-container is 80% down the viewport
-                    end: 'bottom 50%', // When the bottom is 50% down the viewport
-                    toggleActions: 'play reset play reset', // Retrigger animation
-                    markers: false, // Set to true to debug the scroll trigger
-                },
-            }
-        );
-
-        return () => {
-            // Clean up the animation on component unmount
-            cardsAnimation.kill();
-        };
-    }, []);
-    
-
-    gsap.fromTo(
-        '.Card-container > div',
-        { autoAlpha: 0, y: 50 }, // Start slightly less offset
-        {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.8, // Slightly shorter duration
-            ease: 'power2.out', // Softer easing curve
-            stagger: 0.15, // Reduced delay between cards
-            scrollTrigger: {
-                trigger: '.Events-container',
-                start: 'top 80%',
-                end: 'bottom 50%',
-                toggleActions: 'play none none none',
-            },
-        }
-    );
-
-
-
 
 
     const openProfile = () => {

@@ -88,12 +88,7 @@
     padding-right: 10%;
 }
 
-.Card-container > div {
-    will-change: opacity, transform; /* Optimize for animation */
-    opacity: 0;
-    transform: translateY(100px);
-    visibility: hidden;
-}
+
 
 
 
