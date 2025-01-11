@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Homepage from '@/components/HomePage/Homepage'
 import { LoginProvider } from '@/contexts/loginContext'

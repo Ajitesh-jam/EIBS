@@ -13,6 +13,7 @@ import { useLogin } from '@/contexts/loginContext'
 
 const Homepage = () => {
     const {setIsLoggedIn, setPublicAddress, publicAddress} = useLogin();
+    const [showModal,setShowModal] = useState(false);
     const handleRegisterConcertBtnClick = () => {
         console.log('Register Concert Button Clicked')
     }
@@ -39,8 +40,7 @@ const Homepage = () => {
         setShowModal(!showModal);
     }
 
-    const [showModal, setShowModal] = useState(false);
-    const [showCardModal, setShowCardModal] = useState(false);
+
 
     // Function to toggle modal visibility
     const toggleGetStartedModal = () => {

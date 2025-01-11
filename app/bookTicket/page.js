@@ -1,9 +1,9 @@
 import React from 'react'
-import './bookTicket.css'
+import BookTicket from '@/components/BookTicket/BookTicket'
 
 const page = () => {
   return (
-    <div>page</div>
+    <BookTicket />
   )
 }
 
