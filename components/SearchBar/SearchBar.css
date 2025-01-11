@@ -1,28 +1,36 @@
 .search-bar-container {
     display: flex;
-    flex: 1; /* Take up remaining space */
+    justify-content: center;
     align-items: center;
-    margin: 0 10px; /* Add some spacing between the search bar and other elements */
+    width: 100%;
+  }
+  
+  .search-bar-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    padding: 3px 5px;
+    background-color: #fff;
+    width: 100%; /* Adjust width as needed */
+    max-width: 400px; /* Optional: Limit maximum width */
+  }
+  
+  .search-icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 3px;
   }
   
   .search-bar {
-    background-color: #f0f0f0; /* Light gray background */
-    font-family: 'CD-Semibold';
-    font-size: 1.3rem;
-    padding: 10px;
-    border: 2px solid black;
-    border-radius: 4px;
-    box-shadow: 5px 5px 0px 0px black; /* Black shadow for offset */
-    width: 100%; /* Fills the remaining space */
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
-  }
-  
-  .search-bar:focus {
+    border: none;
     outline: none;
-    background-color: #e0e0e0; /* Slightly darker gray on focus */
+    font-size: 16px;
+    flex: 1; /* Ensures input takes up remaining space */
+    color: #aaa;
   }
   
   .search-bar::placeholder {
-    color: #888; /* Placeholder color */
+    color: #aaa; /* Style for placeholder text */
   }
   

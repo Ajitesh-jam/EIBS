@@ -8,7 +8,7 @@ const RotatingText = () => {
   return (
     <div className="circular-container">
       <div className="rotating-image-wrapper">
-      <img src="/Images/image.png" alt="Background Shape" className="circle-background" />
+      <img src="/Images/RotatingText.png" alt="Background Shape" className="circle-background" />
       </div>
       <div className="rotating-wrapper">
         {letters.map((letter, i) => (
