@@ -1,6 +1,6 @@
 
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import './BookTicket.css';
 import Navbar from '../Navbar/Navbar';
 import GetStarted from '../GetStarted/GetStarted';
@@ -10,7 +10,7 @@ import Button from '../Button/Button';
 import InputBox from '../InputBox/InputBox';
 import { useSearchParams } from 'next/navigation';
 
-const BookTicket = () => {
+const BookTicketContent = () => {
     const [showModal, setShowModal] = useState(false);
 
     const { setIsLoggedIn, setPublicAddress, publicAddress } = useLogin();
@@ -238,4 +238,11 @@ const BookTicket = () => {
     );
 };
 
+const  BookTicket = () => (
+    <Suspense fallback={<p>Loading...</p>}>
+        <BookTicketContent />
+    </Suspense>
+);
+
 export default BookTicket;
+
