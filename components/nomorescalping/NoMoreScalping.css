@@ -1,0 +1,14 @@
+.no-more-scalping {
+    display: inline-block;
+    padding: 1.4px 25px;
+    background-color: #e57373; /* Light red color */
+    color: #000; /* Black text */
+    font-weight: bold;
+    border-radius: 20px; /* Rounded corners */
+    font-size: 1.5rem;
+    font-family: "CD-Semibold";
+    text-align: center;
+    border: 3px solid #000; /* Black border */
+    margin: 3.8rem 0px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); /* Optional shadow for 3D effect */
+  }

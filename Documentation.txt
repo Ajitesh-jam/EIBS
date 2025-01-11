@@ -1,0 +1,206 @@
+book ticket
+
+'use client';
+import React, { useState, useEffect } from 'react';
+import './bookTicket.css';
+import Navbar from '@/components/Navbar/Navbar';
+import Button from '@/components/Button/Button';
+import { useLogin } from '@/contexts/loginContext';
+import useEvents from '@/components/hooks/event.zustand';
+import { getAccounts, buyMultipleTickets,checkTicketOwnership } from '@/components/utils/web3';
+
+const Homepage = () => {
+  const [addresses, setAddresses] = useState(''); // To store input addresses
+  const [costPerTicket, setCostPerTicket] = useState(BigInt(0)); // Store ticket price as BigInt
+  const currEvent = useEvents((state) => state.selectedEvent);
+  const [buyers, setBuyers] = useState([]);
+
+  useEffect(() => {
+    console.log("Event in bookTicket page:", currEvent);
+    if (currEvent) {
+      // Ensure ticketPrice is BigInt
+      setCostPerTicket(currEvent.ticketPrice || 0);
+    }
+  }, [currEvent]);
+
+  useEffect(() => {
+    // Fetch accounts when the component mounts
+    const fetchAccounts = async () => {
+      try {
+        const accounts = await getAccounts();
+        console.log('Fetched accounts:', accounts);
+        // Add the first account to buyers
+        setBuyers([accounts[0]]);
+      } catch (error) {
+        console.error('Error fetching accounts:', error);
+      }
+    };
+    fetchAccounts();
+  }, []);
+
+  const handleRegisterConcertBtnClick = () => {
+    console.log('Register Concert Button Clicked');
+  };
+
+  const handleBuyTickets = async () => {
+    try {
+      console.log("Ticket Price (in wei):", costPerTicket.toString());
+
+      // Split and clean addresses entered by the user
+      const buyersFriend = addresses.split(',').map((addr) => addr.trim());
+
+      // Combine fetched account with input addresses
+      const allBuyers = [...buyers, ...buyersFriend];
+      console.log("All Buyers:", allBuyers);
+
+        let hasTicket=false;
+      // Check if the user has a ticket by looping in all buyers and calling checkTickeOwnership(eventId,userAddress)
+        for (let i = 0; i < allBuyers.length; i++) {
+            const buyer = allBuyers[i];
+            hasTicket = await checkTicketOwnership(currEvent.index, buyer);
+            if (hasTicket) {
+                console.log(`${buyer} has a ticket for the event ${currEvent.index}`);
+                break;
+            }
+            
+        }
+
+        if(!hasTicket) {
+
+            // Calculate total cost using BigInt
+            const totalCost =(BigInt(allBuyers.length) * costPerTicket)/currEvent.ticketsLeft;
+            console.log("Total Cost (in wei):", totalCost.toString());
+
+            const eventId = currEvent.index; // Replace with the actual eventId (e.g., currEvent.id)
+            console.log("Event ID:", eventId);
+
+            // Call the smart contract function
+            const response = await buyMultipleTickets(allBuyers, eventId, totalCost.toString());
+            console.log('Tickets bought successfully:', response);
+        }
+        else{
+            console.log("One of the buyers already has a ticket for the event");
+        }
+    } catch (error) {
+      console.error('Error buying tickets:', error.message);
+    }
+  };
+
+  return (
+    <div className='Homepage-container'>
+      <Navbar />
+      <div className='Hero-container'>
+        <div className='Hero-left'></div>
+        <div className='Hero-right'>
+          <div className='Heading'>
+            <p>Tickets Tailored <br />to Real Fans.</p>
+          </div>
+          <div className='Sub-Heading'>
+            <p>Powered by Avalanche</p>
+          </div>
+        </div>
+      </div>
+      <div className='Events-container'>
+        <div className='Event-Heading'>
+          <p>Upcoming Events</p>
+        </div>
+        <div className='Card-container'></div>
+      </div>
+      <div className='TicketPurchase-container'>
+        <h3>Buy Tickets</h3>
+        <input
+          type='text'
+          placeholder='Enter addresses separated by commas'
+          value={addresses}
+          onChange={(e) => setAddresses(e.target.value)}
+        />
+        <Button btnText='Buy Tickets' onClickFunction={handleBuyTickets} />
+      </div>
+      <div className='RegisterConcert-container'>
+        <div className='RegisterConcert-Heading'>
+          <p>Got your own concert?</p>
+        </div>
+        <div className='RegisterConcertSection'>
+          <div className='left'>
+            <p>Register your concert and start selling tickets in a few easy steps!</p>
+          </div>
+          <div className='right'>
+            <Button
+              btnText='Register Concert'
+              onClickFunction={handleRegisterConcertBtnClick}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Homepage;
+
+
+
+
+event details-
+'use client';
+import React from 'react';
+import './EventDetails.css';
+import Button from '../Button/Button';
+import { useRouter } from 'next/navigation';
+const EventDetails = ({ event, onClose }) => {
+    const router =useRouter()
+    if (!event) return null;
+
+    const handleBookTickets = ()=>{
+        console.log("Booking tickets");
+        router.push('/bookTicket',);
+    }
+
+    return (
+        <div className="event-details-overlay" onClick={onClose}>
+            <div className="event-details-modal" onClick={(e) => e.stopPropagation()}>
+                <div className="event-image">
+                    {event.img ? (
+                        <img
+                            src={event.img}
+                            alt="Event"
+                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+                    ) : (
+                        "Image Placeholder"
+                    )}
+                </div>
+
+                {/* Event Details */}
+                <div className="event-info">
+                    <h1 className="event-title">{event.name}</h1>
+                    <div className='event-sections'>
+                        <div className="event-description">
+                            <h3>About</h3>
+                            <p>{event.description || 'No description available.'}</p>
+                        </div>
+
+                        <div className="event-meta">
+                            <div className="meta-item">
+                                <h4>Date:</h4>
+                                <p>{event.date || 'TBA'}</p>
+                            </div>
+                            <div className="meta-item">
+                                <h4>Venue:</h4>
+                                <p>{event.venue || 'TBA'}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className='bookTickets'>
+                    <Button btnText="Book Tickets" onClickFunction={handleBookTickets}/>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default EventDetails;

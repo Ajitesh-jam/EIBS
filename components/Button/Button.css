@@ -1,0 +1,33 @@
+.button-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.button {
+  background-color: #FF4D4D; /* Bright red */
+  color: black;
+  font-family: 'CD-Semibold';
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: 4px;
+  box-shadow: 5px 5px 0px 0px black; /* Black shadow for offset */
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.button:hover {
+  background-color: #ff6666; /* Slightly lighter red on hover */
+}
+
+.button:active {
+  transform: translate(5px, 5px); /* Move the button down/right */
+  box-shadow: 0px 0px 0px 0px black; /* Remove shadow when clicked */
+}
+
+@media (max-width: 768px){
+  .button {
+    font-size: 0.8rem;
+  }
+}
