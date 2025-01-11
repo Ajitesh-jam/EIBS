@@ -87,6 +87,8 @@ const Homepage = () => {
                 for (let i = 0; i < 3; i++) {
                     const fetchedEvent = await events(i);
                     console.log('Fetched event:', fetchedEvent);
+                    //add index to fetchedEvents
+                    fetchedEvent.index = i;
                     setCurrentEvents((prevEvents) => [...prevEvents, fetchedEvent]);
 
                 }
