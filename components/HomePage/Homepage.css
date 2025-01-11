@@ -88,6 +88,11 @@
     padding-right: 10%;
 }
 
+.Card-container > div {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
 .RegisterConcert-container{
     display: flex;
     flex-direction: column;
