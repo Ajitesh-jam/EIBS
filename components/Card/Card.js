@@ -17,6 +17,8 @@ const Card = ({ event }) => {
     setShowModal(false); // Hide the modal
   };
 
+  
+
   return (
     <>
       {/* Card Component */}
@@ -39,7 +41,7 @@ const Card = ({ event }) => {
 
         <div className="card-content">
           <p className="card-date">{event.name}</p>
-          <p className="card-price">{event.ticketPrice} WEI</p>
+          <p className="card-price">Tickets Left:   {event.ticketsLeft} </p>
         </div>
       </div>
 
