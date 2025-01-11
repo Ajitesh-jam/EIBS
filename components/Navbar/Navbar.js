@@ -5,6 +5,7 @@ import './Navbar.css'
 import Button from '../Button/Button'
 import { useLogin } from '@/contexts/loginContext'
 import { useEffect } from 'react';
+import SearchBar from '../SearchBar/Searchbar'
 
 
 const Navbar = ({toggleGetStartedModal,openProfile}) => {
@@ -16,6 +17,7 @@ const Navbar = ({toggleGetStartedModal,openProfile}) => {
 
   return (
     <div className='Navbar-container'>
+      <SearchBar/>
       {!isLoggedIn ? (
          <Button
          btnText='Login'
