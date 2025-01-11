@@ -5,6 +5,16 @@ import Navbar from '@/components/Navbar/Navbar';
 import Card from '@/components/Card/Card';
 import { events } from '@/components/utils/web3';
 
+const handleSearch = (searchValue) => {
+    console.log("Search Value:", searchValue); // This will log the input value
+    // Add your search logic here
+  };
+
+  const handleLoginClick = () => {
+    console.log("Login button clicked");
+    // Add login functionality here
+  };
+  
 const Homepage = () => {
     const [eventData, setEventData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -105,7 +115,7 @@ const Homepage = () => {
 
     return (
         <div className="Homepage-container">
-            <Navbar />
+            <Navbar onLoginClick={handleLoginClick} onSearch={handleSearch} />
             <div className="Hero-container">
                 <div className="Hero-left"></div>
                 <div className="Hero-right">

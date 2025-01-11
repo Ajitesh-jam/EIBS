@@ -106,27 +106,42 @@ const BookTicket = () => {
                 </div>
                 <div className='InfoSection'>
                     <div className='EventImg'>
-                                        <div className="event-image">
-                    {event.img ? (
-                        <img
-                            src={event.img}
-                            alt="Event"
-                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                        />
-                    ) : (
-                        "Image Placeholder"
-                    )}
-                </div>
+                        <div className="event-image">
+                            {event.img ? (
+                                <img
+                                    src={event.img}
+                                    alt="Event"
+                                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                />
+                            ) : (
+                                "Image Placeholder"
+                            )}
+                        </div>
                     </div>
                     <p className='EventName'>{event.name}</p>
                     <div className='EventDetails'>
                         <p className='EventDate'>Date</p>
                         <p>{event.date}</p>
                     </div>
-                    
+
                     <p className='EventTime'>Timing</p>
                     <p className='EventVenue'>Venue</p>
-                    <div className='MapLocation'></div>
+                    <div className='MapLocation'>
+                        {event.location ? (
+                            <iframe
+                                src={event.location}
+                                width="100%"
+                                height="100%"
+                                allowFullScreen=""
+                                style={{ border: 0 }}
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        ) : (
+                            "Location not available"
+                        )}
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -1,0 +1,28 @@
+.search-bar-container {
+    display: flex;
+    flex: 1; /* Take up remaining space */
+    align-items: center;
+    margin: 0 10px; /* Add some spacing between the search bar and other elements */
+  }
+  
+  .search-bar {
+    background-color: #f0f0f0; /* Light gray background */
+    font-family: 'CD-Semibold';
+    font-size: 1.3rem;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 4px;
+    box-shadow: 5px 5px 0px 0px black; /* Black shadow for offset */
+    width: 100%; /* Fills the remaining space */
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  
+  .search-bar:focus {
+    outline: none;
+    background-color: #e0e0e0; /* Slightly darker gray on focus */
+  }
+  
+  .search-bar::placeholder {
+    color: #888; /* Placeholder color */
+  }
+  
