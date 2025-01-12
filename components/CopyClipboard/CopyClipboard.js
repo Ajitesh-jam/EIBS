@@ -30,18 +30,18 @@ export default function ClipBoard() {
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Type something here..."
                 className="clipboard-input"
-                style={{ width: '300px', height: '100px', marginBottom: '10px' }}
+                style={{ width: '300px', height: '50px', marginBottom: '10px' }}
             ></textarea>
             <br />
             <div className="button-container">
-            <button
+            <button className='button'
                 onClick={copyToClipboard}
                 >
                 
-                Copy Text
+                
             </button>
             </div>
-            {status && <p style={{ marginTop: '10px', color: 'red' }}>{status}</p>}
+            {status && <p style={{ marginTop: '10px', color: 'black' }}>{status}</p>}
         </div>
     );
 }
