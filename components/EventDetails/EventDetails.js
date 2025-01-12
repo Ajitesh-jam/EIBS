@@ -62,15 +62,15 @@ const EventDetails = ({ event, onClose }) => {
 
                            <br></br>
                             <h3>About</h3>
-                            <p><i>Witness  the  unstoppable  force  that  is  <b>{event.name}  </b>live  on  stage!  This  critically-acclaimed  artist <br></br> is known  for  delivering  heart-stopping,  awe-inspiring  performances  that  will  leave  you  screaming <br></br> for  more.  With  their  captivating  stage  presence,  mesmerizing  visuals,  and  unforgettable  music, <br></br> {event.name}  will  give  you  an  unforgettable  night  to  remember.  Get  your  tickets  now  and  be  a <br></br> part  of  the  magic!</i></p><br></br><br></br>
-                            <span>Tickets Left : {event.ticketsLeft} </span>
-
+                            <p>Immerse yourself in an unforgettable evening as they take the stage to deliver soul-stirring melodies and captivating performances. Get ready for a musical journey like no other!</p>
                         </div>
 
                         <div className="event-meta">
                             <div className="meta-item">
                                 <h4>Date:</h4>
                                 <p> {formatDate(event.date) || 'TBA'}</p>
+                                <div className="TicketsLeft">Tickets Remaining</div>
+                                <span>{event.ticketsLeft} </span>
                             </div>
                             <div className="meta-item">
                                 <h4>Venue:</h4>
@@ -90,15 +90,3 @@ const EventDetails = ({ event, onClose }) => {
 export default EventDetails;
 
 
-// Here are a few options:
-
-// # Option 1: Highlighting the Artist's Unique Sound
-// "Get ready to experience the electrifying sound of [Artist Name], the visionary musician who's redefining the boundaries of [genre]! With their signature blend of [influences] and infectious energy, [Artist Name] will take you on a sonic journey that will leave you breathless. Don't miss your chance to witness greatness – secure your tickets now!"
-
-// # Option 2: Emphasizing the Artist's Live Performance
-// " Witness the unstoppable force that is [Artist Name] live on stage! This critically-acclaimed artist is known for delivering heart-stopping, awe-inspiring performances that will leave you screaming for more. With their captivating stage presence, mesmerizing visuals, and unforgettable music, [Artist Name] will give you an unforgettable night to remember. Get your tickets now and be a part of the magic!"
-
-// # Option 3: Showcasing the Artist's Musical Journey
-// "Join [Artist Name] on their musical journey, as they bring their latest album [album name] to life on stage! With a career spanning [number] years, [Artist Name] has established themselves as one of the most innovative and beloved artists in [genre]. From their early days as a rising star to their current status as a global phenomenon, [Artist Name] has consistently pushed the boundaries of music and art. Don't miss this opportunity to experience their latest evolution – get your tickets now!"
-
-// Feel free to customize these descriptions to fit your artist's unique style and sound!
