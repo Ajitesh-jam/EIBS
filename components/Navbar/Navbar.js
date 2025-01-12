@@ -19,7 +19,7 @@ const Navbar = ({toggleGetStartedModal, publicAddress}) => {
   return (
     <div className='Navbar-container'>
       <div className='LogoContainer'>
-        FP
+        F<span>P</span>
       </div>
       <div className='Navbar-right'>
       <SearchBar/>

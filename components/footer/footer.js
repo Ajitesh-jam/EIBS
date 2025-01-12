@@ -16,15 +16,6 @@ const Footer = () => {
           <p>We are dedicated to providing the best experience for our users.</p>
         </div>
 
-        {/* <div className="footer-section">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/privacy">Privacy Policy</a></li>
-          </ul>
-        </div> */}
 
         <div className="footer-section">
           <h3>Contact Info</h3>
@@ -43,6 +34,9 @@ const Footer = () => {
                         <FontAwesomeIcon icon={faTwitter} className="social-icon" />
                     </a> 
           </div>
+        </div>
+        <div className='LogoContainer'>
+        F<span>P</span>
         </div>
       </div>
 

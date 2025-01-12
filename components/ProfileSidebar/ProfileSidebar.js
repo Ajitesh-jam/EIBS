@@ -62,6 +62,7 @@ const ProfileSidebar = ({ publicAddress }) => {
 
                     </div>
                     <div className='OR'><div className='Line' />OR<div className='Line' /></div>
+                    <div><h3>Scan the QR to get your public Address</h3></div>
                     <div className='QRCodeContainer'>
                         <QRCodeGenerator publicAddress={String(paddress)} />
                     </div>
