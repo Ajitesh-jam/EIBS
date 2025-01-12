@@ -20,6 +20,7 @@
     "gsap": "^3.12.5",
     "http-proxy-middleware": "^3.0.3",
     "isotope-layout": "^3.0.6",
+    "json-bigint": "^1.0.0",
     "lightgallery": "^2.7.2",
     "next": "15.1.4",
     "next-route": "^2.0.0",

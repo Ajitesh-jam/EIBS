@@ -39,7 +39,7 @@ const ProfileSidebar = ({publicAddress}) => {
                         {/* copy to clipboard btn */}
                         
                     </div>
-                    <div><h3>---------------------------- Or ----------------------------</h3></div>
+                    <div className='OR'><div className='Line'/>OR<div className='Line'/></div>
                     <div className='QRCodeContainer'>
                         <QRCodeGenerator publicAddress={String(paddress)} />
                     </div>

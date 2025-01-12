@@ -87,7 +87,7 @@
   }
 
   .sidebar-content .PublicAddress{
-    width: 90%;
+    width: 80%;
     height: 50px;
     border: 2px solid black;
     box-shadow: 5px 5px 0px 0px black;
@@ -101,7 +101,6 @@
     overflow: hidden; /* Hides the overflow text */
     text-overflow: ellipsis; /* Adds an ellipsis (...) at the point of overflow */
     max-width: 100%; /* Set a fixed or dynamic width */
-    display: inline-block; /* Ensures proper application of text-overflow */
     padding-left: 10px;
     padding-right: 10px;
     display: flex;
@@ -120,5 +119,19 @@
     width:100%;
     justify-content: center;
     
+  }
+
+  .OR{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-family: 'CD-Medium';
+    color: #A7A7A7;
+  }
+
+  .Line{
+    width: 40%;
+    border: 1px solid #A7A7A7;
   }
 

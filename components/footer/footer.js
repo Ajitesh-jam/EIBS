@@ -28,9 +28,9 @@ const Footer = () => {
 
         <div className="footer-section">
           <h3>Contact Info</h3>
-          <p>Email: contact@example.com</p>
+          <p>Email: FanPass@gmail.com</p>
           <p>Phone: (555) 123-4567</p>
-          <p>Address: 123 Main St, City, Country</p>
+          <p>Address: IIT Kgp, WB, India</p>
         </div>
 
         <div className="footer-section">
@@ -47,7 +47,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {currentYear} Harsh Chhattar. All rights reserved.</p>
+        <p>&copy; {currentYear} Fan Pass. All rights reserved.</p>
       </div>
     </footer>
   );

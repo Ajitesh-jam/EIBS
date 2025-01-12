@@ -1,4 +1,5 @@
 .BT-Container{
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,11 +13,12 @@
 }
 
 .BT-Heading{
+    margin-top: 30px;
     font-family: 'CD-Semibold';
     width: 100vw;
     display: flex;
     justify-content: center;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .BT-Content{
@@ -52,6 +54,8 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    font-family: 'CD-Medium';
+
 
 }
 

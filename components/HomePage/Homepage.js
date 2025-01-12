@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react';
+import JSONbig from 'json-bigint';
 import './Homepage.css';
 import Navbar from '../Navbar/Navbar';
 import Card from '../Card/Card';
@@ -11,6 +12,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrollDown from '../ScrollDown/ScrollDown';
 import ShiningIcon from '../ShiningIcon/ShiningIcon';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -25,11 +27,12 @@ const Homepage = () => {
     const animationInitializedRef = useRef(false);
     const [loading, setLoading] = useState(true);
     const [currentEvents, setCurrentEvents] = useState([]);
+    const router = useRouter();
 
 
     const handleRegisterConcertBtnClick = () => {
         console.log('Register Concert Button Clicked');
-        router.push('/registerConcert');
+        router.push('/RegisterConcert');
 
     };
 
@@ -58,58 +61,7 @@ const Homepage = () => {
         setShowModal(!showModal);
     };
 
-    const [allevents, setAllEvents] = useState(
-        [
-
-            // {
-            //     name: "harsh Events",
-            //     img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-            //     artist: "harsh ",
-            //     location: "Default Location",
-            //     date: "Default Date",
-            //     ticketPrice: "Default Ticket Price",
-            //     ticketsLeft: "Default Tickets Left",
-            // },
-            // {
-            //     name: "Default Event",
-            //     img: "https://www.thestatesman.com/wp-content/uploads/2023/11/Taylor-Swift-The-Eras-Tour.jpg",
-            //     artist: "Default Artist",
-            //     location: "Default Location",
-            //     date: "Default Date",
-            //     ticketPrice: "Default Ticket Price",
-            //     ticketsLeft: "Default Tickets Left",
-            // },
-
-            // {
-            //     name: "Default Event",
-            //     img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-            //     artist: "Default Artist",
-            //     location: "Default Location",
-            //     date: "Default Date",
-            //     ticketPrice: "Default Ticket Price",
-            //     ticketsLeft: "Default Tickets Left",
-            // },
-            // {
-            //     name: "Default Event",
-            //     img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-            //     artist: "Default Artist",
-            //     location: "Default Location",
-            //     date: "Default Date",
-            //     ticketPrice: "Default Ticket Price",
-            //     ticketsLeft: "Default Tickets Left",
-            // },
-            // {
-            //     name: "Default Event",
-            //     img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-            //     artist: "Default Artist",
-            //     location: "Default Location",
-            //     date: "Default Date",
-            //     ticketPrice: "Default Ticket Price",
-            //     ticketsLeft: "Default Tickets Left",
-            // },
-        ]
-
-    );
+    const [allevents, setAllEvents] = useState([]);
 
     // GSAP Animations
     useEffect(() => {
@@ -212,34 +164,43 @@ const Homepage = () => {
     };
 }, [loading, currentEvents, allevents]);
 
-    const [eventData, setEventData] = useState([]);
 
+useEffect(() => {
+    const fetchEvents = async () => {
+        // Check for cached data in localStorage
+        const cachedEvents = localStorage.getItem('cachedEvents');
+        if (cachedEvents) {
+            // Use JSONbig to parse the cached data
+            const parsedEvents = JSONbig.parse(cachedEvents);
+            setCurrentEvents(parsedEvents);
+            setAllEvents(parsedEvents);
+            setLoading(false);
+            return; // Exit early if cache is available
+        }
 
-
-
-
-    // Fetch events (replace `events` with your API function or mock it)
-    useEffect(() => {
-        const fetchEvents = async () => {
-            try {
-                //run a loop 3 times to to fetch 3 events
-                for (let i = 0; i < 4; i++) {
-                    const fetchedEvent = await events(i);
-                    console.log('Fetched event:', fetchedEvent);
-                    //add index to fetchedEvents
-                    fetchedEvent.index = i;
-                    setCurrentEvents((prevEvents) => [...prevEvents, fetchedEvent]);
-                }
-                setAllEvents(currentEvents);
-                setLoading(false);
-
-            } catch (error) {
-                console.error('Error fetching events:', error);
-                setLoading(false);
+        try {
+            // Fetch events if not cached
+            const eventsArray = [];
+            for (let i = 0; i < 4; i++) {
+                const fetchedEvent = await events(i);
+                fetchedEvent.index = i; // Add index to the fetched event
+                eventsArray.push(fetchedEvent);
             }
-        };
-        fetchEvents();
-    }, []);
+
+            // Update state and cache events using JSONbig
+            setCurrentEvents(eventsArray);
+            setAllEvents(eventsArray);
+            localStorage.setItem('cachedEvents', JSONbig.stringify(eventsArray)); // Serialize with JSONbig
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching events:', error);
+            setLoading(false);
+        }
+    };
+
+    fetchEvents();
+}, []);
+
 
 
     return (

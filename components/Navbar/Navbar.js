@@ -18,6 +18,10 @@ const Navbar = ({toggleGetStartedModal, publicAddress}) => {
 
   return (
     <div className='Navbar-container'>
+      <div className='LogoContainer'>
+        FP
+      </div>
+      <div className='Navbar-right'>
       <SearchBar/>
       {!isLoggedIn ? (
          <Button
@@ -28,6 +32,8 @@ const Navbar = ({toggleGetStartedModal, publicAddress}) => {
         <ProfileSidebar publicAddress={publicAddress}/>
       )
       }
+      </div>
+      
     </div>
   )
 }
