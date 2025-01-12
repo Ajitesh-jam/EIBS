@@ -72,15 +72,6 @@ const Homepage = () => {
             // },
             // {
             //     name: "Default Event",
-            //     img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
-            //     artist: "Default Artist",
-            //     location: "Default Location",
-            //     date: "Default Date",
-            //     ticketPrice: "Default Ticket Price",
-            //     ticketsLeft: "Default Tickets Left",
-            // },
-            // {
-            //     name: "Default Event",
             //     img: "https://www.thestatesman.com/wp-content/uploads/2023/11/Taylor-Swift-The-Eras-Tour.jpg",
             //     artist: "Default Artist",
             //     location: "Default Location",
@@ -221,13 +212,6 @@ const Homepage = () => {
     };
 }, [loading, currentEvents, allevents]);
 
-
-    const openProfile = () => {
-        console.log("opening Profile");
-    }
-
-
-
     const [eventData, setEventData] = useState([]);
 
 
@@ -258,12 +242,9 @@ const Homepage = () => {
     }, []);
 
 
-
-
-
     return (
         <div className='Homepage-container'>
-            <Navbar toggleGetStartedModal={toggleGetStartedModal} openProfile={openProfile} />
+            <Navbar toggleGetStartedModal={toggleGetStartedModal} publicAddress={publicAddress}/>
             {/* Modal */}
             {showModal && (
                 <div className='modal-overlay'>

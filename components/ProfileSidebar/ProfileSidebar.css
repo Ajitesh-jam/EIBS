@@ -1,0 +1,124 @@
+.profile-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-btn:hover {
+    background-color: #2980b9;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+  }
+  
+  .overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -500px;
+    width: 500px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    border-left: 2px solid black;
+    
+  }
+  
+  .sidebar.active {
+    right: 0;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    font-family: 'CD-Semibold';
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .sidebar-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    /* Add your custom styles for the content container */
+  }
+
+  .Greeting{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'CD-Semibold';
+  }
+
+  .Greeting span{
+    font-size: 28px;
+    color: #F45B49;
+    cursor: pointer;
+  }
+
+  .sidebar-content h3{
+    font-family: 'CD-Regular';
+    color: #A7A7A7;
+  }
+
+  .sidebar-content .PublicAddress{
+    width: 90%;
+    height: 50px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 0px 0px black;
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFF59F;
+  }
+
+  .Address {
+    white-space: nowrap; /* Prevents the text from wrapping to the next line */
+    overflow: hidden; /* Hides the overflow text */
+    text-overflow: ellipsis; /* Adds an ellipsis (...) at the point of overflow */
+    max-width: 100%; /* Set a fixed or dynamic width */
+    display: inline-block; /* Ensures proper application of text-overflow */
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    font-family: 'CD-Regular';
+}
+  .copyIcon{
+    aspect-ratio: 1/1;
+    height: 100%;
+    cursor: pointer;
+    border-left: 2px solid black;
+  }
+
+  .QRCodeContainer{
+    display: flex;
+    width:100%;
+    justify-content: center;
+    
+  }
+

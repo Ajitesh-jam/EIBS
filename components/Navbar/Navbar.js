@@ -6,9 +6,10 @@ import Button from '../Button/Button'
 import { useLogin } from '@/contexts/loginContext'
 import { useEffect } from 'react';
 import SearchBar from '../SearchBar/Searchbar'
+import ProfileSidebar from '../ProfileSidebar/ProfileSidebar'
 
 
-const Navbar = ({toggleGetStartedModal,openProfile}) => {
+const Navbar = ({toggleGetStartedModal, publicAddress}) => {
   const {isLoggedIn} = useLogin();
 
   useEffect(() => {
@@ -23,9 +24,9 @@ const Navbar = ({toggleGetStartedModal,openProfile}) => {
          btnText='Login'
          onClickFunction={toggleGetStartedModal}/>
       ) : 
-      <Button 
-      btnText='Profile'
-      onClickFunction={openProfile}/>
+      (
+        <ProfileSidebar publicAddress={publicAddress}/>
+      )
       }
     </div>
   )
