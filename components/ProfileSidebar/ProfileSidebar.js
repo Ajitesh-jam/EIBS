@@ -4,10 +4,29 @@ import './ProfileSidebar.css';
 import Button from '../Button/Button';
 import QRCodeGenerator from './QRcodegenerator';
 import { getAccounts } from '../utils/web3';
+import CopyNotification from '../CopyClipboard/CopyClipboard';
 
-const ProfileSidebar = ({publicAddress}) => {
+const ProfileSidebar = ({ publicAddress }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [paddress, setpAddress] = useState('');
+    const [showCopyNotification, setShowCopyNotification] = useState(false);
+
+    const copyToClipboard = () => {
+        const el = document.createElement('textarea');
+        el.value = paddress;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        // Show notification
+        setShowCopyNotification(true);
+
+        // Hide notification after 2 seconds
+        setTimeout(() => {
+            setShowCopyNotification(false);
+        }, 2000);
+
+    }
 
     useEffect(() => {
         const fetchAddress = async () => {
@@ -36,15 +55,19 @@ const ProfileSidebar = ({publicAddress}) => {
                     <div><h3>Here's your Public Address</h3></div>
                     <div className='PublicAddress'>
                         <div className='Address'>{paddress}</div>
-                        {/* copy to clipboard btn */}
-                        
+                        <div className='CopyClipboard' title='Copy to clipboard' onClick={copyToClipboard}>
+                            <img src="./Images/copy.png" />
+                        </div>
+
+
                     </div>
-                    <div className='OR'><div className='Line'/>OR<div className='Line'/></div>
+                    <div className='OR'><div className='Line' />OR<div className='Line' /></div>
                     <div className='QRCodeContainer'>
                         <QRCodeGenerator publicAddress={String(paddress)} />
                     </div>
                 </div>
             </div>
+            <CopyNotification isVisible={showCopyNotification} />
         </>
     );
 };
