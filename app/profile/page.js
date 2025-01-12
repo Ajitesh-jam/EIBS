@@ -4,7 +4,7 @@ import './Homepage.css';
 import Navbar from '@/components/Navbar/Navbar';
 import { getAccounts } from '@/components/utils/web3';
 import RotatingText from '@/components/RotatingText/RotatingText';
-
+import ClipBoard from '@/components/CopyClipboard/CopyClipboard';
 const Homepage = () => {
     const[account,setConnected]= useState("");
 
@@ -23,6 +23,7 @@ const Homepage = () => {
             <Navbar />
            <QRCodeGenerator account={account}/>
            <RotatingText/>
+           <ClipBoard/>
         </div>
     );
 };
