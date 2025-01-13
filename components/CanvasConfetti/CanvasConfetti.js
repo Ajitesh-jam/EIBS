@@ -1,34 +1,4 @@
-// confetti.js
-// @ts-ignore
-// import confetti from "canvas-confetti";
 import "./CanvasConfetti.css";
-
-
-// export const triggerConfetti = () => {
-//   const duration = 1 * 1000; // 5 seconds
-//   const end = Date.now() + duration;
-
-//   (function frame() {
-//     confetti({
-//       particleCount: 3,
-//       angle: 60,
-//       spread: 55,
-//       origin: { x: 0 },
-//     });
-//     confetti({
-//       particleCount: 3,
-//       angle: 120,
-//       spread: 55,
-//       origin: { x: 1 },
-//     });
-
-//     if (Date.now() < end) {
-//       requestAnimationFrame(frame);
-//     }
-//   })();
-// };
-
-// // @ts-ignore
 import confetti from "canvas-confetti";
 
 export const triggerConfetti = () => {
@@ -54,9 +24,9 @@ export const triggerConfetti = () => {
             particleCount: 20,
             angle: 60,
             spread: 55,
-            origin: { x: 0, y: 0.5 },
+            origin: { x: 0, y: 0.7 },
             colors: colors,
-            startVelocity: 45,
+            startVelocity: 80,
             gravity: 1,
         });
 
@@ -65,9 +35,9 @@ export const triggerConfetti = () => {
             particleCount: 20,
             angle: 120,
             spread: 55,
-            origin: { x: 1, y: 0.5 },
+            origin: { x: 1, y: 0.7 },
             colors: colors,
-            startVelocity: 45,
+            startVelocity: 80,
             gravity: 1,
         });
 
