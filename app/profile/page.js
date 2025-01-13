@@ -5,6 +5,8 @@ import Navbar from '@/components/Navbar/Navbar';
 import { getAccounts } from '@/components/utils/web3';
 import RotatingText from '@/components/RotatingText/RotatingText';
 import ClipBoard from '@/components/CopyClipboard/CopyClipboard';
+import { triggerConfetti } from '@/components/CanvasConfetti/CanvasConfetti';
+import confetti from 'canvas-confetti';
 const Homepage = () => {
     const[account,setConnected]= useState("");
 
@@ -24,6 +26,7 @@ const Homepage = () => {
            <QRCodeGenerator account={account}/>
            <RotatingText/>
            <ClipBoard/>
+           <ButtonWithConfetti/>
         </div>
     );
 };
@@ -83,6 +86,18 @@ const QRCodeGenerator = ({ account }) => {
           className="flex justify-center"
         />
       </div>
+    );
+  };
+  
+  const ButtonWithConfetti = () => {
+    const handleButtonClick = () => {
+      triggerConfetti(); // Call the confetti function on button click
+    };
+  
+    return (
+      <button className="confetti-button" onClick={handleButtonClick}>
+        Celebrate 🎉
+      </button>
     );
   };
   
