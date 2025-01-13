@@ -1,0 +1,73 @@
+/* Preloader CSS */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+  }
+  
+  #progress-bar {
+    width: 80%;
+    height: 30px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  #progress {
+    width: 0;
+    height: 100%;
+    background-color: #4caf50;
+    position: absolute;
+  }
+  
+  #percentage-text {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  
+  /* Spinning Circles Animation */
+  .circle-animation {
+    display: flex;
+    justify-content: space-around;
+    width: 100px;
+    margin-top: 20px;
+  }
+  
+  .circle {
+    width: 25px;
+    height: 25px;
+    background-color: #4caf50;
+    border-radius: 50%;
+    animation: spin 1.5s infinite linear;
+  }
+  
+  .circle:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .circle:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  
+  .circle:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

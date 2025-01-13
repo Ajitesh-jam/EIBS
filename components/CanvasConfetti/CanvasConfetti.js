@@ -11,7 +11,7 @@ export const triggerConfetti = () => {
     };
 
     const confettiCanvas = resizeCanvas();
-    const duration = 5 * 1000; // 5 seconds
+    const duration = 2 * 1000; // 5 seconds
     const end = Date.now() + duration;
 
     // Colors for the confetti
