@@ -1,25 +1,34 @@
 import React from 'react';
 import './ConnectSpotify.css';
-import { signIn, useSession } from "next-auth/react";
-// import SpotifyLogo from './Images/SpotifyLogo.png'; // Save the logo as 'spotify-logo.svg' in the same folder.
 
 const ConnectSpotify = () => {
-    // const { data: session } = useSession();
-    const handleLogin = () => {
-        // Trigger Spotify sign-in via NextAuth
-        signIn("spotify");
-      };
+    const handleLogin = async () => {
+        try {
+            // Redirect to the login API route that initiates the Spotify authentication flow
+            const response = await fetch('/api/spotify/login');
+            const data = await response.json();
+            
+            // Redirect the user to Spotify's login page
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                console.error('Spotify login URL not found');
+            }
+        } catch (error) {
+            console.error('Error redirecting to Spotify login:', error);
+        }
+    };
 
-  return (
-    <div onClick={handleLogin} className="spotifyBtnContainer">
-      <button onClick={handleLogin} className='spotbtn'>
-      </button>
-      Link your
-      <div className='SpotLogoContainer'>
-            <img src='./Images/SpotifyLogo.png' alt='Spotify'/>
+    return (
+        <div onClick={handleLogin} className="spotifyBtnContainer">
+            <button onClick={handleLogin} className='spotbtn'>
+            </button>
+            Link your
+            <div className='SpotLogoContainer'>
+                <img src='./Images/SpotifyLogo.png' alt='Spotify' />
+            </div>
         </div>
-    </div>
-  );
+    );
 };
 
 export default ConnectSpotify;
