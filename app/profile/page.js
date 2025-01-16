@@ -9,6 +9,7 @@ import { triggerConfetti } from '@/components/CanvasConfetti/CanvasConfetti';
 import confetti from 'canvas-confetti';
 import Preloader from '@/components/Preloader/Preloader';
 import OTPVerification from '@/components/OTP_SYSTEM/OTPSystem';
+import CountdownTimer from '@/components/Time_Left_Card/CountdownTimer';
 const Homepage = () => {
     const[account,setConnected]= useState("");
 
@@ -30,7 +31,7 @@ const Homepage = () => {
            <ClipBoard/>
            <ButtonWithConfetti/>
            <Preloader/>
-           <OTPVerification/>
+           <CountdownTimer/>
         </div>
     );
 };

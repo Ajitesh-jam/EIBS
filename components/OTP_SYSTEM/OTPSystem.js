@@ -1,118 +1,104 @@
-import React, { useState, useRef } from 'react';
-import { AlertCircle, CheckCircle2 } from 'lucide-react';
+import { useState } from 'react';
 
 const OTPVerification = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [showOTPInput, setShowOTPInput] = useState(false);
-  const [otpValues, setOtpValues] = useState(['', '', '', '', '', '']);
-  const [verificationStatus, setVerificationStatus] = useState('');
-  const inputRefs = useRef([]);
+  const [otp, setOtp] = useState('');
+  const [step, setStep] = useState('phone'); // 'phone' or 'otp'
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
-  const handlePhoneSubmit = (e) => {
-    e.preventDefault();
-    // Simulate sending OTP to the phone number
-    // In a real application, you would make an API call here
-    if (phoneNumber.length >= 10) {
-      setShowOTPInput(true);
-      setVerificationStatus('OTP sent successfully!');
-    }
-  };
-
-  const handleOTPChange = (index, value) => {
-    if (value.length <= 1 && /^\d*$/.test(value)) {
-      const newOTPValues = [...otpValues];
-      newOTPValues[index] = value;
-      setOtpValues(newOTPValues);
-
-      // Auto-focus next input
-      if (value && index < 5) {
-        inputRefs.current[index + 1].focus();
+  const handleSendOTP = async () => {
+    try {
+      const response = await fetch('/api/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone_number: phoneNumber })
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setStep('otp');
+        setMessage('OTP sent successfully!');
+        setError('');
+      } else {
+        setError(data.error || 'Failed to send OTP');
       }
+    } catch (err) {
+      setError('Failed to connect to server');
     }
   };
 
-  const handleKeyDown = (index, e) => {
-    if (e.key === 'Backspace' && !otpValues[index] && index > 0) {
-      inputRefs.current[index - 1].focus();
-    }
-  };
-
-  const handleVerifyOTP = () => {
-    const enteredOTP = otpValues.join('');
-    // In a real application, you would verify this OTP with your backend
-    if (enteredOTP.length === 6) {
-      // Simulate OTP verification
-      setVerificationStatus('Verified successfully!');
-    } else {
-      setVerificationStatus('Invalid OTP. Please try again.');
+  const handleVerifyOTP = async () => {
+    try {
+      const response = await fetch('/api/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone_number: phoneNumber, otp })
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setMessage('Phone number verified successfully!');
+        setError('');
+      } else {
+        setError(data.error || 'Invalid OTP');
+      }
+    } catch (err) {
+      setError('Failed to connect to server');
     }
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 space-y-6">
-      {!showOTPInput ? (
-        <form onSubmit={handlePhoneSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Enter your phone number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6">Phone Verification</h2>
+      
+      {error && (
+        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
+          {error}
+        </div>
+      )}
+      
+      {message && (
+        <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">
+          {message}
+        </div>
+      )}
+
+      {step === 'phone' ? (
+        <div className="space-y-4">
+          <input
+            type="tel"
+            placeholder="Enter phone number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button 
+            onClick={handleSendOTP} 
+            disabled={!phoneNumber}
+            className="w-full bg-blue-500 text-white p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-600"
           >
             Send OTP
           </button>
-        </form>
+        </div>
       ) : (
         <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-xl font-semibold mb-2">Enter OTP</h2>
-            <p className="text-sm text-gray-600">
-              We've sent a code to {phoneNumber}
-            </p>
-          </div>
-          <div className="flex justify-center gap-2">
-            {otpValues.map((value, index) => (
-              <input
-                key={index}
-                ref={(el) => (inputRefs.current[index] = el)}
-                type="text"
-                maxLength={1}
-                className="w-12 h-12 text-center border rounded-lg text-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                value={value}
-                onChange={(e) => handleOTPChange(index, e.target.value)}
-                onKeyDown={(e) => handleKeyDown(index, e)}
-              />
-            ))}
-          </div>
-          <button
+          <input
+            type="text"
+            placeholder="Enter OTP"
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+            className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button 
             onClick={handleVerifyOTP}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+            disabled={!otp}
+            className="w-full bg-blue-500 text-white p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-600"
           >
             Verify OTP
           </button>
-          {verificationStatus && (
-            <div className={`flex items-center gap-2 justify-center ${
-              verificationStatus.includes('successfully') ? 'text-green-600' : 'text-red-600'
-            }`}>
-              {verificationStatus.includes('successfully') ? (
-                <CheckCircle2 className="w-5 h-5" />
-              ) : (
-                <AlertCircle className="w-5 h-5" />
-              )}
-              <span>{verificationStatus}</span>
-            </div>
-          )}
         </div>
       )}
     </div>
