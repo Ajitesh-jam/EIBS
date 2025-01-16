@@ -8,6 +8,7 @@ import ClipBoard from '@/components/CopyClipboard/CopyClipboard';
 import { triggerConfetti } from '@/components/CanvasConfetti/CanvasConfetti';
 import confetti from 'canvas-confetti';
 import Preloader from '@/components/Preloader/Preloader';
+import OTPVerification from '@/components/OTP_SYSTEM/OTPSystem';
 const Homepage = () => {
     const[account,setConnected]= useState("");
 
@@ -29,6 +30,7 @@ const Homepage = () => {
            <ClipBoard/>
            <ButtonWithConfetti/>
            <Preloader/>
+           <OTPVerification/>
         </div>
     );
 };
