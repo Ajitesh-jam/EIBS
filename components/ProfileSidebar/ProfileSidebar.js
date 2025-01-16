@@ -5,6 +5,7 @@ import Button from '../Button/Button';
 import QRCodeGenerator from './QRcodegenerator';
 import { getAccounts } from '../utils/web3';
 import CopyNotification from '../CopyClipboard/CopyClipboard';
+import ConnectSpotify from '../ConnectSpotify/ConnectSpotify';
 
 const ProfileSidebar = ({ publicAddress }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -66,6 +67,7 @@ const ProfileSidebar = ({ publicAddress }) => {
                     <div className='QRCodeContainer'>
                         <QRCodeGenerator publicAddress={String(paddress)} />
                     </div>
+                    <ConnectSpotify/>
                 </div>
             </div>
             <CopyNotification isVisible={showCopyNotification} />

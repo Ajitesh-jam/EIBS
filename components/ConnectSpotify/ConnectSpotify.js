@@ -11,9 +11,13 @@ const ConnectSpotify = () => {
       };
 
   return (
-    <div onClick={handleLogin} className="spotify-button">
-      <img src="./Images/SpotifyLogo.png" alt="Spotify Logo" className="spotify-logo" />
-      Link Your Spotify
+    <div onClick={handleLogin} className="spotifyBtnContainer">
+      <button onClick={handleLogin} className='spotbtn'>
+      </button>
+      Link your
+      <div className='SpotLogoContainer'>
+            <img src='./Images/SpotifyLogo.png' alt='Spotify'/>
+        </div>
     </div>
   );
 };
