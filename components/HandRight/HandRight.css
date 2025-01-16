@@ -1,0 +1,17 @@
+.handRightContainer {
+    width: 30vw;
+    height: 40vh;
+    position: absolute;
+    top: -10vh; /* Set fixed vertical position */
+    left: -28vw;   /* Optional, for explicit control */
+    /* border: 1px solid red;
+    background-color: black; */
+    color: white;
+    /* border: 1px solid red; */
+}
+
+.handRightImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

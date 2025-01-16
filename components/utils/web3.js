@@ -162,6 +162,9 @@ export const checkMetaMaskLogin = async () => {
   }
 };
 
+
+
+
 // Buy multiple tickets for an event
 export const buyMultipleTickets = async (buyers, eventId, totalCost) => {
   const contract = eventManagerContract(); // Initialize your EventManager contract

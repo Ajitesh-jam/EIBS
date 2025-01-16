@@ -12,6 +12,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrollDown from '../ScrollDown/ScrollDown';
 import ShiningIcon from '../ShiningIcon/ShiningIcon';
+import HandRight from '../HandRight/HandRight';
+import HandLeft from '../HandLeft/HandLeft';
+import Fanticket from '../FanPassTicket/ticket';
 import { useRouter } from 'next/navigation';
 
 
@@ -64,62 +67,62 @@ const Homepage = () => {
     const [allevents, setAllEvents] = useState([]);
 
     // GSAP Animations
-    useEffect(() => {
-        gsap.fromTo(
-            headingRef.current,
-            { opacity: 0, x: 200 }, // Start off-screen to the right
-            {
-                opacity: 1,
-                x: 0, // Slide to the original position
-                duration: 1.5,
-                ease: 'power4.out',
-                delay: 0.5,
-            }
-        );
-    }, []);
+    // useEffect(() => {
+    //     gsap.fromTo(
+    //         headingRef.current,
+    //         { opacity: 0, x: 200 }, // Start off-screen to the right
+    //         {
+    //             opacity: 1,
+    //             x: 0, // Slide to the original position
+    //             duration: 1.5,
+    //             ease: 'power4.out',
+    //             delay: 0.5,
+    //         }
+    //     );
+    // }, []);
 
-    useEffect(() => {
-        gsap.fromTo(
-            subHeadingRef.current,
-            { opacity: 0, x: 300 }, // Start off-screen to the right
-            {
-                opacity: 1,
-                x: 0, // Slide to the original position
-                duration: 1.5,
-                ease: 'power4.out',
-                delay: 0.5,
-            }
-        );
-    }, []);
+    // useEffect(() => {
+    //     gsap.fromTo(
+    //         subHeadingRef.current,
+    //         { opacity: 0, x: 300 }, // Start off-screen to the right
+    //         {
+    //             opacity: 1,
+    //             x: 0, // Slide to the original position
+    //             duration: 1.5,
+    //             ease: 'power4.out',
+    //             delay: 0.5,
+    //         }
+    //     );
+    // }, []);
 
-    useEffect(() => {
-        gsap.fromTo(
-            subHeadingRef2.current,
-            { opacity: 0, x: 350 }, // Start off-screen to the right
-            {
-                opacity: 1,
-                x: 0, // Slide to the original position
-                duration: 1.5,
-                ease: 'power4.out',
-                delay: 0.5,
-            }
-        );
-    }, []);
+    // useEffect(() => {
+    //     gsap.fromTo(
+    //         subHeadingRef2.current,
+    //         { opacity: 0, x: 350 }, // Start off-screen to the right
+    //         {
+    //             opacity: 1,
+    //             x: 0, // Slide to the original position
+    //             duration: 1.5,
+    //             ease: 'power4.out',
+    //             delay: 0.5,
+    //         }
+    //     );
+    // }, []);
 
     
-    useEffect(() => {
-        gsap.fromTo(
-            subHeadingRef3.current,
-            { opacity: 0, x: 400 }, // Start off-screen to the right
-            {
-                opacity: 1,
-                x: 0, // Slide to the original position
-                duration: 1.5,
-                ease: 'power4.out',
-                delay: 0.5,
-            }
-        );
-    }, []);
+    // useEffect(() => {
+    //     gsap.fromTo(
+    //         subHeadingRef3.current,
+    //         { opacity: 0, x: 400 }, // Start off-screen to the right
+    //         {
+    //             opacity: 1,
+    //             x: 0, // Slide to the original position
+    //             duration: 1.5,
+    //             ease: 'power4.out',
+    //             delay: 0.5,
+    //         }
+    //     );
+    // }, []);
 
   // Fixed card animations
   useEffect(() => {
@@ -238,6 +241,11 @@ useEffect(() => {
                     <ScrollDown/>
                     </div>
                 </div>
+            </div>
+            <div className='About-container'>
+            <HandRight/>
+            <HandLeft/>
+            <Fanticket/>
             </div>
             <div className='Events-container'>
                 <div className='Event-Heading'>

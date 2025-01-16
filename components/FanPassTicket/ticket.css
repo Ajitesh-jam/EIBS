@@ -1,0 +1,17 @@
+.ticketContainer{
+    width: 42vw;
+    height: 42vh;
+    position: relative;
+    top: -40vh;
+    left: 27vw;
+    transform: rotate(-10deg); /* Initial rotation */
+    transform-origin: center; /* Ensures rotation is smooth */
+    transition: transform 0.3s ease; /* Smooth rotation during animation */
+    
+}
+
+.ticketImg{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
