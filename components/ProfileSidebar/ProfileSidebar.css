@@ -114,11 +114,20 @@
     border-left: 2px solid black;
   }
 
+  .QRSection{
+    width: 100%;
+    height: auto;
+    display: flex;
+  }
+
+  .ScanQRtext{
+    width: 100%;
+  }
+
   .QRCodeContainer{
     display: flex;
     width:100%;
     justify-content: center;
-    
   }
 
   .OR{
@@ -160,6 +169,31 @@
 }
 
 .CopyClipboard:active {
+  transform: translate(5px, 5px); /* Move the button down/right */
+  box-shadow: 0px 0px 0px 0px black; /* Remove shadow when clicked */
+}
+
+.mytickets{
+  width: 100%;
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F45B49 ;
+  padding: 10px 10px;
+  border: 2px solid black;
+  border-radius: 4px;
+  font-family: 'CD-Medium';
+  font-size: 1.3rem;
+  box-shadow: 5px 5px 0px 0px black; /* Black shadow for offset */
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.mytickets:hover {
+  background-color: #ff6666; /* Slightly lighter red on hover */
+}
+
+.mytickets:active {
   transform: translate(5px, 5px); /* Move the button down/right */
   box-shadow: 0px 0px 0px 0px black; /* Remove shadow when clicked */
 }
