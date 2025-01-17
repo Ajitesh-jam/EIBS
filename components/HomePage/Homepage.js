@@ -39,9 +39,6 @@ const Homepage = () => {
 
     };
     
-    const closeMoodle = () => {
-        setShowModal(false);
-    }
 
     useEffect(() => {
         const checkLogin = async () => {
@@ -61,6 +58,7 @@ const Homepage = () => {
         const publicAddress = await getAccounts();
         setPublicAddress(publicAddress);
         setIsLoggedIn(true);
+        return true;
     }
     // Function to toggle modal visibility
     const toggleGetStartedModal = () => {

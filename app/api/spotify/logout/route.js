@@ -1,32 +1,18 @@
 import { NextResponse } from 'next/server';
 
-export async function GET() {
-  const response = NextResponse.redirect('http://localhost:3000');
-  
-  // Clear all Spotify-related cookies
-  response.cookies.set('spotify_access_token', '', {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-    expires: new Date(0), // Setting expiry to past date effectively deletes the cookie
-  });
-  
-  response.cookies.set('spotify_refresh_token', '', {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-    expires: new Date(0),
-  });
-  
-  response.cookies.set('code_verifier', '', {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-    expires: new Date(0),
-  });
+export async function GET(req) {
+  const cookies = req.cookies;
 
-  return NextResponse.json({ message: 'Logged out successfully' });
+  // Set all cookies to expire in the past to delete them
+  const response = NextResponse.json({ message: 'Cookies deleted. Logged out' });
+
+  // Loop through each cookie and expire it
+  for (let [name] of cookies) {
+    response.cookies.set(name, '', {
+      path: '/',
+      expires: new Date(0), // Set the expiration to the past
+    });
+  }
+
+  return response;
 }

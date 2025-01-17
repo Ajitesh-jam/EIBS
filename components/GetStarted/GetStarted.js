@@ -17,7 +17,8 @@ const GetStarted = ({ handleLogin, setShowModal}) => {
     try {
       // Trigger the login process
       const loginSuccess = await handleLogin();
-
+      // await handleLogin();
+      
       // Check if the login was successful
       if (loginSuccess) {
         nextStep(); // Proceed to the next step after successful login

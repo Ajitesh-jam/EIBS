@@ -14,23 +14,7 @@ export const LoginProvider = ({ children }) => {
   // Spotify auth states
   const [isSpotifyAuthenticated, setIsSpotifyAuthenticated] = useState(false);
   const [spotifyProfile, setSpotifyProfile] = useState(null);
-
-  // Fetch Spotify auth status from API
-  useEffect(() => {
-    const fetchSpotifyAuthStatus = async () => {
-      const response = await fetch('/api/spotify/auth-status');
-      const data = await response.json();
-      if (data.isSpotyAuthenticated) {
-        setIsSpotifyAuthenticated(true);
-        setSpotifyProfile(data.SpotyProfile);
-      } else {
-        setIsSpotifyAuthenticated(false);
-        setSpotifyProfile(null);
-      }
-    };
-
-    fetchSpotifyAuthStatus();
-  }, []);
+  
 
   return (
     <LoginContext.Provider
