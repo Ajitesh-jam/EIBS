@@ -10,7 +10,7 @@ const LoginContext = createContext();
 export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Default login state is false
   const [publicAddress, setPublicAddress] = useState('');
-  
+  const [role,setRole] = useState('');
   // Spotify auth states
   const [isSpotifyAuthenticated, setIsSpotifyAuthenticated] = useState(false);
   
@@ -46,6 +46,13 @@ export const LoginProvider = ({ children }) => {
       checkSpotifyAuthStatus();
   },[]);
 
+  useEffect(() => {
+    const storedRole = localStorage.getItem('userRole');
+    if (storedRole) {
+      setRole(storedRole);
+    }
+  },[]);
+
   return (
     <LoginContext.Provider
       value={{
@@ -53,6 +60,7 @@ export const LoginProvider = ({ children }) => {
         setIsLoggedIn,
         setPublicAddress,
         publicAddress,
+        role,
         isSpotifyAuthenticated,
       }}
     >

@@ -6,12 +6,13 @@ import QRCodeGenerator from './QRcodegenerator';
 import { getAccounts } from '../utils/web3';
 import CopyNotification from '../CopyClipboard/CopyClipboard';
 import ConnectSpotify from '../ConnectSpotify/ConnectSpotify';
+import { useLogin } from '@/contexts/loginContext';
 
 const ProfileSidebar = ({ publicAddress }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [paddress, setpAddress] = useState('');
     const [showCopyNotification, setShowCopyNotification] = useState(false);
-
+    const {role} = useLogin();
     const copyToClipboard = () => {
         const el = document.createElement('textarea');
         el.value = paddress;
@@ -42,6 +43,15 @@ const ProfileSidebar = ({ publicAddress }) => {
         document.body.style.overflow = !isOpen ? 'hidden' : 'unset';
     };
 
+    const showTickets = () => {
+        if(role === "Fan"){
+            
+        } 
+        else {
+
+        }
+    }
+
     return (
         <>
             <Button btnText="Profile" onClickFunction={toggleSidebar} />
@@ -63,11 +73,16 @@ const ProfileSidebar = ({ publicAddress }) => {
 
                     </div>
                     <div className='OR'><div className='Line' />OR<div className='Line' /></div>
-                    <div><h3>Scan the QR to get your public Address</h3></div>
-                    <div className='QRCodeContainer'>
-                        <QRCodeGenerator publicAddress={String(paddress)} />
+                    <div className='QRSection'>
+                        <div className='ScanQRtext'><h3>Scan the QR to get your public Address</h3></div>
+                        <div className='QRCodeContainer'>
+                            <QRCodeGenerator publicAddress={String(paddress)} />
+                        </div>
                     </div>
-                    <ConnectSpotify/>
+                    <ConnectSpotify />
+                    <div className='mytickets' onClick={showTickets}>
+                        My {role==="Fan"? "Tickets" : "Events"}
+                    </div>
                 </div>
             </div>
             <CopyNotification isVisible={showCopyNotification} />
