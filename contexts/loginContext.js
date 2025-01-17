@@ -13,8 +13,38 @@ export const LoginProvider = ({ children }) => {
   
   // Spotify auth states
   const [isSpotifyAuthenticated, setIsSpotifyAuthenticated] = useState(false);
-  const [spotifyProfile, setSpotifyProfile] = useState(null);
   
+  useEffect(() => {
+    // Check if the user is logged in
+    const checkLoginStatus = async () => {
+      try {
+        const accounts = await getAccounts();
+        if (accounts.length > 0) {
+          setIsLoggedIn(true);
+          setPublicAddress(accounts[0]);
+        } else {
+          setIsLoggedIn(false);
+          setPublicAddress('');
+        }
+      } catch (error) {
+        console.error("Error checking login status:", error);
+      }
+    };
+    checkLoginStatus();
+  }, []);
+
+  useEffect(() => {
+      const checkSpotifyAuthStatus = async () => {
+          try {
+              const response = await fetch('/api/spotify/auth-status');
+              const data = await response.json();
+              setIsSpotifyAuthenticated(data.isSpotyAuthenticated);
+          } catch (error) {
+              console.error('Error checking Spotify auth status:', error);
+          }
+      };
+      checkSpotifyAuthStatus();
+  },[]);
 
   return (
     <LoginContext.Provider
@@ -24,7 +54,6 @@ export const LoginProvider = ({ children }) => {
         setPublicAddress,
         publicAddress,
         isSpotifyAuthenticated,
-        spotifyProfile,
       }}
     >
       {children}
