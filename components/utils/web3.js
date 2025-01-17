@@ -181,7 +181,3 @@ export const buyMultipleTickets = async (buyers, eventId, totalCost) => {
     throw new Error(`Error buying tickets: ${error.message}`);
   }
 };
-
-
-
-

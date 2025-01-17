@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './Homepage.css';
 import Navbar from '@/components/Navbar/Navbar';
 import Card from '@/components/Card/Card';
-import { events } from '@/components/utils/web3';
+import { events , totalEvents} from '@/components/utils/web3';
 
 const Homepage = () => {
     const [eventData, setEventData] = useState([]);
@@ -77,8 +77,10 @@ const Homepage = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
+                const numberOfEvents = await totalEvents();
+
                 //run a loop 3 times to to fetch 3 events
-                for (let i = 0; i < 3; i++) {
+                for (let i = 0; i < numberOfEvents; i++) {
                     const fetchedEvent = await events(i);
                     console.log('Fetched event:', fetchedEvent);
                     //add index to fetchedEvents
