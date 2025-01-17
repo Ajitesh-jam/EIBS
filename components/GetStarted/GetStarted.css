@@ -98,3 +98,11 @@
     height: 100%;
     aspect-ratio: 1/1;
   }
+
+  .role-selection{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }

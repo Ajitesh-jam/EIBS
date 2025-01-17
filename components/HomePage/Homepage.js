@@ -38,6 +38,10 @@ const Homepage = () => {
         router.push('/RegisterConcert');
 
     };
+    
+    const closeMoodle = () => {
+        setShowModal(false);
+    }
 
     useEffect(() => {
         const checkLogin = async () => {
@@ -57,7 +61,6 @@ const Homepage = () => {
         const publicAddress = await getAccounts();
         setPublicAddress(publicAddress);
         setIsLoggedIn(true);
-        setShowModal(!showModal);
     }
     // Function to toggle modal visibility
     const toggleGetStartedModal = () => {
@@ -213,7 +216,7 @@ useEffect(() => {
             {showModal && (
                 <div className='modal-overlay'>
                     <div className='modal-content'>
-                        <GetStarted handleLogin={handleLogin} />
+                        <GetStarted handleLogin={handleLogin} setShowModal={setShowModal}/>
                         <button className='close-button' onClick={toggleGetStartedModal}>
                             X
                         </button>
