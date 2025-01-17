@@ -17,8 +17,8 @@ export async function GET(req) {
   try {
     // Fetch top artists, recently played tracks, and saved tracks
     const [topArtists, savedTracks] = await Promise.all([
-      spotifyApi.getMyTopArtists({ limit: 20 }),
-      spotifyApi.getMySavedTracks({ limit: 20 })
+      spotifyApi.getMyTopArtists({ limit: 25,time_range:'long_term' }),
+      spotifyApi.getMySavedTracks({ limit: 25 })
     ]);
 
     const topArtistNames = topArtists.body.items.map(artist => artist.name);

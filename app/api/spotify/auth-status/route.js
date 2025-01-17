@@ -7,7 +7,6 @@ export async function GET(req) {
     const spotifyStats = req.cookies.get('spotify_stats');
     return NextResponse.json({
       isSpotyAuthenticated: true,
-      SpotyStats: spotifyStats ? JSON.parse(spotifyStats) : null,
     });
   } else {
     return NextResponse.json({

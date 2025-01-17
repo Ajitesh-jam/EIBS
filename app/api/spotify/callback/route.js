@@ -43,21 +43,6 @@ export async function GET(req) {
         const { access_token, refresh_token } = data;
 
 
-        // Fetch Spotify Stats (Top Artists, Recently Played Tracks, Saved Tracks)
-        // const spotifyApi = new SpotifyWebApi();
-        // spotifyApi.setAccessToken(access_token);
-        // const [topArtists, recentlyPlayed, savedTracks] = await Promise.all([
-        //     spotifyApi.getMyTopArtists({ limit: 30 }),
-        //     spotifyApi.getMyRecentlyPlayedTracks({ limit: 50 }),
-        //     spotifyApi.getMySavedTracks({ limit: 50 })
-        // ]);
-
-        // // Construct the stats to be set in the cookie
-        // const spotifyStats = {
-        //     topArtists: topArtists.body.items,
-        //     recentlyPlayed: recentlyPlayed.body.items,
-        //     savedTracks: savedTracks.body.items,
-        // };
 
         // Create response with redirect
         const response = NextResponse.redirect('http://localhost:3000');
@@ -79,13 +64,6 @@ export async function GET(req) {
             maxAge: 30 * 24 * 60 * 60 // 30 days
         });
 
-        // response.cookies.set('spotify_stats', JSON.stringify(spotifyStats), {
-        //     httpOnly: true,
-        //     secure: process.env.NODE_ENV === 'production',
-        //     sameSite: 'lax',
-        //     path: '/',
-        //     maxAge: 30 * 24 * 60 * 60 // 30 days
-        // });
         
         return response;
 

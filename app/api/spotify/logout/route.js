@@ -28,5 +28,5 @@ export async function GET() {
     expires: new Date(0),
   });
 
-  return response;
+  return NextResponse.json({ message: 'Logged out successfully' });
 }
