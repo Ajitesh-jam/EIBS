@@ -1,6 +1,5 @@
-.BookingContainer{
-    width: 60%;
-    
+
+.BookingContainer{  
     height: auto;
     display: flex;
     flex-direction: column;
@@ -78,5 +77,9 @@
     height: 100%;
     object-fit: contain;
     margin-top: 30px;
+    
 }
 
+.button{
+
+}
