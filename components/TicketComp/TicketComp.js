@@ -6,6 +6,7 @@ const TicketComp = ({ticketID}) => {
     const [ data , setData ] = useState([])
     const [ loading, setLoading ] = useState(true)
     const [ status, setStatus ] = useState('Pending')
+
     useEffect(() =>{
         const fetchData = async () => {
             setLoading(true)
@@ -25,6 +26,17 @@ const TicketComp = ({ticketID}) => {
                 //check ticket Status
                 const publicAddress = await getAccounts(); 
                 const ownershipStatus = await checkTicketOwnership(ticketID, publicAddress[0]);
+                console.log('ownership status: ' + ownershipStatus);
+                if(ownershipStatus==1){
+                    setStatus('Accepted');
+                }
+                else if(ownershipStatus==0){
+                    setStatus('Rejected');
+                }
+                else if(ownershipStatus==2){
+                    setStatus('Pending');
+                }    
+
 
             }
             catch (err) {
@@ -51,7 +63,7 @@ const TicketComp = ({ticketID}) => {
                 <div className='OtherDetails'>
                     <p>Artist Name :           {data.artistName}</p>
                     <p>Booking Initiated at :            {data.date} </p>
-                    <p className='TicketStatus'>Status : </p>
+                    <p className='TicketStatus'>Status : {status} </p>
                 </div>
             </div>
            </>
