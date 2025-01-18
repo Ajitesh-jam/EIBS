@@ -56,16 +56,7 @@ const Homepage = () => {
         fetchEvents();
     }, []);
 
-    useEffect(() => {
-        const data = {
-            "LoginStatus": isLoggedIn,
-            "Public Address": publicAddress,
-            "UserRole": role,
-            "isSpotifyAuthenticated": isSpotifyAuthenticated,
-        };
-
-        console.log(data);
-    }, [isLoggedIn, publicAddress, role, isSpotifyAuthenticated]);
+   
 
     // Fixed card animations
     useEffect(() => {

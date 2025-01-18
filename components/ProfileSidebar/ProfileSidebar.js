@@ -18,9 +18,9 @@ const ProfileSidebar = () => {
     const {isLoggedIn, publicAddress, role, isSpotifyAuthenticated, dispatch} = useLogin();
     const [user, loading, error] = useAuthState(auth);
     const Router = useRouter();
-    console.log("public address in context :" , publicAddress);
+    // console.log("public address in context :" , publicAddress);
     
-    console.log("isloggedIn",isLoggedIn);
+    // console.log("isloggedIn",isLoggedIn);
     const copyToClipboard = () => {
         const el = document.createElement('textarea');
         el.value = publicAddress;
@@ -46,14 +46,15 @@ const ProfileSidebar = () => {
 
     const showTickets = () => {
         if(role === "Fan"){
-            router.push('/myTickets');
+            Router.push('/myTickets');
         } 
         else {
-            router.push('/myEvents');
+            Router.push('/myEvents');
         }
     }
     const logout =()=>{
         signOut(auth);
+        Router.replace('/');
     }
 
      const handleMetamask = async () => {

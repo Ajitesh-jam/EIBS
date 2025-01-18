@@ -37,7 +37,7 @@ export const LoginProvider = ({ children }) => {
     const checkLoginStatus = async () => {
       try {
         const metaMaskStatus = await checkMetaMaskLogin();
-        // const accounts = await getAccounts();
+        const accounts = await getAccounts();
         if (metaMaskStatus) {
           dispatch({ type: 'SET_LOGGED_IN', payload: true });
           const accounts = await getAccounts();

@@ -1,4 +1,4 @@
-'use-client'
+'use client'
 
 import React,{useState} from 'react'
 import './Navbar.css'
@@ -12,7 +12,7 @@ import GetStarted from '../GetStarted/GetStarted'
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [user, loading, error] = useAuthState(auth);
-  // console.log("user ", user);
+  console.log("user ", user);
 
   const toggleGetStartedModal = () => {
     setShowModal(!showModal);
