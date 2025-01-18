@@ -1,0 +1,27 @@
+.myTicketsContainer{
+    width: 100vw;
+    height: 100vh;
+    /* border: 1px solid red; */
+    background-image: url('/Images/DotsHome.svg');
+    background-repeat: repeat;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5vh;
+}
+
+.myTicketsContainer h1{
+    font-family: 'CD-Semibold';
+}
+
+.TicketWrapper{
+    min-height: 50vh;
+    height: auto;
+    width: 75%;
+    /* border: 1px solid red; */
+    padding: 20px;
+}
+
+

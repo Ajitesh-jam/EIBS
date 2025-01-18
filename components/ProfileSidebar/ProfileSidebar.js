@@ -7,12 +7,14 @@ import { getAccounts } from '../utils/web3';
 import CopyNotification from '../CopyClipboard/CopyClipboard';
 import ConnectSpotify from '../ConnectSpotify/ConnectSpotify';
 import { useLogin } from '@/contexts/loginContext';
+import { useRouter } from 'next/navigation';
 
 const ProfileSidebar = ({ publicAddress }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [paddress, setpAddress] = useState('');
     const [showCopyNotification, setShowCopyNotification] = useState(false);
     const {role} = useLogin();
+    const router = useRouter();
     const copyToClipboard = () => {
         const el = document.createElement('textarea');
         el.value = paddress;
@@ -45,7 +47,7 @@ const ProfileSidebar = ({ publicAddress }) => {
 
     const showTickets = () => {
         if(role === "Fan"){
-            
+            router.push('/myTickets');
         } 
         else {
 
