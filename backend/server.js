@@ -35,6 +35,9 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const firestore = getFirestore(firebaseApp);
 
+
+//Events
+
 // Create Event
 app.post('/createEvent/:eventId', async (req, res) => {
   const eventData = req.body;
@@ -105,6 +108,85 @@ app.get('/getAllEvents', async (req, res) => {
     res.status(500).send({ error: "Error fetching all events: " + error });
   }
 });
+
+
+
+//Person database 
+   app.post('/createFan/:fanId', async (req, res) => {
+    const fanData = req.body;
+    const { fanId }  = req.params;
+    //get fan id as total number of fan from firebase fans collection
+    
+    try {
+      const fansRef = collection(firestore, "fans");
+      await setDoc(doc(fansRef, `${fanId}`), fanData);
+      res.status(200).send({ message: "fan created successfully", data: fanData });
+    } catch (error) {
+      res.status(500).send({ error: "Error creating fan: " + error });
+    }
+  });
+  
+  // Get fan by ID
+  app.get('/getfan/', async (req, res) => {
+    const fanID  = req.body.email;
+    try {
+      const docRef = doc(firestore, "fans", fanID);
+      const fanSnap = await getDoc(docRef);
+      if (fanSnap.exists()) {
+        res.status(200).send(fanSnap.data());
+      } else {
+        res.status(404).send({ error: "fan not found" });
+      }
+    } catch (error) {
+      res.status(500).send({ error: "Error fetching fan: " + error });
+    }
+  });
+  
+  // Update fan
+  app.put('/updatefan/:fanID', async (req, res) => {
+    const { fanID } = req.params;
+    const updates = req.body;
+    try {
+      const docRef = doc(firestore, "fans", fanID);
+      await updateDoc(docRef, updates);
+      res.status(200).send({ message: "fan updated successfully" });
+    } catch (error) {
+      res.status(500).send({ error: "Error updating fan: " + error });
+    }
+  });
+  
+  // Delete fan
+  app.delete('/deletefan/:fanID', async (req, res) => {
+    const { fanID } = req.params;
+    try {
+      const docRef = doc(firestore, "fans", fanID);
+      await deleteDoc(docRef);
+      res.status(200).send({ message: "fan deleted successfully" });
+    } catch (error) {
+      res.status(500).send({ error: "Error deleting fan: " + error });
+    }
+  });
+
+  //add ticket to fan
+  app.post('/addticket', async (req, res) => {
+    const { fanID, ticketID } = req.body;
+    try {
+        const docRef = doc(firestore, "fans", fanID);
+        const fanSnap = await getDoc(docRef);
+        if (fanSnap.exists()) {
+            const fanData = fanSnap.data();
+            fanData.tickets.push(ticketID);
+            await updateDoc(docRef, { tickets: fanData.tickets });
+            res.status(200).send({ message: "Ticket added successfully" });
+        } else {
+            res.status(404).send({ error: "Fan not found" });
+        }
+    } catch (error) {
+        res.status(500).send({ error: "Error adding ticket: " + error });
+    }
+    });
+  
+
 
 // Start the server
 app.listen(port, () => {
