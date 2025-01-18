@@ -5,10 +5,11 @@ import {app} from '@/app/firebase/config'
 const firestore = getFirestore(app);
 
 export async function GET(req, { params }) {
-    const { eventId } = params;
+    const { eventID } =await  params;
+    console.log(eventID);
   
     try {
-      const docRef = doc(firestore, "events", eventId);
+      const docRef = doc(firestore, "events", eventID);
       const eventSnap = await getDoc(docRef);
       if (eventSnap.exists()) {
         return NextResponse.json(eventSnap.data());
