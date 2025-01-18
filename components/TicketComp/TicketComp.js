@@ -3,8 +3,10 @@ import './TicketComp.css'
 
 const TicketComp = ({ticketID}) => {
     const [ data , setData ] = useState([])
+    const [ loading, setLoading ] = useState(true)
     useEffect(() =>{
         const fetchData = async () => {
+            setLoading(true)
             try {
                 const res = await fetch(`/api/events/get/${ticketID}`)
                 const data = await res.json();
@@ -19,6 +21,8 @@ const TicketComp = ({ticketID}) => {
             }
             catch (err) {
                 console.log(err)
+            }finally {
+                setLoading(false)
             }
         }
         fetchData()
@@ -26,6 +30,8 @@ const TicketComp = ({ticketID}) => {
     }, []);
     return (
         <div className='TicketCompContainer'>
+           {!loading && 
+           <>
             <div className='TicketImgContainer'>
                 <img src={data.image} alt="Eventimg" className='EventImgInTicket'></img>
             </div>
@@ -39,6 +45,9 @@ const TicketComp = ({ticketID}) => {
                     <p className='TicketStatus'>Status : </p>
                 </div>
             </div>
+           </>
+            }
+            {loading && <h2 style={{textAlign: 'center'}}>Loading...</h2>}
         </div>
     )
 }
