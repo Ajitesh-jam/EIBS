@@ -4,7 +4,8 @@
 import React, { useState } from 'react';
 import './registerConcert.css';
 import InputBox from '@/components/InputBox/InputBox'; // Assuming this is your InputField component
-import { createEvent } from '@/components/utils/web3';
+//import { createEvent } from '@/components/utils/web3';
+import { createEvent } from '@/components/utils/web3Final';
 import Button from '@/components/Button/Button';
 
 const Page = () => {
@@ -21,14 +22,21 @@ const Page = () => {
       const startingTicketPriceBigInt = BigInt(startingTicketPrice);
       const numberOfTicketsBigInt = BigInt(numberOfTickets);
 
+      // await createEvent(
+      //   artistName,
+      //   location,
+      //   date,
+      //   startingTicketPriceBigInt,
+      //   numberOfTicketsBigInt,
+      //   imgUrl
+      // );
+
       await createEvent(
         artistName,
-        location,
-        date,
-        startingTicketPriceBigInt,
-        numberOfTicketsBigInt,
-        imgUrl
-      );
+        startingTicketPrice,
+        numberOfTickets
+        );
+        
 
       console.log('Concert registered successfully!');
     } catch (error) {

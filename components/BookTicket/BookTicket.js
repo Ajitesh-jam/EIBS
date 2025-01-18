@@ -4,13 +4,15 @@ import React, { useState, useEffect } from 'react';
 import './BookTicket.css';
 import Navbar from '../Navbar/Navbar';
 import GetStarted from '../GetStarted/GetStarted';
-import { getAccounts, checkMetaMaskLogin, buyMultipleTickets, checkTicketOwnership } from '../utils/web3';
+//import { getAccounts, checkMetaMaskLogin, buyMultipleTickets, checkTicketOwnership } from '../utils/web3';
+import { getAccounts, checkMetaMaskLogin, addBuyersToQueue, checkTicketOwnership } from '../utils/web3Final';
 import { useLogin } from '@/contexts/loginContext';
 import Button from '../Button/Button';
 import InputBox from '../InputBox/InputBox';
 import { useSearchParams } from 'next/navigation';
 import TransactionStatus from '../TransactionStatus/TransactionStatus';
 
+import { calculateFanScore } from '../utils/fanScore';
 const BookTicket = () => {
     const [showModal, setShowModal] = useState(false);
 
@@ -24,6 +26,7 @@ const BookTicket = () => {
     const event = eventData ? JSON.parse(eventData) : null;
 
     const [costPerTicket, setCostPerTicket] = useState(BigInt(0)); // Store ticket price as BigInt
+
 
     if (!event) {
         return <p>Loading...</p>;
@@ -51,7 +54,8 @@ const BookTicket = () => {
                 const eventId = event.index;
 
                 // Call the smart contract function
-                const response = await buyMultipleTickets(buyers, eventId, totalCost.toString());
+                //const response = await buyMultipleTickets(buyers, eventId, totalCost.toString());
+                const fanScore = await
 
                 // Show success message
                 setTransactionStatus('success');

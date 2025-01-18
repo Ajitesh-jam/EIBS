@@ -35,7 +35,7 @@ const ProfileSidebar = ({ publicAddress }) => {
     useEffect(() => {
         const fetchAddress = async () => {
             const address = await getAccounts();
-            setpAddress(address);
+            setpAddress(address[0]);
         }
         fetchAddress();
     }, []);
