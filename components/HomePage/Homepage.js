@@ -51,27 +51,22 @@ const Homepage = () => {
         getEvents();
     }  ,[]);  
 
-    useEffect(() => {
-        const checkLogin = async () => {
-            const loggedIn = await checkMetaMaskLogin();
-            setIsLoggedIn(loggedIn);
-            if (loggedIn) setPublicAddress(await getAccounts);
-        };
+    // useEffect(() => {
+    //     const checkLogin = async () => {
+    //         const loggedIn = await checkMetaMaskLogin();
+    //         setIsLoggedIn(loggedIn);
+    //         if (loggedIn) setPublicAddress(await getAccounts);
+    //     };
 
-        checkLogin();
-    }, []);
+    //     checkLogin();
+    // }, []);
 
     useEffect(() => {
         console.log("Public Address is : ", publicAddress);
 
     }, [publicAddress]);
 
-    const handleLogin = async () => {
-        const publicAddress = await getAccounts();
-        setPublicAddress(publicAddress);
-        setIsLoggedIn(true);
-        return true;
-    }
+
     // Function to toggle modal visibility
     const toggleGetStartedModal = () => {
         setShowModal(!showModal);
@@ -79,63 +74,7 @@ const Homepage = () => {
 
     const [allevents, setAllEvents] = useState([]);
 
-    // GSAP Animations
-    // useEffect(() => {
-    //     gsap.fromTo(
-    //         headingRef.current,
-    //         { opacity: 0, x: 200 }, // Start off-screen to the right
-    //         {
-    //             opacity: 1,
-    //             x: 0, // Slide to the original position
-    //             duration: 1.5,
-    //             ease: 'power4.out',
-    //             delay: 0.5,
-    //         }
-    //     );
-    // }, []);
 
-    // useEffect(() => {
-    //     gsap.fromTo(
-    //         subHeadingRef.current,
-    //         { opacity: 0, x: 300 }, // Start off-screen to the right
-    //         {
-    //             opacity: 1,
-    //             x: 0, // Slide to the original position
-    //             duration: 1.5,
-    //             ease: 'power4.out',
-    //             delay: 0.5,
-    //         }
-    //     );
-    // }, []);
-
-    // useEffect(() => {
-    //     gsap.fromTo(
-    //         subHeadingRef2.current,
-    //         { opacity: 0, x: 350 }, // Start off-screen to the right
-    //         {
-    //             opacity: 1,
-    //             x: 0, // Slide to the original position
-    //             duration: 1.5,
-    //             ease: 'power4.out',
-    //             delay: 0.5,
-    //         }
-    //     );
-    // }, []);
-
-    
-    // useEffect(() => {
-    //     gsap.fromTo(
-    //         subHeadingRef3.current,
-    //         { opacity: 0, x: 400 }, // Start off-screen to the right
-    //         {
-    //             opacity: 1,
-    //             x: 0, // Slide to the original position
-    //             duration: 1.5,
-    //             ease: 'power4.out',
-    //             delay: 0.5,
-    //         }
-    //     );
-    // }, []);
 
   // Fixed card animations
   useEffect(() => {
@@ -226,7 +165,7 @@ useEffect(() => {
             {showModal && (
                 <div className='modal-overlay'>
                     <div className='modal-content'>
-                        <GetStarted handleLogin={handleLogin} setShowModal={setShowModal}/>
+                        <GetStarted  setShowModal={setShowModal}/>
                         <button className='close-button' onClick={toggleGetStartedModal}>
                             X
                         </button>
