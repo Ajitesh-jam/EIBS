@@ -60,37 +60,36 @@ const BookTicket = () => {
     }
 
     const bookTickets = async () => {
-        // try {
-        //     setTransactionStatus('pending');
-        //     setShowTransactionAlert(true);
+        try {
+            setTransactionStatus('pending');
+            setShowTransactionAlert(true);
 
-        //     let hasTicket = 0;
-        //     for (let i = 0; i < buyers.length; i++) {
-        //         const buyer = buyers[i];
-        //         hasTicket = await checkTicketOwnership(event.id, buyer);
-        //         if (hasTicket == 1) {
-        //             console.log(`${buyer} has a ticket for the event ${event.index}`);
-        //             break;
-        //         }
-        //     }
+            let hasTicket = 0;
+            for (let i = 0; i < buyers.length; i++) {
+                const buyer = buyers[i];
+                hasTicket = await checkTicketOwnership(event.id, buyer);
+                
+                if (hasTicket == 1) {
+                    console.log(`${buyer} has a ticket for the event ${event.id}`);
+                    break;
+                }
+                console.log(`${hasTicket} has a ticket for the event ${event.id}`);
+                
+            }
 
-        //     if (!hasTicket) {
-        //         const totalCost = Math.floor(bill);
-        //         const eventId = event.index;
-        //         const response = await addBuyersToQueue(eventId, buyers, totalCost);
-        //         setTransactionStatus('success');
-        //         console.log('Tickets bought successfully:', response);
-        //     } else {
-        //         setTransactionStatus('AlreadyOwnsTicket');
-        //         console.log("One of the buyers already has a ticket for the event");
-        //     }
-        // } catch (error) {
-        //     setTransactionStatus('refused');
-        //     console.error('Error buying tickets:', error.message);
-        // }
-        setShowTransactionAlert(true);
-        setTransactionStatus('success');
-       
+            if (hasTicket==0 || hasTicket==2) {
+                console.log(`Buying tickets for ${buyers.length} buyers...`);
+                setTransactionStatus('success');
+            } 
+           
+            else {
+                setTransactionStatus('AlreadyOwnsTicket');
+                console.log("One of the buyers already has a ticket for the event");
+            }
+        } catch (error) {
+            setTransactionStatus('refused');
+            console.error('Error buying tickets:', error.message);
+        }
     };
 
     const handleAddressChange = (index, value) => {
@@ -184,6 +183,8 @@ const BookTicket = () => {
                 status={transactionStatus}
                 onClose={() => setShowTransactionAlert(false)}
                 artist={event.artistName}
+                buyers={buyers}
+                eventId={event.id}
             />
         </div>
     );
