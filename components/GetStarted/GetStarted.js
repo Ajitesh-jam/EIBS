@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./GetStarted.css";
 import Button from "../Button/Button";
-import InputBox from "../InputBox/InputBox";
 import { auth } from "@/app/firebase/config";
 import {
   useSignInWithGoogle,

@@ -41,7 +41,7 @@ const Homepage = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await fetch("http://localhost:8000/getAllEvents");
+                const response = await fetch("/api/events/get/all");
                 if (!response.ok) {
                     throw new Error(`Error: ${response.status} ${response.statusText}`);
                 }
