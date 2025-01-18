@@ -5,10 +5,11 @@ import { app } from '@/app/firebase/config';
 const firestore = getFirestore(app);
 
 export async function PUT(req, { params }) {
-  const { email } = params; // `email` as `fanID`
+  const { email } = await params; // `email` as `fanID`
   const updates = await req.json(); // Expecting an object of updates
-
-  try {
+  console.log('email' , email)
+  console.log(updates);
+  try { 
     const docRef = doc(firestore, 'fans', email);
     await updateDoc(docRef, updates);
     return NextResponse.json({ message: 'Fan updated successfully', updates });
