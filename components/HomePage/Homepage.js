@@ -35,7 +35,7 @@ const Homepage = () => {
 
     const handleRegisterConcertBtnClick = () => {
         console.log('Register Concert Button Clicked');
-        router.push('/RegisterConcert');
+        router.push('/registerConcert');
 
     };
     

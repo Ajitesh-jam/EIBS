@@ -33,6 +33,10 @@ const QRScanner = () => {
 
       try {
         const hasTicket = await checkTicketOwnership(eventId, scannedText);
+
+        // if (hasTicket==2) {
+        //   setOwnershipStatus("Tickets not yet distributed");
+        // }
         setOwnershipStatus(hasTicket ? "You own this ticket!" : "You do not own this ticket!");
       } catch (error) {
         console.error("Error checking ticket ownership:", error);
