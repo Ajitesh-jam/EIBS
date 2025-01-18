@@ -106,3 +106,12 @@
     justify-content: space-around;
     align-items: center;
   }
+  .error{
+    color: red;
+    font-family: 'CD-Regular';
+  }
+  .loading{
+    font-family: 'CD-Regular';
+    font-size: larger;
+    font-weight: 500;
+  }

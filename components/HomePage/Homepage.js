@@ -52,33 +52,30 @@ const Homepage = () => {
         getEvents();
     }  ,[]);  
 
-    useEffect(() => {
-        const checkLogin = async () => {
-            const loggedIn = await checkMetaMaskLogin();
-            setIsLoggedIn(loggedIn);
-            if (loggedIn) setPublicAddress(await getAccounts);
-        };
+    // useEffect(() => {
+    //     const checkLogin = async () => {
+    //         const loggedIn = await checkMetaMaskLogin();
+    //         setIsLoggedIn(loggedIn);
+    //         if (loggedIn) setPublicAddress(await getAccounts);
+    //     };
 
-        checkLogin();
-    }, []);
+    //     checkLogin();
+    // }, []);
 
     useEffect(() => {
         console.log("Public Address is : ", publicAddress);
 
     }, [publicAddress]);
 
-    const handleLogin = async () => {
-        const publicAddress = await getAccounts();
-        setPublicAddress(publicAddress);
-        setIsLoggedIn(true);
-        return true;
-    }
+
     // Function to toggle modal visibility
     const toggleGetStartedModal = () => {
         setShowModal(!showModal);
     };
 
     const [allevents, setAllEvents] = useState([]);
+
+
 
   // Fixed card animations
   useEffect(() => {
@@ -169,7 +166,7 @@ useEffect(() => {
             {showModal && (
                 <div className='modal-overlay'>
                     <div className='modal-content'>
-                        <GetStarted handleLogin={handleLogin} setShowModal={setShowModal}/>
+                        <GetStarted  setShowModal={setShowModal}/>
                         <button className='close-button' onClick={toggleGetStartedModal}>
                             X
                         </button>
