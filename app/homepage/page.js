@@ -4,6 +4,7 @@ import './Homepage.css';
 import Navbar from '@/components/Navbar/Navbar';
 import Card from '@/components/Card/Card';
 import { events , totalEvents} from '@/components/utils/web3';
+//import { events , totalEvents} from '@/components/utils/web3Final';
 
 const Homepage = () => {
     const [eventData, setEventData] = useState([]);
