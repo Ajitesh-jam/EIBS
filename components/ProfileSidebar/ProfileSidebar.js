@@ -49,7 +49,7 @@ const ProfileSidebar = () => {
             router.push('/myTickets');
         } 
         else {
-
+            router.push('/myEvents');
         }
     }
     const logout =()=>{

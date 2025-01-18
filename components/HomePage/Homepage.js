@@ -20,7 +20,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 const Homepage = () => {
-    const { setIsLoggedIn, setPublicAddress, publicAddress } = useLogin();
+    const { setIsLoggedIn, setPublicAddress, publicAddress, setEvents, events } = useLogin();
     const [showModal, setShowModal] = useState(false);
     const headingRef = useRef(null); // Ref for the heading
     const subHeadingRef = useRef(null); // Ref for the sub-heading
@@ -46,7 +46,8 @@ const Homepage = () => {
                 const response = await axios.get(
                     `http://localhost:8000/getAllEvents`
                 );
-                console.log('Concert fetched successfully:', response.data);
+                // console.log('Concert fetched successfully:', response.data);
+
         }
         getEvents();
     }  ,[]);  
