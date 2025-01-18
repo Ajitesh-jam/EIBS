@@ -1,0 +1,132 @@
+'use client'
+import React, { useEffect, useState } from 'react';
+import './Homepage.css';
+import { events } from '@/components/utils/web3';
+import TicketStatus from '@/components/TicketStatus/TicketStatus';
+
+
+const handleSearch = (searchValue) => {
+    console.log("Search Value:", searchValue); // This will log the input value
+    // Add your search logic here
+  };
+
+  const handleLoginClick = () => {
+    console.log("Login button clicked");
+    // Add login functionality here
+  };
+  
+const Homepage = () => {
+    const [eventData, setEventData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+
+    const [allevents, setAllEvents] = useState(
+        [
+
+        {
+            name: "harsh Events",
+            img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+            artist: "harsh ",
+            location: "Default Location",
+            date: "Default Date",
+            ticketPrice: "Default Ticket Price",
+            ticketsLeft: "Default Tickets Left",
+        },
+        {
+            name: "Default Event",
+            img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+            artist: "Default Artist",
+            location: "Default Location",
+            date: "Default Date",
+            ticketPrice: "Default Ticket Price",
+            ticketsLeft: "Default Tickets Left",
+        },
+        {
+            name: "Default Event",
+            img: "https://www.thestatesman.com/wp-content/uploads/2023/11/Taylor-Swift-The-Eras-Tour.jpg",
+            artist: "Default Artist",
+            location: "Default Location",
+            date: "Default Date",
+            ticketPrice: "Default Ticket Price",
+            ticketsLeft: "Default Tickets Left",
+        },
+
+        {
+            name: "Default Event",
+            img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+            artist: "Default Artist",
+            location: "Default Location",
+            date: "Default Date",
+            ticketPrice: "Default Ticket Price",
+            ticketsLeft: "Default Tickets Left",
+        },
+        {
+            name: "Default Event",
+            img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+            artist: "Default Artist",
+            location: "Default Location",
+            date: "Default Date",
+            ticketPrice: "Default Ticket Price",
+            ticketsLeft: "Default Tickets Left",
+        },
+        {
+            name: "Default Event",
+            img: "https://t3.ftcdn.net/jpg/06/04/20/28/360_F_604202821_K8R8KThj0ZfuQR3tCN0xwKiAwEzrBc4S.jpg",
+            artist: "Default Artist",
+            location: "Default Location",
+            date: "Default Date",
+            ticketPrice: "Default Ticket Price",
+            ticketsLeft: "Default Tickets Left",
+        },
+    ]
+        
+    );
+    const [currentEvents,setCurrentEvents]=useState([]);
+
+    // Fetch events (replace `events` with your API function or mock it)
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                // Replace `events` with your actual API call or mock it
+                // const fetchedEvents = await events(0); // Example: events should be an API function
+                // console.log('Fetched events:', fetchedEvents);
+                // setEventData(fetchedEvents);
+                
+
+                //run a loop 3 times to to fetch 3 events
+                for (let i = 0; i < 3; i++) {
+                    const fetchedEvent = await events(i);
+                    console.log('Fetched event:', fetchedEvent);
+                    //add index to fetchedEvents
+                    fetchedEvent.index = i;
+                    setCurrentEvents((prevEvents) => [...prevEvents, fetchedEvent]);
+
+                }
+                setAllEvents(currentEvents);
+                setLoading(false);
+               
+            } catch (error) {
+                console.error('Error fetching events:', error);
+                setLoading(false);
+            }
+        };
+        fetchEvents();
+    }, []);
+
+    return (
+        <div className="Homepage-container">
+            <div className="Hero-container">
+            <p>My Tickets</p>
+                <TicketStatus/>
+                <TicketStatus/>
+                <TicketStatus/>
+            </div>
+            
+            
+        </div>
+    );
+};
+
+export default Homepage;
+
+
