@@ -36,11 +36,14 @@ const firebaseApp = initializeApp(firebaseConfig);
 const firestore = getFirestore(firebaseApp);
 
 // Create Event
-app.post('/createEvent', async (req, res) => {
+app.post('/createEvent/:eventId', async (req, res) => {
   const eventData = req.body;
+  const { eventId }  = req.params;
+  //get event id as total number of event from firebase events collection
+  
   try {
     const eventsRef = collection(firestore, "events");
-    await setDoc(doc(eventsRef, `${eventData.EventID}`), eventData);
+    await setDoc(doc(eventsRef, `${eventId}`), eventData);
     res.status(200).send({ message: "Event created successfully", data: eventData });
   } catch (error) {
     res.status(500).send({ error: "Error creating event: " + error });

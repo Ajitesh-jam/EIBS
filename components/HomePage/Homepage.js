@@ -17,7 +17,7 @@ import HandLeft from '../HandLeft/HandLeft';
 import Fanticket from '../FanPassTicket/ticket';
 import { useRouter } from 'next/navigation';
 
-
+import axios from 'axios';
 
 const Homepage = () => {
     const { setIsLoggedIn, setPublicAddress, publicAddress } = useLogin();
@@ -38,7 +38,18 @@ const Homepage = () => {
         router.push('/registerConcert');
 
     };
-    
+
+
+    useEffect(async () => {
+        async function getEvents() {
+                // Send data to backend
+                const response = await axios.get(
+                    `http://localhost:8000/getAllEvents`
+                );
+                console.log('Concert fetched successfully:', response.data);
+        }
+        getEvents();
+    }  ,[]);  
 
     useEffect(() => {
         const checkLogin = async () => {
@@ -52,6 +63,7 @@ const Homepage = () => {
 
     useEffect(() => {
         console.log("Public Address is : ", publicAddress);
+
     }, [publicAddress]);
 
     const handleLogin = async () => {
