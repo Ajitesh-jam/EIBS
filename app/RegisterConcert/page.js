@@ -19,48 +19,13 @@ const Page = () => {
   const [artistPublicAddress, setArtistPublicAddress] = useState('');
   const [image, setImageUrl] = useState('');
 
-  // const handleRegisterConcert = async () => {
-  //   const eventId = await totalEvents();
-
-  //   try {
-  //     const eventPayload = {
-  //       artistName,
-  //       publicAddress: artistPublicAddress,
-  //       date,
-  //       description,
-  //       isEventLive:false,
-  //       startingTicketPrice:ticketPrice,
-  //       location,
-  //       numberOfTickets: numberOfTickets,
-  //       publicAddress: artistPublicAddress,
-  //       imgUrl: image,
-  //       eventId: eventId
-       
-  //     };
-
-      
-  //     const response = await axios.post(`http://localhost:8000/createEvent/${eventId}`, eventPayload);
-  //     console.log('Concert registered successfully:', response.data);
-
-  //     //web3 create event
-  //     //convert ticket price and number of tickets to BigInt
-  //     let ticketPrice1 = BigInt(ticketPrice);
-  //     let numberOfTickets1 = BigInt(numberOfTickets);
-  //     const event = await createEvent(artistPublicAddress , artistName , ticketPrice1 , numberOfTickets1);
-  //     console.log("event created: ",event);
-  //     alert("Event created successfully");
-
-  //   } catch (error) {
-  //     console.error('Error registering concert:', error.response?.data || error.message);
-  //   }
-  // };
-
+ 
   const handleRegisterConcert = async () => {
     const eventId = await totalEvents();
+    console.log("Event id : " ,typeof(eventId));
   
     try {
-      const ticketPriceBigInt = BigInt(ticketPrice); // Convert to BigInt
-      const numberOfTicketsBigInt = BigInt(numberOfTickets); // Convert to BigInt
+
   
       // Prepare payload for API (as string to avoid serialization issues)
       const eventPayload = {
@@ -69,33 +34,38 @@ const Page = () => {
         date,
         description,
         isEventLive: false,
-        startingTicketPrice: ticketPriceBigInt.toString(), // Convert to string
+        startingTicketPrice: ticketPrice, // Convert to string
         location,
-        numberOfTickets: numberOfTicketsBigInt.toString(), // Convert to string
-        imgUrl: image,
-        eventId,
+        numberOfTickets: numberOfTickets, // Convert to string
+        image:image,
+        id : parseInt(eventId),
         ticketLiveDate,
       };
+      console.log("event payload: " + eventPayload);
+      
   
       // Send data to backend
-      const response = await axios.post(
-        `http://localhost:8000/createEvent/${eventId}`,
-        eventPayload
-      );
-      console.log('Concert registered successfully:', response.data);
-  
+      const res = await fetch("/api/events/create",{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(eventPayload),
+      })
+      const data = await res.json();
+      console.log("created event payload: " + data);
       // Call web3 contract function with BigInt values
       const event = await createEvent(
         artistPublicAddress,
         artistName,
-        ticketPriceBigInt,
-        numberOfTicketsBigInt
+        ticketPrice,
+        numberOfTickets
       );
       console.log('Event created on blockchain:', event);
   
       alert('Event created successfully');
     } catch (error) {
-      console.error('Error registering concert:', error.response?.data || error.message);
+      console.error('Error registering concert:', error);
     }
   };
   
@@ -145,6 +115,7 @@ const Page = () => {
         <div className="RC-field">
           <label>Date (DDMMYYYY):</label>
           <InputBox
+
             setInput={setDate}
             placeholder="Enter date in DDMMYYYY format"
             width="300px"
@@ -163,6 +134,7 @@ const Page = () => {
         <div className="RC-field">
           <label>Starting Ticket Price:</label>
           <InputBox
+          type="number"
             setInput={setTicketPrice}
             placeholder="Enter ticket price"
             width="300px"

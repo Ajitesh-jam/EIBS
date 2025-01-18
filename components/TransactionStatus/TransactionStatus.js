@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import './TransactionStatus.css';
 import ConfirmBooking from '../ConfirmBooking/ConfirmBooking';
 
-const TransactionStatus = ({ isOpen, status, onClose, artist }) => {
+const TransactionStatus = ({ isOpen, status, onClose, artist ,buyers,eventId}) => {
   if (!isOpen) return null;
 
   const getAlertContent = () => {
@@ -28,6 +28,12 @@ const TransactionStatus = ({ isOpen, status, onClose, artist }) => {
           description: "One of the buyers already has a ticket for the event.",
           className: "alert-refused"
         };
+      case 'Tickets Not Distributed yet':
+        return {
+          title: "You are eligible to buy ",
+          description: "You  are eligible to buy.",
+          className: "alert-pending"
+        };
       default:
         return null;
     }
@@ -38,7 +44,7 @@ const TransactionStatus = ({ isOpen, status, onClose, artist }) => {
   if (status === 'success') {
     return (
       <div className="alert-overlay">
-        <ConfirmBooking onClose={onClose} artist={artist} />
+        <ConfirmBooking onClose={onClose} artist={artist} buyers={buyers} eventId={eventId} />
       </div>
     );
   }

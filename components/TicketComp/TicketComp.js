@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './TicketComp.css'
 
+import { checkTicketOwnership,getAccounts } from '../utils/web3Final'
 const TicketComp = ({ticketID}) => {
     const [ data , setData ] = useState([])
     const [ loading, setLoading ] = useState(true)
+    const [ status, setStatus ] = useState('Pending')
     useEffect(() =>{
         const fetchData = async () => {
             setLoading(true)
@@ -18,12 +20,19 @@ const TicketComp = ({ticketID}) => {
                     console.log('error in fetching tickets')
                     alert('Error in fetching tickets: ' + data.error)
                 }
+
+
+                //check ticket Status
+                const publicAddress = await getAccounts(); 
+                const ownershipStatus = await checkTicketOwnership(ticketID, publicAddress[0]);
+
             }
             catch (err) {
                 console.log(err)
             }finally {
                 setLoading(false)
             }
+            
         }
         fetchData()
 

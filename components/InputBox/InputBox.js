@@ -1,8 +1,9 @@
 import React from 'react'
 import './InputBox.css'
 
-const InputBox = ({ setInput, placeholder,width }) => {
+const InputBox = ({ setInput, placeholder,width , type = "text"}) => {
     const handleLink = (e) => {
+
         setInput(e.target.value);
         // console.log("Link is ", e.target.value);
     }
@@ -10,7 +11,7 @@ const InputBox = ({ setInput, placeholder,width }) => {
     return (
         <div>
             <input
-                type="text"
+                type={type}
                 placeholder={placeholder}
                 className='InputBox' 
                 onChange={handleLink}
