@@ -247,6 +247,15 @@ useEffect(() => {
             <HandRight/>
             <HandLeft/>
             <Fanticket/>
+            <div className='DB1'>
+                <img src="/Images/DB1.svg"/>
+            </div>
+            <div className='DB2'>
+                <img src="/Images/DB2.svg"/>
+            </div>
+            <div className='DB3'>
+                <img src="/Images/DB3.svg"/>
+            </div>
             </div>
             <div className='Events-container'>
                 <div className='Event-Heading'>
