@@ -1,20 +1,18 @@
-'use client'
+'use-client'
 
 import React from 'react'
 import './Navbar.css'
 import Button from '../Button/Button'
-import { useLogin } from '@/contexts/loginContext'
-import { useEffect } from 'react';
 import SearchBar from '../SearchBar/Searchbar'
 import ProfileSidebar from '../ProfileSidebar/ProfileSidebar'
+import {useAuthState} from 'react-firebase-hooks/auth'
+import { auth } from '@/app/firebase/config'
 
-
-const Navbar = ({toggleGetStartedModal, publicAddress}) => {
-  const {isLoggedIn} = useLogin();
-
-  useEffect(() => {
-    console.log(`Log in status : ${isLoggedIn}`);
-  }, [isLoggedIn]);
+const Navbar = ({toggleGetStartedModal}) => {
+ 
+  const [user ,loading ,error] = useAuthState(auth);
+  console.log("user ", user);
+ 
 
   return (
     <div className='Navbar-container'>
@@ -23,15 +21,20 @@ const Navbar = ({toggleGetStartedModal, publicAddress}) => {
       </div>
       <div className='Navbar-right'>
       <SearchBar/>
-      {!isLoggedIn ? (
+      {!user  && (
          <Button
          btnText='Login'
-         onClickFunction={toggleGetStartedModal}/>
-      ) : 
+         onClickFunction={toggleGetStartedModal}
+         />
+      ) }
+      {user && 
       (
-        <ProfileSidebar publicAddress={publicAddress}/>
+        <>
+        <ProfileSidebar  /> 
+         </>
       )
-      }
+    }
+      
       </div>
       
     </div>

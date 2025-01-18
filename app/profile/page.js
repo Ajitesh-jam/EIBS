@@ -9,14 +9,14 @@ const Homepage = () => {
     const[account,setConnected]= useState("");
 
     // Fetch events (replace `events` with your API function or mock it)
-    useEffect(()=>{
-        async function fetch(){
-        const acc=await getAccounts();
-        console.log("connceted acc: ",acc);
-        setConnected(acc);
-    }
-    fetch();
-    },[])
+    // useEffect(()=>{
+    //     async function fetch(){
+    //     const acc=await getAccounts();
+    //     console.log("connceted acc: ",acc);
+    //     setConnected(acc);
+    // }
+    // fetch();
+    // },[])
 
     return (
         <div className="Homepage-container">
