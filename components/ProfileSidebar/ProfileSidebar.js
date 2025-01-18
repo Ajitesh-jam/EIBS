@@ -50,7 +50,7 @@ const ProfileSidebar = ({ publicAddress }) => {
             router.push('/myTickets');
         } 
         else {
-
+            router.push('/myEvents');
         }
     }
 

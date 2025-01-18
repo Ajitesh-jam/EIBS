@@ -13,6 +13,7 @@ export const LoginProvider = ({ children }) => {
   const [role,setRole] = useState('');
   // Spotify auth states
   const [isSpotifyAuthenticated, setIsSpotifyAuthenticated] = useState(false);
+  const [events, setEvents] = useState("");
   
   useEffect(() => {
     // Check if the user is logged in
@@ -62,6 +63,8 @@ export const LoginProvider = ({ children }) => {
         publicAddress,
         role,
         isSpotifyAuthenticated,
+        setEvents,
+        events
       }}
     >
       {children}

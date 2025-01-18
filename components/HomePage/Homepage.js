@@ -20,7 +20,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 const Homepage = () => {
-    const { setIsLoggedIn, setPublicAddress, publicAddress } = useLogin();
+    const { setIsLoggedIn, setPublicAddress, publicAddress, setEvents, events } = useLogin();
     const [showModal, setShowModal] = useState(false);
     const headingRef = useRef(null); // Ref for the heading
     const subHeadingRef = useRef(null); // Ref for the sub-heading
@@ -46,7 +46,8 @@ const Homepage = () => {
                 const response = await axios.get(
                     `http://localhost:8000/getAllEvents`
                 );
-                console.log('Concert fetched successfully:', response.data);
+                // console.log('Concert fetched successfully:', response.data);
+
         }
         getEvents();
     }  ,[]);  
@@ -78,64 +79,6 @@ const Homepage = () => {
     };
 
     const [allevents, setAllEvents] = useState([]);
-
-    // GSAP Animations
-    // useEffect(() => {
-    //     gsap.fromTo(
-    //         headingRef.current,
-    //         { opacity: 0, x: 200 }, // Start off-screen to the right
-    //         {
-    //             opacity: 1,
-    //             x: 0, // Slide to the original position
-    //             duration: 1.5,
-    //             ease: 'power4.out',
-    //             delay: 0.5,
-    //         }
-    //     );
-    // }, []);
-
-    // useEffect(() => {
-    //     gsap.fromTo(
-    //         subHeadingRef.current,
-    //         { opacity: 0, x: 300 }, // Start off-screen to the right
-    //         {
-    //             opacity: 1,
-    //             x: 0, // Slide to the original position
-    //             duration: 1.5,
-    //             ease: 'power4.out',
-    //             delay: 0.5,
-    //         }
-    //     );
-    // }, []);
-
-    // useEffect(() => {
-    //     gsap.fromTo(
-    //         subHeadingRef2.current,
-    //         { opacity: 0, x: 350 }, // Start off-screen to the right
-    //         {
-    //             opacity: 1,
-    //             x: 0, // Slide to the original position
-    //             duration: 1.5,
-    //             ease: 'power4.out',
-    //             delay: 0.5,
-    //         }
-    //     );
-    // }, []);
-
-    
-    // useEffect(() => {
-    //     gsap.fromTo(
-    //         subHeadingRef3.current,
-    //         { opacity: 0, x: 400 }, // Start off-screen to the right
-    //         {
-    //             opacity: 1,
-    //             x: 0, // Slide to the original position
-    //             duration: 1.5,
-    //             ease: 'power4.out',
-    //             delay: 0.5,
-    //         }
-    //     );
-    // }, []);
 
   // Fixed card animations
   useEffect(() => {
