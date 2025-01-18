@@ -24,7 +24,7 @@ const MyComponent = () => {
 
   return (
     <div>
-      <button onClick={() => checkFanScore('Coldplay')}>
+      <button onClick={() => checkFanScore('Kendrick Lamar')}>
         Check Fan Score
       </button>
       
