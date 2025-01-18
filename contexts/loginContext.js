@@ -40,7 +40,7 @@ export const LoginProvider = ({ children }) => {
         const accounts = await getAccounts();
         if (metaMaskStatus) {
           dispatch({ type: 'SET_LOGGED_IN', payload: true });
-          const account = await getAccounts();
+          const accounts = await getAccounts();
           dispatch({ type: 'SET_PUBLIC_ADDRESS', payload: accounts[0] });
         } else {
           dispatch({ type: 'SET_LOGGED_IN', payload: false });

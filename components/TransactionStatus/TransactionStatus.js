@@ -1,9 +1,9 @@
 // TransactionStatus.jsx
 import React, { useEffect } from 'react';
 import './TransactionStatus.css';
+import ConfirmBooking from '../ConfirmBooking/ConfirmBooking';
 
-const TransactionStatus = ({ isOpen, status, onClose }) => {
-
+const TransactionStatus = ({ isOpen, status, onClose, artist }) => {
   if (!isOpen) return null;
 
   const getAlertContent = () => {
@@ -15,29 +15,34 @@ const TransactionStatus = ({ isOpen, status, onClose }) => {
           className: "alert-pending"
         };
       case 'success':
-        return {
-          title: "Transaction Successful",
-          description: "Your tickets have been booked successfully!",
-          className: "alert-success"
-        };
+        return null; // No alert content, because we'll render ConfirmBooking
       case 'refused':
         return {
           title: "Transaction Refused",
           description: "The transaction was cancelled or failed.",
           className: "alert-refused"
         };
-        case 'AlreadyOwnsTicket':
-            return {
-                title: "Transaction Refused",
-                description: "One of the buyers already has a ticket for the event",
-                className: "alert-refused"
-            };
+      case 'AlreadyOwnsTicket':
+        return {
+          title: "Transaction Refused",
+          description: "One of the buyers already has a ticket for the event.",
+          className: "alert-refused"
+        };
       default:
         return null;
     }
   };
 
   const alertContent = getAlertContent();
+
+  if (status === 'success') {
+    return (
+      <div className="alert-overlay">
+        <ConfirmBooking onClose={onClose} artist={artist} />
+      </div>
+    );
+  }
+
   if (!alertContent) return null;
 
   return (

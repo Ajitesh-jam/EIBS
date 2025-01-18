@@ -180,6 +180,7 @@ const BookTicket = () => {
                 isOpen={showTransactionAlert}
                 status={transactionStatus}
                 onClose={() => setShowTransactionAlert(false)}
+                artist={event.artistName}
             />
         </div>
     );

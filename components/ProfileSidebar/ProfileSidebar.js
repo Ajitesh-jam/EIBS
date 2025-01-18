@@ -69,7 +69,7 @@ const ProfileSidebar = () => {
                  
                   
                   //refresh the page 
-                Router.replace('/');
+               
           // Check if the login was successful 
         } catch (error) {
           console.error("Error during MetaMask login:", error);
