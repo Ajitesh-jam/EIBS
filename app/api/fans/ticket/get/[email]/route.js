@@ -4,20 +4,18 @@ import { app } from '@/app/firebase/config';
 
 const firestore = getFirestore(app);
 
-export async function POST(req, { params }) {
-  const { email } = params; // `email` as `fanID`
-  const { ticketID } = await req.json();
+export async function GET(req,  {params} ) {
+  const { email } = await params; // `email` as `fanID`
+
 
   try {
     const docRef = doc(firestore, 'fans', email);
     const fanSnap = await getDoc(docRef);
 
     if (fanSnap.exists()) {
-      const fanData = fanSnap.data();
-      const updatedTickets = fanData.tickets ? [...fanData.tickets, ticketID] : [ticketID];
-
-      await updateDoc(docRef, { tickets: updatedTickets });
-      return NextResponse.json({ message: 'Ticket added successfully' });
+        const fanData = fanSnap.data();
+        const tickets = fanData.tickets || [];
+        return NextResponse.json({ tickets });
     } else {
       return NextResponse.json({ error: 'Fan not found' }, { status: 404 });
     }
