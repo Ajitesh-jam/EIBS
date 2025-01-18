@@ -53,15 +53,22 @@ const GetStarted = ({ setShowModal }) => {
             name: currentUser.user.displayName 
           }),
         });
-  
+        const data = await res.json();
         if (res.ok) {
           const data = await res.json();
           console.log("data", data);
           dispatch({ type: "SET_LOGGED_IN", payload: true });
           dispatch({ type: "SET_ROLE", payload: role });
           nextStep(); // Proceed to the next step after successful login
-        } else {
-          console.error("Error during API call:", res.statusText);
+        } 
+        else if(res.status == 400 ){
+          dispatch({ type: "SET_LOGGED_IN", payload: true });
+          dispatch({ type: "SET_ROLE", payload: role });
+          nextStep();
+        }
+
+          else {
+          console.log("Error during API call:", res);
         }
       } else {
         console.error("Google sign-in failed");
