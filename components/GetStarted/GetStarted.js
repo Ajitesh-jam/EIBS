@@ -16,7 +16,7 @@ const GetStarted = ({ setShowModal }) => {
 
   const [signInWithGoogle, user, error, loading] = useSignInWithGoogle(auth);
   const [signInWithFacebook] = useSignInWithFacebook(auth);
-  const { isLoggedIn ,dispatch } = useLogin();
+  const { isLoggedIn, dispatch } = useLogin();
 
 
   console.log("user", user);
@@ -111,7 +111,7 @@ const GetStarted = ({ setShowModal }) => {
           <h1 className="title " style={{ fontSize: 30 }}>
             Wallet connected successfully !!
           </h1>
-          <Button btnText="Continue" onClickFunction={setShowModal(false)} />
+          <Button btnText="Continue" onClickFunction={() => setShowModal(false)} />
         </>
       )}
     </div>

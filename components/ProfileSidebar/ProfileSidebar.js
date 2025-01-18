@@ -83,10 +83,10 @@ const ProfileSidebar = () => {
             <div className={`sidebar ${isOpen ? 'active' : ''}`}>
                 <div className="sidebar-content">
                     <div className='Greeting'>
-                        <h1>Hello there! {user.displayName}</h1>
+                        <h1>Hello! {user.displayName}</h1>
                         <div onClick={toggleSidebar}><span>X</span></div>
                     </div>
-                   {isLoggedIn && 
+                   {publicAddress && 
                    <>
                     <div><h3>Here's your Public Address</h3></div>
                     <div className='PublicAddress'>
@@ -106,11 +106,8 @@ const ProfileSidebar = () => {
                     </div>
                    </>
                     }
-                    {!isLoggedIn &&
+                    {!publicAddress &&
                     <>
-                    <h1 className="title " style={{ fontSize: 30 }}>
-                {user.displayName}, let's connect your wallet
-              </h1>
               <div className="login-option-metamask" onClick={handleMetamask}>
                 <p>Connect MetaMask</p>
                 <div className="MetaMask-logo">
