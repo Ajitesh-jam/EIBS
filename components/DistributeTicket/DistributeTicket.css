@@ -74,11 +74,27 @@
 }
 .Distribute{
     height: auto;
-    width: 100%;
+    width: 30%;
+    padding-right: 10px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    
-    
+}
+.buttons{
+    height: auto;
+    width: 100%;
+    padding-right: 10px;
+    display: flex;
+    border: #979797;
+    flex-direction: row;
+    justify-content: end;
+}
+.MakeLiveNow{
+    height: auto;
+    width: 100%;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 
 }

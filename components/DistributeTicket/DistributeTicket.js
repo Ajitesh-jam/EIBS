@@ -27,10 +27,15 @@ const DistributeTicket = () => {
             </div>
             
         </div>
+        <div className='buttons' >
+            <div className='MakeLiveNow'>
+                <Button btnText="Make Tickets Live" onClickFunction={handleDistributeNow}></Button> 
+            </div>
             <div className='Distribute'> 
-
+            
             <Button btnText="Distribute Now" onClickFunction={handleDistributeNow}></Button>
             </div>
+        </div>
     </div>
     )
 }

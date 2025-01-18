@@ -10,6 +10,8 @@ import confetti from 'canvas-confetti';
 import Preloader from '@/components/Preloader/Preloader';
 import OTPVerification from '@/components/OTP_SYSTEM/OTPSystem';
 import CountdownTimer from '@/components/Time_Left_Card/CountdownTimer';
+import ConfirmBooking from '@/components/ConfirmBooking/ConfirmBooking';
+
 const Homepage = () => {
     const[account,setConnected]= useState("");
 
@@ -25,13 +27,8 @@ const Homepage = () => {
 
     return (
         <div className="Homepage-container">
-            <Navbar />
-           <QRCodeGenerator account={account}/>
-           <RotatingText/>
-           <ClipBoard/>
-           <ButtonWithConfetti/>
-           <Preloader/>
-           <CountdownTimer/>
+            
+           <ConfirmBooking/>
         </div>
     );
 };
