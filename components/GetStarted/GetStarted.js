@@ -16,10 +16,7 @@ const GetStarted = ({ setShowModal }) => {
   const [signInWithGoogle, user, error, loading] = useSignInWithGoogle(auth);
   const [signInWithFacebook] = useSignInWithFacebook(auth);
   const { isLoggedIn, dispatch } = useLogin();
-
-
-  console.log("user", user);
-  console.log("step", step);
+  const [role , setRole] = useState('');
   const nextStep = () => {
     setStep(step + 1);
   };
@@ -36,19 +33,44 @@ const GetStarted = ({ setShowModal }) => {
     }
   };
   const handleGoogleLogin = async () => {
-  try {
-    // Trigger the login process
-    await signInWithGoogle();
-    // Check if the login was successful
-    const res = await fetch('/api/')
-    dispatch({ type: "SET_LOGGED_IN", payload: true });
-    nextStep(); // Proceed to the next step after successful
-    
-  } catch (error) {
-    console.error("Error during Google login:", error);
-    
-  }
-  }
+    try {
+      // Trigger the login process
+      let currentUser = user;
+      if (!currentUser) {
+        currentUser = await signInWithGoogle();
+      }
+      console.log("user after google sign in ", currentUser);
+  
+      // Check if the login was successful
+      if (currentUser && currentUser.user) {
+        const res = await fetch('/api/fans/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            email: currentUser.user.email, 
+            role: role || 'Fan', // Ensure role is defined
+            name: currentUser.user.displayName 
+          }),
+        });
+  
+        if (res.ok) {
+          const data = await res.json();
+          console.log("data", data);
+          dispatch({ type: "SET_LOGGED_IN", payload: true });
+          dispatch({ type: "SET_ROLE", payload: role });
+          nextStep(); // Proceed to the next step after successful login
+        } else {
+          console.error("Error during API call:", res.statusText);
+        }
+      } else {
+        console.error("Google sign-in failed");
+      }
+    } catch (error) {
+      console.error("Error during Google login:", error);
+    }
+  };
 
 
   return (
@@ -60,14 +82,14 @@ const GetStarted = ({ setShowModal }) => {
             <Button
               btnText="Artist"
               onClickFunction={() => {
-                dispatch({ type: "SET_ROLE", payload: "Artist" });
+                setRole('Artist');
                 nextStep();
               }}
             />
             <Button
               btnText="Fan <3"
               onClickFunction={() => {
-                dispatch({ type: "SET_ROLE", payload: "Fan" });
+                setRole('Fan');
                 nextStep();
               }}
             />
