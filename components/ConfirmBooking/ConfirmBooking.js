@@ -4,7 +4,8 @@ import './ConfirmBooking.css'
 import Button from '../Button/Button'
 import { triggerConfetti } from '../utils/CanvasConfetti'
 import { calculateFanScore } from '../utils/fanScore'
-const ConfirmBooking = ({ onClose, artist }) => {
+import { addBuyersToQueue } from '../utils/web3Final'
+const ConfirmBooking = ({ onClose, artist,buyers,eventId }) => {
     const handleClose = () => {
         onClose();
     }
@@ -19,7 +20,7 @@ const ConfirmBooking = ({ onClose, artist }) => {
         const timeWeight = timeDifference / (1000 * 60 * 100); // Adjust the scale to your needs
         return score + timeWeight; // Add the time weight to the score
     }
-    
+
 
     const checkFanScore = async (artistName) => {
         try {
@@ -39,6 +40,9 @@ const ConfirmBooking = ({ onClose, artist }) => {
 
     useEffect(() => {
         checkFanScore(artist);
+
+        console.log("buyers in confirm booking",buyers);
+        console.log("event id in confirm booking",eventId);
     }, [])
     return (
         <div className='Container'>
