@@ -33,7 +33,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-family: 'CD-Semibold';
 }
 .Fanscore{
@@ -48,29 +48,32 @@
     background-color: #FFF59F;
     border: 2px solid black;
     box-shadow: 5px 5px 0px 0px black;
-    padding-top: 15px;
     padding-left: 60px;
     padding-right: 60px;
 
 }
 .Content{
     width: 100%;
-    height: 50%;
+    height: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-size: 1.7rem;
-    font-family: 'CD-Semibold';
+    align-items: center;
+    font-size: 1.3rem;
+    font-family: 'CD-Medium';
+
 
 }
 .statement{
     width: 100%;
-    height: 50%;
+    height: 30%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    font-size: 1rem;
-    font-family: 'CD-Regular';
+    font-size: 1.3rem;
+    font-family: 'CD-Medium';
+    display: flex;
+    justify-content: space-between;
 }
 
 .OK{
