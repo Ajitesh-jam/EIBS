@@ -16,7 +16,7 @@ import { calculateFanScore } from '../utils/fanScore';
 const BookTicket = () => {
     const [showModal, setShowModal] = useState(false);
 
-    const { setIsLoggedIn, setPublicAddress, publicAddress } = useLogin();
+    const { isLoggedIn, publicAddress, role, isSpotifyAuthenticated, dispatch } = useLogin();
     const [ticketCount, setTicketCount] = useState(1);
     const [buyers, setBuyers] = useState(['']);
     const [transactionStatus, setTransactionStatus] = useState(null);
@@ -71,32 +71,32 @@ const BookTicket = () => {
         }
     };
 
-    useEffect(() => {
-        const checkLogin = async () => {
-            const loggedIn = await checkMetaMaskLogin();
-            setIsLoggedIn(loggedIn);
-            const accounts = await getAccounts();
-            if (loggedIn && accounts.length > 0) {
-                setBuyers((prev) => [accounts[0], ...prev.slice(1)]);
-            }
-            setCostPerTicket(event.ticketPrice / event.ticketsLeft);
-        };
+    // useEffect(() => {
+    //     const checkLogin = async () => {
+    //         const loggedIn = await checkMetaMaskLogin();
+    //         dispatch({ type: 'SET_LOGGED_IN', payload: loggedIn });
+    //         const accounts = await getAccounts();
+    //         if (loggedIn && accounts.length > 0) {
+    //             setBuyers((prev) => [accounts[0], ...prev.slice(1)]);
+    //         }
+    //         setCostPerTicket(event.ticketPrice / event.ticketsLeft);
+    //     };
 
-        checkLogin();
+    //     checkLogin();
 
-    }, []);
+    // }, []);
 
-    const handleLogin = async () => {
-        const accounts = await getAccounts();
-        setPublicAddress(accounts[0]);
-        setIsLoggedIn(true);
-        setBuyers((prev) => [accounts[0], ...prev.slice(1)]);
-        setShowModal(false);
-    };
+    // const handleLogin = async () => {
+    //     const accounts = await getAccounts();
+    //     setPublicAddress(accounts[0]);
+    //     setIsLoggedIn(true);
+    //     setBuyers((prev) => [accounts[0], ...prev.slice(1)]);
+    //     setShowModal(false);
+    // };
 
-    const toggleGetStartedModal = () => {
-        setShowModal(!showModal);
-    };
+    // const toggleGetStartedModal = () => {
+    //     setShowModal(!showModal);
+    // };
 
     // Update the buyers array when ticket count changes
     useEffect(() => {
@@ -138,18 +138,6 @@ const BookTicket = () => {
 
     return (
         <div className="BT-Container" >
-            <Navbar toggleGetStartedModal={toggleGetStartedModal} />
-            {/* Modal */}
-            {showModal && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <GetStarted handleLogin={handleLogin} />
-                        <button className="close-button" onClick={toggleGetStartedModal}>
-                            X
-                        </button>
-                    </div>
-                </div>
-            )}
             <div className="BT-Heading">
                 <h1>Book your tickets</h1>
             </div>

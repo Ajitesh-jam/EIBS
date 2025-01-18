@@ -5,6 +5,8 @@
     padding: 10px 20px;
     width: 100%;
     height: 8vh;
+    position: absolute;
+    margin-top: 10px;
     /* border: 1px solid red; */
 }
 

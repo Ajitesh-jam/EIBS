@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import JSONbig from 'json-bigint';
 import './Homepage.css';
-import Navbar from '../Navbar/Navbar';
 import Card from '../Card/Card';
 import Button from '../Button/Button';
 import GetStarted from '../GetStarted/GetStarted';
@@ -20,8 +19,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 const Homepage = () => {
-    const { setIsLoggedIn, setPublicAddress, publicAddress, setEvents, events } = useLogin();
-    const [showModal, setShowModal] = useState(false);
+    const { isLoggedIn, publicAddress, role, isSpotifyAuthenticated, dispatch } = useLogin();
     const headingRef = useRef(null); // Ref for the heading
     const subHeadingRef = useRef(null); // Ref for the sub-heading
     const subHeadingRef2 = useRef(null); // Ref for the sub-heading
@@ -36,11 +34,10 @@ const Homepage = () => {
     const handleRegisterConcertBtnClick = () => {
         console.log('Register Concert Button Clicked');
         router.push('/registerConcert');
-
     };
 
 
-    useEffect(async () => {
+    useEffect(() => {
         async function getEvents() {
                 // Send data to backend
                 const response = await axios.get(
@@ -52,30 +49,18 @@ const Homepage = () => {
         getEvents();
     }  ,[]);  
 
-    // useEffect(() => {
-    //     const checkLogin = async () => {
-    //         const loggedIn = await checkMetaMaskLogin();
-    //         setIsLoggedIn(loggedIn);
-    //         if (loggedIn) setPublicAddress(await getAccounts);
-    //     };
-
-    //     checkLogin();
-    // }, []);
-
     useEffect(() => {
-        console.log("Public Address is : ", publicAddress);
-
-    }, [publicAddress]);
-
-
-    // Function to toggle modal visibility
-    const toggleGetStartedModal = () => {
-        setShowModal(!showModal);
-    };
+        const data = {
+          "LoginStatus": isLoggedIn,
+          "Public Address": publicAddress,
+          "UserRole": role,
+          "isSpotifyAuthenticated": isSpotifyAuthenticated,
+        };
+      
+        console.log(data);
+      }, [isLoggedIn, publicAddress, role, isSpotifyAuthenticated]); 
 
     const [allevents, setAllEvents] = useState([]);
-
-
 
   // Fixed card animations
   useEffect(() => {
@@ -161,18 +146,7 @@ useEffect(() => {
 
     return (
         <div className='Homepage-container'>
-            <Navbar toggleGetStartedModal={toggleGetStartedModal} publicAddress={publicAddress}/>
-            {/* Modal */}
-            {showModal && (
-                <div className='modal-overlay'>
-                    <div className='modal-content'>
-                        <GetStarted  setShowModal={setShowModal}/>
-                        <button className='close-button' onClick={toggleGetStartedModal}>
-                            X
-                        </button>
-                    </div>
-                </div>
-            )}
+           
             <div className='Hero-container'>
                 <div className='Hero-left'></div>
                 <div className='Hero-right'>

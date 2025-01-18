@@ -3,7 +3,7 @@
 import { getAccounts } from "@/components/utils/web3Final";
 import React, { createContext, useState, useContext, useEffect, useReducer } from "react";
 // import { getAccounts } from "@/components/utils/web3";
-
+import { checkMetaMaskLogin } from "@/components/utils/web3Final";
 // Create the context
 const LoginContext = createContext();
 
@@ -36,9 +36,11 @@ export const LoginProvider = ({ children }) => {
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        const accounts = await getAccounts();
-        if (accounts.length > 0) {
+        const metaMaskStatus = await checkMetaMaskLogin();
+        // const accounts = await getAccounts();
+        if (metaMaskStatus) {
           dispatch({ type: 'SET_LOGGED_IN', payload: true });
+          const account = await getAccounts();
           dispatch({ type: 'SET_PUBLIC_ADDRESS', payload: accounts[0] });
         } else {
           dispatch({ type: 'SET_LOGGED_IN', payload: false });
