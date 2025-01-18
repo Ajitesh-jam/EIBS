@@ -10,7 +10,7 @@ export async function POST(req) {
   const eventId = eventData.id;
 
   try {
-    const eventsRef = collection(firestore, "events");
+    const eventsRef = collection(firestore, "events" , );
     await setDoc(doc(eventsRef, `${eventId}`), eventData);
     return NextResponse.json({ message: "Event created successfully", data: eventData });
   } catch (error) {

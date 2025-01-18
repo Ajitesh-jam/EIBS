@@ -17,6 +17,8 @@ const GetStarted = ({ setShowModal }) => {
   const [signInWithGoogle, user, error, loading] = useSignInWithGoogle(auth);
   const [signInWithFacebook] = useSignInWithFacebook(auth);
   const { isLoggedIn ,dispatch } = useLogin();
+
+
   console.log("user", user);
   console.log("step", step);
   const nextStep = () => {
@@ -34,6 +36,21 @@ const GetStarted = ({ setShowModal }) => {
       console.error("Error during MetaMask login:", error);
     }
   };
+  const handleGoogleLogin = async () => {
+  try {
+    // Trigger the login process
+    await signInWithGoogle();
+    // Check if the login was successful
+    const res = await fetch('/api/')
+    dispatch({ type: "SET_LOGGED_IN", payload: true });
+    nextStep(); // Proceed to the next step after successful
+    
+  } catch (error) {
+    console.error("Error during Google login:", error);
+    
+  }
+  }
+
 
   return (
     <div className="get-started-container">
@@ -44,14 +61,14 @@ const GetStarted = ({ setShowModal }) => {
             <Button
               btnText="Artist"
               onClickFunction={() => {
-                setUserRole("Artist");
+                dispatch({ type: "SET_ROLE", payload: "Artist" });
                 nextStep();
               }}
             />
             <Button
               btnText="Fan <3"
               onClickFunction={() => {
-                setUserRole("Fan");
+                dispatch({ type: "SET_ROLE", payload: "Fan" });
                 nextStep();
               }}
             />
@@ -67,15 +84,7 @@ const GetStarted = ({ setShowModal }) => {
             {/* <InputBox placeholder="Enter Phone Number" width="100%" setInput={setPhoneNumber} /> */}
             <Button
               btnText="Login With Google "
-              onClickFunction={() => {
-                signInWithGoogle()
-                  .then(() => {
-                    nextStep();
-                  })
-                  .catch((error) => {
-                    console.error("Google sign-in error:", error);
-                  });
-              }}
+              onClickFunction={handleGoogleLogin}
             />
           </div>
         </>

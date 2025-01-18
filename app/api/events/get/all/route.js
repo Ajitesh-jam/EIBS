@@ -5,8 +5,6 @@ import {app} from '@/app/firebase/config'
 const firestore = getFirestore(app);
 
 export async function GET(req) {
-
-  
     try {
         const eventsRef = collection(firestore, "events");
         const querySnapshot = await getDocs(eventsRef);

@@ -1,14 +1,15 @@
 import { NextResponse } from 'next/server';
-import { getFirestore, collection, doc, setDoc, getDoc } from 'firebase/firestore';
+import { getFirestore, collection, doc, setDoc, getDoc, deleteDoc } from 'firebase/firestore';
 import {app} from '@/app/firebase/config'
 
 const firestore = getFirestore(app);
 
 export async function DELETE(req, { params }) {
-    const { eventId } = params;
+    const { eventID } = await params;
+    console.log(eventID);
   
     try {
-      const docRef = doc(firestore, "events", eventId);
+      const docRef = doc(firestore, "events", eventID);
       await deleteDoc(docRef);
       return NextResponse.json({ message: "Event deleted successfully" });
     } catch (error) {

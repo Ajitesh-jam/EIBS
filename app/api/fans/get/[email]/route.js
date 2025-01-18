@@ -5,7 +5,7 @@ import { app } from '@/app/firebase/config';
 const firestore = getFirestore(app);
 
 export async function GET(req, { params }) {
-  const { email } = params; // `email` is used as `fanID`
+  const { email } = await params;  
 
   try {
     const docRef = doc(firestore, 'fans', email);
