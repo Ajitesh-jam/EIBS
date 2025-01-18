@@ -34,12 +34,12 @@ export const getAccounts = async () => {
 };
 
 // Create Event
-export const createEvent = async ( name, ticketPrice, ticketsLeft) => {
+export const createEvent = async (artist, name, ticketPrice, ticketsLeft) => {
   const contract = eventManagerContract();
   const accounts = await getAccounts();
   try {
     const response = await contract.methods
-      .createEvent(accounts[0], name, ticketPrice, ticketsLeft)
+      .createEvent(artist, name, ticketPrice, ticketsLeft)
       .send({ from: accounts[0] });
     return response;
   } catch (error) {

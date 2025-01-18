@@ -21,7 +21,6 @@ const ProfileSidebar = () => {
     console.log("public address in context :" , publicAddress);
     
     console.log("isloggedIn",isLoggedIn);
-
     const copyToClipboard = () => {
         const el = document.createElement('textarea');
         el.value = publicAddress;
@@ -39,13 +38,6 @@ const ProfileSidebar = () => {
 
     }
 
-    // const fetchAddress = async () => {
-    //     const address = await getAccounts();
-    //     setpAddress(address);
-    // }
-    // useEffect(() => {
-    //     fetchAddress();
-    // }, []);
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
@@ -54,7 +46,7 @@ const ProfileSidebar = () => {
 
     const showTickets = () => {
         if(role === "Fan"){
-            
+            router.push('/myTickets');
         } 
         else {
 

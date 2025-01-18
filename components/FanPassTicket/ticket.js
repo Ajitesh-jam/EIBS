@@ -42,7 +42,7 @@ const Fanticket = () => {
 
   return (
     <div className='ticketContainer' ref={ticketRef}>
-        <img src='/Images/FanPassTicket.svg' className='ticketImg' alt='Ticket' />
+        <img src='/Images/fanPassTicket.png' className='ticketImg' alt='Ticket' />
     </div>
   );
 };

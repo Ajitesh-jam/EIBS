@@ -2,7 +2,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Homepage.css';
 import Navbar from '@/components/Navbar/Navbar';
-import { getAccounts } from '@/components/utils/web3';
+//import { getAccounts } from '@/components/utils/web3';
+import { getAccounts } from '@/components/utils/web3Final';
 
 
 const Homepage = () => {
