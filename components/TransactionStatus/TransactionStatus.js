@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import './TransactionStatus.css';
 import ConfirmBooking from '../ConfirmBooking/ConfirmBooking';
 
-const TransactionStatus = ({ isOpen, status, onClose, artist ,buyers,eventId}) => {
+const TransactionStatus = ({ isOpen, status, onClose, artist ,buyers,eventId,totalBill}) => {
   if (!isOpen) return null;
 
   const getAlertContent = () => {
@@ -44,7 +44,7 @@ const TransactionStatus = ({ isOpen, status, onClose, artist ,buyers,eventId}) =
   if (status === 'success') {
     return (
       <div className="alert-overlay">
-        <ConfirmBooking onClose={onClose} artist={artist} buyers={buyers} eventId={eventId} />
+        <ConfirmBooking onClose={onClose} artist={artist} buyers={buyers} eventId={eventId} totalBill={totalBill} />
       </div>
     );
   }

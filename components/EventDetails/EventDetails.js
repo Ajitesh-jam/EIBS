@@ -5,16 +5,21 @@ import './EventDetails.css';
 import Button from '../Button/Button';
 import { useRouter } from 'next/navigation';
 import { useLogin } from '@/contexts/loginContext'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/app/firebase/config';
+
 
 const EventDetails = ({ event, onClose }) => {
     if (!event) return null;
     const router = useRouter();
     const { isLoggedIn, publicAddress, role, isSpotifyAuthenticated, dispatch } = useLogin();
+    const [user] = useAuthState(auth);
 
     const handleBookTickets = () => {
         // Check all requirements
         const missingRequirements = [];
         
+        if (!user) missingRequirements.push('Google Login');
         if (!publicAddress) missingRequirements.push('Wallet connection');
         if (!role) missingRequirements.push('User role');
         if (!isSpotifyAuthenticated) missingRequirements.push('Spotify authentication');

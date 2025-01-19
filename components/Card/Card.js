@@ -4,16 +4,16 @@ import "./Card.css";
 import EventDetails from "../EventDetails/EventDetails";
 
 const Card = ({ event }) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal1, setShowModal1] = useState(false);
 
   const handleCardClick = () => {
-    if(event.isEventLive)  setShowModal(true);
-    else setShowModal(false);
+    if(event.isEventLive)  setShowModal1(true);
+    else setShowModal1(false);
    
   };
 
   const handleCloseModal = () => {
-    setShowModal(false);
+    setShowModal1(false);
   };
 
   const formatTimestamp = (timestamp) => {
@@ -92,7 +92,7 @@ const Card = ({ event }) => {
         </div>
       </div>
 
-      {showModal && (
+      {showModal1 && (
         <div className="modal-overlay" onClick={handleCloseModal}>
           <EventDetails
             event={{
@@ -101,7 +101,10 @@ const Card = ({ event }) => {
               ...(event.createdAt && { createdAt: formatTimestamp(event.createdAt) }),
               ...(event.updatedAt && { updatedAt: formatTimestamp(event.updatedAt) })
             }}
-            onClose={() => setShowModal(false)}
+            onClose={() => {
+              setShowModal1(false)
+              console.log("triggring close")
+            }}
           />
         </div>
       )}

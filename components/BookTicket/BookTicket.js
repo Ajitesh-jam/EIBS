@@ -185,6 +185,7 @@ const BookTicket = () => {
                 artist={event.artistName}
                 buyers={buyers}
                 eventId={event.id}
+                totalBill={bill}
             />
         </div>
     );
