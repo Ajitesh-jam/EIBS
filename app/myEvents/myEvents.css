@@ -1,7 +1,7 @@
 .myEventsContainer{
     padding-top: 100px;
     width: 100vw;
-    height: 100vh;
+    height: auto;
     background-image: url('/Images/DotsHome.svg');
     background-repeat: repeat;
     background-size: contain;
@@ -16,8 +16,8 @@
 }
 
 .myEventsWrapper{
-    min-height: 50vh;
     height: auto;
+
     width: 75%;
     padding: 20px;
 }

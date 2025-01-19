@@ -29,6 +29,8 @@ const EventDetails = ({ event, onClose }) => {
             alert(`Please complete the following requirements before booking tickets:\n\n${missingRequirements.join('\n')}`);
             return;
         }
+
+        //console.log("Event :", event);
         
         // If all requirements are met, proceed with booking
         console.log("Booking tickets");
@@ -37,7 +39,42 @@ const EventDetails = ({ event, onClose }) => {
         );
         router.push(`/bookTicket?event=${encodeURIComponent(safeEvent)}`);
     };
+    function formatDate(inputDate) {
+        // Ensure the input is in the expected format
+        if (!/^\d{8}$/.test(inputDate)) {
+            throw new Error("Invalid date format. Expected DDMMYYYY.");
+        }
+    
+        // Extract day, month, and year
+        const day = parseInt(inputDate.substring(0, 2), 10);
+        const month = parseInt(inputDate.substring(2, 4), 10) - 1; // Months are 0-indexed
+        const year = parseInt(inputDate.substring(4, 8), 10);
+    
+        // Array of month names
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+    
+        // Get the day suffix (st, nd, rd, th)
+        const daySuffix = (day) => {
+            if (day % 10 === 1 && day !== 11) return "st";
+            if (day % 10 === 2 && day !== 12) return "nd";
+            if (day % 10 === 3 && day !== 13) return "rd";
+            return "th";
+        };
+    
+        // Format the date
+        const formattedDate = `${day}${daySuffix(day)} ${monthNames[month]} ${year}`;
+    
+        return formattedDate;
+    }
+    
+  
+    
 
+    
+    
     return (
         <div className="event-details-overlay" onClick={onClose}>
             <div className="event-details-modal" onClick={(e) => e.stopPropagation()}>
@@ -69,7 +106,7 @@ const EventDetails = ({ event, onClose }) => {
                         <div className="event-meta">
                             <div className="meta-item">
                                 <h4>Date:</h4>
-                                <p> {event.date || 'TBA'}</p>
+                                <p> {formatDate("19052025") || 'TBA'}</p>
                                 <div className="TicketsLeft">Ticket Price</div>
                                 <span>{event.ticketPrice} </span>
                             </div>

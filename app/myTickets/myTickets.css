@@ -1,7 +1,7 @@
 .myTicketsContainer{
     padding-top: 100px;
     width: 100vw;
-    height: 100vh;
+    height: auto;
     /* border: 1px solid red; */
     background-image: url('/Images/DotsHome.svg');
     background-repeat: repeat;
@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    padding-bottom: 100px;
 }
 
 .myTicketsContainer h1{

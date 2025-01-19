@@ -5,7 +5,6 @@ import './Homepage.css';
 import Card from '../Card/Card';
 import Button from '../Button/Button';
 import GetStarted from '../GetStarted/GetStarted';
-import { getAccounts, checkMetaMaskLogin, events } from '../utils/web3';
 import { useLogin } from '@/contexts/loginContext'
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
