@@ -5,7 +5,6 @@ import './Navbar.css'
 import Button from '../Button/Button'
 import { useLogin } from '@/contexts/loginContext'
 import { useEffect } from 'react';
-import SearchBar from '../SearchBar/SearchBar'
 
 
 const Navbar = ({toggleGetStartedModal,onLoginClick, onSearch}) => {
@@ -20,7 +19,7 @@ const Navbar = ({toggleGetStartedModal,onLoginClick, onSearch}) => {
       <div className="logo-container">
         <p>LOGO</p>
       </div>
-      <SearchBar placeholderText="Search events..." onSearch={onSearch} />
+  
       {!isLoggedIn ? (
          <Button
          btnText='Login'
