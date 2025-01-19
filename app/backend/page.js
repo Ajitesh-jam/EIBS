@@ -1,7 +1,7 @@
 
 'use client';
 
-import { checkTicketOwnership } from "@/components/utils/web3.js";
+import { checkTicketOwnership } from "@/components/utils/web3Final.js";
 import Navbar from "@/components/Navbar/Navbar";
 import React, { useState, useEffect } from "react";
 
@@ -33,7 +33,7 @@ const QRScanner = () => {
 
       try {
         const hasTicket = await checkTicketOwnership(eventId, scannedText);
-        setOwnershipStatus(hasTicket ? "You own this ticket!" : "You do not own this ticket!");
+        setOwnershipStatus(hasTicket==1 ? "You own this ticket!" : "You do not own this ticket!");
       } catch (error) {
         console.error("Error checking ticket ownership:", error);
       }
