@@ -12,6 +12,10 @@
     
     box-shadow: 5px 5px 0px 0px black;
 }
+.ReturnTicketBtn{
+    position: relative;
+    left: 200px;
+}
 
 .TicketImgContainer{
     width: 40%;

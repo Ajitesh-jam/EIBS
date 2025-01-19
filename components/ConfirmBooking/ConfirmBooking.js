@@ -7,6 +7,7 @@ import { calculateFanScore } from '../utils/fanScore'
 import { addBuyersToQueue } from '../utils/web3Final'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '@/app/firebase/config'
+import TransactionStatus from '../TransactionStatus/TransactionStatus'
 const ConfirmBooking = ({ onClose, artist, buyers, eventId, totalBill }) => {
     const [fanScore, setFanScore] = useState(null);
     const [finalScore, setFinalScore] = useState(null);
@@ -43,8 +44,14 @@ const ConfirmBooking = ({ onClose, artist, buyers, eventId, totalBill }) => {
         }
     
         const handleClose = async () => {
-            await addTicketToWeb2();
-            await addBuyers();
+            try{
+                const response = await addBuyers();
+                if(response.ok){
+                    await addTicketToWeb2();
+                }
+            }catch(err){
+                alert("User did not proceed with the payment.");
+            }
     
             console.log("buyers in confirm booking", buyers);
             console.log("event id in confirm booking", eventId);
@@ -59,7 +66,7 @@ const ConfirmBooking = ({ onClose, artist, buyers, eventId, totalBill }) => {
         const lastDayOfYear = new Date(new Date().getFullYear(), 11, 31, 23, 59, 59, 999).getTime(); // Last day of the year
         const timeDifference = lastDayOfYear - currentTime; // Time remaining until the last day of the year
         const timeWeight = timeDifference / (1000 * 60 * 100); // Adjust the scale to your needs
-        return score + timeWeight; // Add the time weight to the score
+        return Math.ceil(score + timeWeight); // Add the time weight to the score and round up to the nearest integer
     }
 
 
