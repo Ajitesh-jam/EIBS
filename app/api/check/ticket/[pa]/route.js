@@ -7,7 +7,8 @@ export async function POST(req, { params }) {
   console.log("eventID", eventID);
   try {
     const check = await checkTicketOwnership( eventID,pa);
-    if (check === 1) {
+    console.log("check", check);
+    if (check == 1) {
       return NextResponse.json({ message: 'Ticket owned' });
     } else {
       return NextResponse.json({ message: 'Ticket not owned' });
