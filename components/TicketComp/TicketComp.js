@@ -58,10 +58,10 @@ const TicketComp = ({ticketID}) => {
             </div>
             <div className='TicketDetails'>
                 <div className='TicketEventname'>
-                    <p>Event Name </p>
+                <p>Artist Name :    {data.artistName}</p>
                 </div>
                 <div className='OtherDetails'>
-                    <p>Artist Name :           {data.artistName}</p>
+                    
                     <p>Booking Initiated at :            {data.date} </p>
                     <p className='TicketStatus'>Status : {status} </p>
                 </div>
