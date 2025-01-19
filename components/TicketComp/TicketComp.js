@@ -49,6 +49,8 @@ const TicketComp = ({ticketID}) => {
         fetchData()
 
     }, []);
+
+
     return (
         <div className='TicketCompContainer'>
            {!loading && 
@@ -62,7 +64,7 @@ const TicketComp = ({ticketID}) => {
                 </div>
                 <div className='OtherDetails'>
                     
-                    <p>Booking Initiated at :            {data.date} </p>
+                    <p>Booking Initiated at timestamp :            {(data.date)} </p>
                     <p className='TicketStatus'>Status : {status} </p>
                 </div>
             </div>

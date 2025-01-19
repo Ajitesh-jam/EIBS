@@ -15,12 +15,17 @@ const base64URLEncode = (buffer) => buffer.toString('base64')
     .replace(/\+/g, '-')
     .replace(/\//g, '_');
 
-// Updated scopes to include listening history
+// Comprehensive scopes for fan analysis
 const scope = [
-    'user-top-read',
-    'user-read-recently-played',
-    'user-library-read'
-  ].join(' ');
+    'user-top-read',              // Access user's top artists and tracks
+    'user-read-recently-played',  // Access user's recently played tracks
+    'user-library-read',          // Access user's saved tracks and albums
+    'playlist-read-private',      // Access user's private playlists
+    'playlist-read-collaborative',// Access collaborative playlists
+    'user-follow-read',          // Access user's followed artists
+    'user-read-private',         // Access user's subscription details
+    'user-read-email'            // Access user's email for identification
+].join(' ');
 
 export async function GET() {
     const client_id = process.env.SPOT_CLIENT_ID;
@@ -29,7 +34,6 @@ export async function GET() {
     const code_challenge = base64URLEncode(sha256(code_verifier));
     const state = generateRandomString(16);
 
-    // Set cookies using the cookies() API
     cookies().set('code_verifier', code_verifier, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',

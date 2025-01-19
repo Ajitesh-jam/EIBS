@@ -74,25 +74,20 @@ const ConfirmBooking = ({ onClose, artist, buyers, eventId, totalBill }) => {
             console.error(error);
         } finally {
             setLoading(false);
-            triggerConfetti();
+            if(!error) triggerConfetti();
         }
     };
 
-    useEffect(() => {
-
-    }, []);
 
 
     useEffect(() => {
         checkFanScore(artist);
-
-
-
     }, [])
+
     return (
         <div className='Container'>
             <div className='BookingContainer'>
-                {loading && <p>Calculating score...</p>}
+                {loading && <p style={{ fontFamily: 'CD-Regular' }}>Calculating score...</p>}
                 {error && <p>Error: {error}</p>}
                 {fanScore && (
 
@@ -100,7 +95,7 @@ const ConfirmBooking = ({ onClose, artist, buyers, eventId, totalBill }) => {
                     <>
                         <div className='FanscoreDetailContainer'>
                             <div className='AddedToQueue'>
-                                <p> YOU HAVE BEEN ADDED TO QUEUE!</p>
+                                <p> Proceed with the payment, to add yourself to the QUEUE!</p>
                             </div>
                             <div className='Fanscore'>
                                 <div className='Content'>
