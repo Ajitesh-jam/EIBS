@@ -1,7 +1,7 @@
 
 'use client';
 
-import { checkTicketOwnership } from "@/components/utils/web3Final.js";
+import { checkTicketOwnership } from "@/components/utils/web3final.js";
 import Navbar from "@/components/Navbar/Navbar";
 import React, { useState, useEffect } from "react";
 
@@ -20,7 +20,7 @@ const QRScanner = () => {
   const [eventId, setEventId] = useState(1);
   const [ownershipStatus, setOwnershipStatus] = useState(null);
 
-  // Validate Ethereum address
+  // Validate Ethereum address  
   const isValidEthereumAddress = (address) => /^0x[a-fA-F0-9]{40}$/.test(address);
 
   useEffect(() => {
